@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки - WebInv</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2196F3;
+            --primary-dark: #1976D2;
+            --background: #121212;
+            --surface: #1E1E1E;
+            --error: #F44336;
+            --success: #4CAF50;
+            --text-primary: #E0E0E0;
+            --text-secondary: #9E9E9E;
+            --border: #424242;
+            --hover: #2A2A2A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .nav-header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .settings-section {
+            background-color: var(--surface);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background-color: var(--background);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+        }
+
+        .save-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .save-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .save-btn:disabled {
+            background-color: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        .error-message {
+            background-color: var(--error);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message {
+            background-color: var(--success);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .setting-item {
+            background-color: var(--hover);
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .setting-item h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .current-info {
+            background-color: var(--background);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .current-info h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .current-info p {
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <div class="nav-links">
+            <a href="index.html">Главная</a>
+            <a href="settings.html" class="active">Настройки</a>
+            <a href="support.html">Поддержка</a>
+            <a href="login.html" id="loginLink">Войти</a>
+            <a href="#" id="logoutLink" style="display: none;">Выйти</a>
+        </div>
+        <div id="userDisplay"></div>
+    </div>
+
+    <div class="container">
+        <div class="settings-section">
+            <div class="section-header">
+                <h2><i class="fas fa-cog"></i> Настройки профиля</h2>
+                <p>Управление вашим аккаунтом</p>
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+
+            <div class="current-info">
+                <h4>Текущая информация</h4>
+                <p id="currentUsername">Имя пользователя: Загрузка...</p>
+                <p id="currentRole">Роль: Загрузка...</p>
+                <p id="registrationDate">Дата регистрации: Загрузка...</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <h3><i class="fas fa-user"></i> Изменить имя пользователя</h3>
+                    <form id="usernameForm">
+                        <div class="form-group">
+                            <label for="newUsername">Новое имя пользователя</label>
+                            <input type="text" id="newUsername" name="username" required minlength="3">
+                        </div>
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i> Сохранить
+                        </button>
+                    </form>
+                </div>
+
+                <div class="setting-item">
+                    <h3><i class="fas fa-lock"></i> Изменить пароль</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Текущий пароль</label>
+                            <input type="password" id="currentPassword" name="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">Новый пароль</label>
+                            <input type="password" id="newPassword" name="newPassword" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmNewPassword">Подтвердите новый пароль</label>
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" required>
+                        </div>
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i> Сохранить
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <div class="section-header">
+                <h2><i class="fas fa-key"></i> Сброс пароля</h2>
+                <p>Забыли пароль? Сбросьте его через email</p>
+            </div>
+
+            <div class="setting-item">
+                <p style="margin-bottom: 15px; color: var(--text-secondary);">
+                    Мы отправим ссылку для сброса пароля на ваш email.
+                </p>
+                <button class="save-btn" id="resetPasswordBtn">
+                    <i class="fas fa-envelope"></i> Отправить ссылку сброса
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        let currentUser = null;
+
+        // Check authentication
+        const token = localStorage.getItem('token');
+        const user = JSON.parse(localStorage.getItem('user') || 'null');
+
+        if (token && user) {
+            document.getElementById('loginLink').style.display = 'none';
+            document.getElementById('logoutLink').style.display = 'inline';
+            document.getElementById('userDisplay').textContent = `Привет, ${user.username}!`;
+            currentUser = user;
+            loadUserProfile();
+        } else {
+            document.getElementById('logoutLink').style.display = 'none';
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('logoutLink').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login.html';
+        });
+
+        async function loadUserProfile() {
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const profile = await response.json();
+                    document.getElementById('currentUsername').textContent = `Имя пользователя: ${profile.username}`;
+                    document.getElementById('currentRole').textContent = `Роль: ${profile.role}`;
+                    document.getElementById('registrationDate').textContent = `Дата регистрации: ${new Date(profile.createdAt).toLocaleDateString('ru-RU')}`;
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
+            }
+        }
+
+        // Username change form
+        document.getElementById('usernameForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const newUsername = document.getElementById('newUsername').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ username: newUsername }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    successMessage.textContent = 'Имя пользователя изменено успешно!';
+                    successMessage.style.display = 'block';
+                    currentUser.username = newUsername;
+                    localStorage.setItem('user', JSON.stringify(currentUser));
+                    document.getElementById('userDisplay').textContent = `Привет, ${newUsername}!`;
+                    loadUserProfile();
+                    e.target.reset();
+                } else {
+                    errorMessage.textContent = data.message || 'Ошибка изменения имени';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Ошибка сети. Попробуйте позже.';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Password change form
+        document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            if (newPassword !== confirmNewPassword) {
+                errorMessage.textContent = 'Новые пароли не совпадают';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/change-password`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        currentPassword,
+                        newPassword
+                    }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    successMessage.textContent = 'Пароль изменен успешно!';
+                    successMessage.style.display = 'block';
+                    e.target.reset();
+                } else {
+                    errorMessage.textContent = data.message || 'Ошибка изменения пароля';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Ошибка сети. Попробуйте позже.';
+                errorMessage.style.display = 'block';
+            }
+        });
+
+        // Password reset
+        document.getElementById('resetPasswordBtn').addEventListener('click', async () => {
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/auth/forgot-password`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: currentUser.email || `${currentUser.username}@example.com` }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    successMessage.textContent = 'Ссылка для сброса пароля отправлена на ваш email!';
+                    successMessage.style.display = 'block';
+                } else {
+                    errorMessage.textContent = data.message || 'Ошибка отправки';
+                    errorMessage.style.display = 'block';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'Ошибка сети. Попробуйте позже.';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

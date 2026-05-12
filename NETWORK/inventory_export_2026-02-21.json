@@ -1,0 +1,660 @@
+{
+  "assets": {},
+  "currentFloor": "Второй этаж",
+  "currentRoom": "ОФИС 1",
+  "history": [
+    {
+      "id": "689a67c2-bc4c-4a64-a794-be0627f3b855",
+      "action": "delete",
+      "assetId": "3ce0473d-c259-442e-96a5-d853d2a5d7f2",
+      "assetType": "Стол",
+      "details": {
+        "type": "Стол",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T17:23:07.294Z"
+    },
+    {
+      "id": "3039b719-1bb7-4961-965a-fd57f8dec8aa",
+      "action": "delete",
+      "assetId": "3ce0473d-c259-442e-96a5-d853d2a5d7f2",
+      "assetType": "Стол",
+      "details": {
+        "type": "Стол",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T17:23:02.798Z"
+    },
+    {
+      "id": "2f3a9691-4887-444b-8f41-d81f319a2328",
+      "action": "create",
+      "assetId": "3ce0473d-c259-442e-96a5-d853d2a5d7f2",
+      "assetType": "Стол",
+      "details": {
+        "type": "Стол",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T17:22:43.131Z"
+    },
+    {
+      "id": "f7e2d7aa-e4be-4fa3-8cca-ebd0d2503cef",
+      "action": "delete",
+      "assetId": "51f1192b-05ed-477f-83bf-ff5f8ea842da",
+      "assetType": "Стол",
+      "details": {
+        "type": "Стол",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:58.572Z"
+    },
+    {
+      "id": "f29a2932-5bbc-4fa4-9864-c41650206974",
+      "action": "delete",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "type": "Телефон",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:57.684Z"
+    },
+    {
+      "id": "dcf06606-32b9-460e-aab9-6d34d5ce9ea6",
+      "action": "delete",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "type": "Стул",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:56.284Z"
+    },
+    {
+      "id": "7bd44bb0-e1ea-45ea-bc68-10549aeba7aa",
+      "action": "delete",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "type": "Ноутбук",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:55.180Z"
+    },
+    {
+      "id": "56302915-b909-48c3-922b-cb9ff96d50e4",
+      "action": "move",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "x": 190,
+        "y": 193
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:54.017Z"
+    },
+    {
+      "id": "a420623c-7cb2-47db-a9ea-e4cca0346e37",
+      "action": "update",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:54.008Z"
+    },
+    {
+      "id": "cfabc5ea-1029-468e-aded-3ea2034da250",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 235,
+        "y": 244
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:53.549Z"
+    },
+    {
+      "id": "037b495f-d291-4e91-8e21-c557baa4cae2",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:53.541Z"
+    },
+    {
+      "id": "829073c7-1792-43a2-8b5a-a124168b3f41",
+      "action": "move",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "x": 179,
+        "y": 291
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:53.184Z"
+    },
+    {
+      "id": "f45ad2fa-77a4-44b2-92d6-759c650e339b",
+      "action": "update",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:53.174Z"
+    },
+    {
+      "id": "18967ddb-adb0-419d-926f-712d82b672c4",
+      "action": "move",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "x": 175,
+        "y": 199
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:52.518Z"
+    },
+    {
+      "id": "ec8d9350-0df0-4539-abc8-80746d8e4c13",
+      "action": "update",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:52.508Z"
+    },
+    {
+      "id": "e65c5d61-0d0b-4f18-b892-4ec7c1173e51",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 217,
+        "y": 197
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:51.985Z"
+    },
+    {
+      "id": "9630a2c5-fd2a-43a9-8307-2026d536e5e9",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:51.977Z"
+    },
+    {
+      "id": "5f830006-7804-4016-b26d-2536bb725980",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 213,
+        "y": 169
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:51.040Z"
+    },
+    {
+      "id": "5b667a52-9036-40d8-b21c-2dff1000a79c",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:46:51.031Z"
+    },
+    {
+      "id": "b24f6987-0e4b-4ba3-969b-e15f3d527a8b",
+      "action": "move",
+      "assetId": "51f1192b-05ed-477f-83bf-ff5f8ea842da",
+      "assetType": "Стол",
+      "details": {
+        "x": 449,
+        "y": 101
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:22:00.938Z"
+    },
+    {
+      "id": "9f954334-b93a-4e4b-822d-1ed40138dc62",
+      "action": "update",
+      "assetId": "51f1192b-05ed-477f-83bf-ff5f8ea842da",
+      "assetType": "Стол",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:22:00.931Z"
+    },
+    {
+      "id": "49a3645a-9ed0-419a-829f-c1b8ca6d99c7",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 192,
+        "y": 211
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:56.927Z"
+    },
+    {
+      "id": "83a75818-e6da-4e7c-9945-9c6df7f9a318",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:56.918Z"
+    },
+    {
+      "id": "0daa76b4-d25a-467d-9e11-c4345ac34f8e",
+      "action": "resize",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "width": 107,
+        "height": 73
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:55.176Z"
+    },
+    {
+      "id": "1f9adeb6-ccfb-44ea-aba7-edd6e8f3b47b",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "width",
+          "height",
+          "x",
+          "y",
+          "aspect_ratio"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:55.167Z"
+    },
+    {
+      "id": "768cd9cd-53e1-421c-90ed-218f5613ad24",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 462,
+        "y": 116
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:51.625Z"
+    },
+    {
+      "id": "b84652a9-d425-4ace-94e4-38a40562e258",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:51.616Z"
+    },
+    {
+      "id": "4f36aca3-3c7e-468c-b075-e8fc06327bdf",
+      "action": "resize",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "width": 99,
+        "height": 104
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:49.308Z"
+    },
+    {
+      "id": "9839b56a-1861-44be-94d3-f7eb31e64882",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "width",
+          "height",
+          "x",
+          "y",
+          "aspect_ratio"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:49.296Z"
+    },
+    {
+      "id": "1520417b-087d-4412-b5ad-b0a55188522d",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 451,
+        "y": 74
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:34.886Z"
+    },
+    {
+      "id": "3d2dd90e-b29a-4498-a872-34493c797c01",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:34.878Z"
+    },
+    {
+      "id": "76c63bb0-036a-4df3-abd8-2eebbd1fd8e5",
+      "action": "move",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "x": 219,
+        "y": 287
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:32.767Z"
+    },
+    {
+      "id": "42dd3b8c-3364-4493-94f1-55e96225e30d",
+      "action": "update",
+      "assetId": "dfb2efa5-9365-407e-a802-9730b73d3131",
+      "assetType": "Ноутбук",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:32.758Z"
+    },
+    {
+      "id": "6419eaf9-13d0-4cff-a430-c3c21d27706b",
+      "action": "move",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "x": 181,
+        "y": 304
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:28.006Z"
+    },
+    {
+      "id": "385de01c-72d9-4253-b73f-b5b5ce0d36c6",
+      "action": "update",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:27.998Z"
+    },
+    {
+      "id": "a70cc850-4e51-4532-be13-bd4dbd948880",
+      "action": "move",
+      "assetId": "51f1192b-05ed-477f-83bf-ff5f8ea842da",
+      "assetType": "Стол",
+      "details": {
+        "x": 118,
+        "y": 200
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:25.472Z"
+    },
+    {
+      "id": "30cdba1d-8cd5-492a-82e2-460792467136",
+      "action": "update",
+      "assetId": "51f1192b-05ed-477f-83bf-ff5f8ea842da",
+      "assetType": "Стол",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:25.462Z"
+    },
+    {
+      "id": "776afdba-a762-4110-896e-77dd16268fd8",
+      "action": "move",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "x": 171,
+        "y": 127
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:23.438Z"
+    },
+    {
+      "id": "1fe4fe7b-e952-4d0c-85ed-99b43b665a68",
+      "action": "update",
+      "assetId": "8b1e64c6-ae8b-4573-bdf3-adfc736edad6",
+      "assetType": "Телефон",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:23.430Z"
+    },
+    {
+      "id": "e07989b0-0469-4696-bf44-8117530d9aff",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 393,
+        "y": 44
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:10.511Z"
+    },
+    {
+      "id": "d34b7c18-129e-496f-81b4-593b58a7a51e",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:10.502Z"
+    },
+    {
+      "id": "a3639e81-11ff-4f86-927c-11d05217f7a3",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 576,
+        "y": 103
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:08.847Z"
+    },
+    {
+      "id": "3e496274-470f-4363-89f0-751c88b9e2d1",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:21:08.838Z"
+    },
+    {
+      "id": "031c6a46-5e7c-4b27-93e3-cc3341ef1251",
+      "action": "resize",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "width": 175,
+        "height": 179
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:54.593Z"
+    },
+    {
+      "id": "a51d42bf-e76a-4387-815b-be1924947881",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "width",
+          "height",
+          "x",
+          "y",
+          "aspect_ratio"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:54.583Z"
+    },
+    {
+      "id": "5a6aed5c-b09c-490f-aac7-b95661a5b9b5",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 576,
+        "y": 137
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:53.487Z"
+    },
+    {
+      "id": "a5260429-137d-4e43-a4b3-4562877fa5bb",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:53.478Z"
+    },
+    {
+      "id": "6adab42c-9da0-4917-8721-95520b7e3b96",
+      "action": "move",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "x": 495,
+        "y": 53
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:45.670Z"
+    },
+    {
+      "id": "89bf71a9-d35b-446d-8223-e4cb64e65aad",
+      "action": "update",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "updates": [
+          "x",
+          "y"
+        ]
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:45.660Z"
+    },
+    {
+      "id": "8c7396bf-99a2-4743-a56c-d4a9bbf5c7a3",
+      "action": "create",
+      "assetId": "11f6aa92-9060-4986-a2b0-26332b26f1e7",
+      "assetType": "Стул",
+      "details": {
+        "type": "Стул",
+        "room": "ОФИС 1"
+      },
+      "user": "admin",
+      "date": "2026-02-21T16:20:41.676Z"
+    }
+  ],
+  "exported": "2026-02-21T17:23:16.212Z",
+  "version": "5.2"
+}

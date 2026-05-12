@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инвентаризация Техники PRO v5.2 (Исправленная)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="nav-header">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link active">Главная</a>
+            <a href="settings.html" class="nav-link">Настройки</a>
+            <a href="support.html" class="nav-link">Поддержка</a>
+        </div>
+        <div class="user-info">
+            <span id="userDisplay">Не авторизован</span>
+            <button id="logoutBtn" class="logout-btn" style="display: none;">Выйти</button>
+        </div>
+    </div>
+    <div class="app-container">
+        <div class="control-panel">
+            <div class="control-group">
+                <span class="control-label">Этаж:</span>
+                <select id="floorSelect" title="Alt+1,2,3">
+                    <option value="Главная схема">Главная схема</option>
+                    <option value="Первый этаж">Первый этаж</option>
+                    <option value="Второй этаж" selected>Второй этаж</option>
+                </select>
+                <span class="hotkey-hint">Alt+1,2,3</span>
+            </div>
+
+            <div class="control-group">
+                <button class="button" id="editButton" data-hotkey="Ctrl+E">
+                    <i class="fas fa-edit"></i> Редактировать
+                </button>
+                <button class="button" id="deleteButton" data-hotkey="Del">
+                    <i class="fas fa-trash"></i> Удалить
+                </button>
+                <button class="button" id="attachButton" disabled data-hotkey="Ctrl+A">
+                    <i class="fas fa-paperclip"></i> Прикрепить
+                </button>
+                <button class="button" id="detachButton" disabled data-hotkey="Ctrl+D">
+                    <i class="fas fa-unlink"></i> Открепить
+                </button>
+                <button class="button" id="colorButton" disabled data-hotkey="Ctrl+G">
+                    <i class="fas fa-palette"></i> Цвет
+                </button>
+                <div class="button toggle" data-hotkey="Ctrl+Shift+R">
+                    <input type="checkbox" id="resizeModeToggle" class="toggle-checkbox">
+                    <label for="resizeModeToggle" class="toggle-label">
+                        Режим изменения размера
+                        <span class="toggle-switch"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex-spacer"></div>
+
+            <div class="control-group">
+                <span class="control-label">Поиск:</span>
+                <input type="text" id="searchInput" placeholder="Поиск... (Ctrl+F)" title="Ctrl+F">
+            </div>
+
+            <div class="control-group">
+                <button class="button" id="saveButton" data-hotkey="Ctrl+S">
+                    <i class="fas fa-save"></i> Сохранить
+                </button>
+                <button class="button" id="statsButton" data-hotkey="Ctrl+T">
+                    <i class="fas fa-chart-bar"></i> Статистика
+                </button>
+                <button class="button" id="undoButton" title="Ctrl+Z" data-hotkey="Ctrl+Z">
+                    <i class="fas fa-undo"></i>
+                </button>
+                <button class="button" id="redoButton" title="Ctrl+Y" data-hotkey="Ctrl+Y">
+                    <i class="fas fa-redo"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="furniture-menu">
+                    <div class="menu-title">Выберите объект <span class="hotkey-hint">F1-F12</span></div>
+                    
+                    <div class="tabs">
+                        <div class="tab active" data-tab="furniture" data-hotkey="Alt+F">Мебель (Alt+F)</div>
+                        <div class="tab" data-tab="fixed" data-hotkey="Alt+X">Напольные (Alt+X)</div>
+                        <div class="tab" data-tab="movable" data-hotkey="Alt+M">Настольные (Alt+M)</div>
+                        <div class="tab" data-tab="network" data-hotkey="Alt+N">Сеть (Alt+N)</div>
+                    </div>
+
+                    <div class="items-list" id="furnitureItems"></div>
+                    <div class="items-list" id="fixedItems" style="display: none;"></div>
+                    <div class="items-list" id="movableItems" style="display: none;"></div>
+                    <div class="items-list" id="networkItems" style="display: none;"></div>
+
+                    <div class="text-muted text-center mt-10" style="font-size: 12px;">
+                        <i class="fas fa-mouse-pointer"></i> Выберите объект или нажмите F1-F12
+                    </div>
+                </div>
+
+                <div class="asset-tree">
+                    <div class="tree-title">Активы в комнате</div>
+                    
+                    <div class="control-group mb-10">
+                        <select id="filterSelect" title="Ctrl+Shift+F">
+                            <option value="all">Все</option>
+                            <option value="furniture">Мебель</option>
+                            <option value="devices">Устройства</option>
+                            <option value="network">Сеть</option>
+                            <option value="attached">Прикрепленные</option>
+                        </select>
+                        <span class="hotkey-hint">Ctrl+Shift+F</span>
+                    </div>
+                    
+                    <div class="tree-container" id="assetTree"></div>
+                </div>
+            </div>
+
+            <div class="center-panel">
+                <div class="plan-header">
+                    <span id="planTitle">План: Второй этаж</span>
+                    <div class="control-group">
+                        <span class="control-label" id="zoomLabel">100%</span>
+                        <span class="status-warning" id="resizeModeLabel">Режим изменения размера: ВЫКЛ</span>
+                    </div>
+                </div>
+
+                <div class="plan-container">
+                    <div class="floor-plan" id="floorPlan"></div>
+                </div>
+
+                <div class="plan-navigation">
+                    <span><i class="fas fa-mouse"></i> Мышь: перемещение + колесо</span>
+                    <span><i class="fas fa-arrows-alt"></i> Пробел + перетаскивание - панорама</span>
+                    <span><i class="fas fa-undo-alt"></i> Ctrl+Z / Ctrl+Y - отмена/повтор</span>
+                    <button class="back-button" id="backButton" style="display: none;" data-hotkey="Esc">
+                        <i class="fas fa-arrow-left"></i> Назад (Esc)
+                    </button>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="info-tabs">
+                    <div class="info-tab active" data-tab="details" data-hotkey="Alt+1">Детали (Alt+1)</div>
+                    <div class="info-tab" data-tab="history" data-hotkey="Alt+2">История (Alt+2)</div>
+                    <div class="info-tab" data-tab="actions" data-hotkey="Alt+3">Действия (Alt+3)</div>
+                </div>
+
+                <div class="tab-content active" id="detailsContent">
+                    <div class="details-content">
+                        <h3 style="color: var(--primary-light); margin-bottom: 15px;">Детали актива</h3>
+                        <div id="assetDetails">
+                            <p class="text-muted text-center">Выберите актив для просмотра и редактирования деталей</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="historyContent">
+                    <div class="history-list" id="historyList"></div>
+                </div>
+
+                <div class="tab-content" id="actionsContent">
+                    <div class="actions-list">
+                        <div class="action-group">
+                            <div class="action-group-title">
+                                <i class="fas fa-cogs"></i> Действия с активом
+                            </div>
+                            <button class="button mb-10" id="actionAttach" disabled data-hotkey="Ctrl+A">
+                                <i class="fas fa-paperclip"></i> Прикрепить к мебели
+                            </button>
+                            <button class="button mb-10" id="actionDetach" disabled data-hotkey="Ctrl+D">
+                                <i class="fas fa-unlink"></i> Открепить
+                            </button>
+                            <button class="button mb-10" id="actionColor" disabled data-hotkey="Ctrl+G">
+                                <i class="fas fa-palette"></i> Изменить цвет
+                            </button>
+                            <button class="button mb-10" id="actionResize" data-hotkey="Ctrl+Shift+R">
+                                <i class="fas fa-expand-alt"></i> Переключить режим изменения размера
+                            </button>
+                            <button class="button mb-10" id="actionStatus" data-hotkey="Ctrl+Shift+S">
+                                <i class="fas fa-sync-alt"></i> Изменить статус
+                            </button>
+                        </div>
+                        
+                        <div class="action-group">
+                            <div class="action-group-title">
+                                <i class="fas fa-download"></i> Экспорт
+                            </div>
+                            <button class="button mb-10" id="exportJSON" data-hotkey="Ctrl+J">
+                                <i class="fas fa-file-code"></i> Экспорт в JSON
+                            </button>
+                            <button class="button mb-10" id="exportCSV" data-hotkey="Ctrl+K">
+                                <i class="fas fa-file-csv"></i> Экспорт в CSV
+                            </button>
+                            <button class="button mb-10" id="importData" data-hotkey="Ctrl+I">
+                                <i class="fas fa-file-upload"></i> Импорт данных
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-stats" id="roomStats">
+                    <div class="stats-title">
+                        <i class="fas fa-chart-bar"></i> Статистика комнаты
+                    </div>
+                    <div id="statsContent">
+                        <p class="text-muted text-center">Выберите комнату для просмотра статистики</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item">
+                Статус: <span class="status-value" id="statusText">Готово</span>
+            </div>
+            <div class="status-item">
+                Активов: <span class="status-value" id="assetCount">0</span>
+            </div>
+            <div class="status-item">
+                Этаж: <span class="status-value" id="floorText">Второй этаж</span>
+            </div>
+            <div class="status-item">
+                Комната: <span class="status-value" id="roomText">-</span>
+            </div>
+            <div class="status-item">
+                Выбрано: <span class="status-value" id="selectedText">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-warning" id="resizeStatusText"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hotkey-hint-global">
+        <span><kbd>Ctrl+S</kbd> сохранить</span>
+        <span><kbd>Ctrl+Z</kbd> отмена</span>
+        <span><kbd>Ctrl+Y</kbd> повторить</span>
+        <span><kbd>Del</kbd> удалить</span>
+        <span><kbd>F1</kbd> помощь</span>
+        <span><kbd>F5</kbd> обновить</span>
+    </div>
+
+    <div class="modal" id="addAssetModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Новый актив <span class="hotkey-hint">Ctrl+Enter - сохранить</span></div>
+                <button class="modal-close" id="closeAddModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label required" for="assetType">Тип оборудования:</label>
+                    <select class="form-control" id="assetType"></select>
+                    <span class="error-message" id="assetTypeError"></span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label required" for="assetInvNumber">Инвентарный номер:</label>
+                        <input type="text" class="form-control" id="assetInvNumber" placeholder="Введите инвентарный номер">
+                        <span class="error-message" id="assetInvNumberError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required" for="assetModel">Модель:</label>
+                        <input type="text" class="form-control" id="assetModel" placeholder="Введите модель">
+                        <span class="error-message" id="assetModelError"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="assetSerial">Серийный номер:</label>
+                    <input type="text" class="form-control" id="assetSerial" placeholder="Введите серийный номер">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required" for="assetSum">Сумма (сум):</label>
+                    <input type="number" class="form-control" id="assetSum" value="0" min="0" step="1000">
+                    <span class="error-message" id="assetSumError"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="assetStatus">Статус:</label>
+                    <select class="form-control" id="assetStatus">
+                        <option value="active">Активно</option>
+                        <option value="repair">В ремонте</option>
+                        <option value="storage">На складе</option>
+                        <option value="written_off">Списано</option>
+                        <option value="reserved">Резерв</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label required" for="assetResponsible">Ответственный:</label>
+                    <input type="text" class="form-control" id="assetResponsible" placeholder="ФИО ответственного">
+                    <span class="error-message" id="assetResponsibleError"></span>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="assetPurchaseDate">Дата приобретения:</label>
+                        <input type="date" class="form-control" id="assetPurchaseDate">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="assetWarranty">Гарантия до:</label>
+                        <input type="date" class="form-control" id="assetWarranty">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="assetNotes">Примечания:</label>
+                    <textarea class="form-control" id="assetNotes" rows="3" placeholder="Введите примечания..."></textarea>
+                </div>
+                
+                <div class="text-warning" style="font-size: 12px; margin-top: 20px;">
+                    * - обязательное поле
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelAdd">Отмена (Esc)</button>
+                <button class="button" id="saveAsset">Сохранить (Ctrl+Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="quickAddModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Быстрое добавление объекта</div>
+                <button class="modal-close" id="closeQuickModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-15">
+                    <label class="form-label">Позиция:</label>
+                    <div id="quickPosition">X: 0, Y: 0</div>
+                </div>
+                
+                <div class="form-group mb-15">
+                    <label class="form-label required" for="quickType">Выберите тип объекта:</label>
+                    <select class="form-control" id="quickType"></select>
+                </div>
+                
+                <div class="form-group mb-15">
+                    <label class="form-label">Цвет:</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div id="quickColorSample" style="width: 40px; height: 40px; border-radius: 4px; border: 2px solid var(--border);"></div>
+                        <button class="button" id="changeQuickColor">
+                            <i class="fas fa-eye-dropper"></i> Выбрать цвет
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="color-palette" id="quickColors"></div>
+                
+                <div class="text-warning mt-20" style="font-size: 12px;">
+                    * - обязательное поле
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelQuick">Отмена (Esc)</button>
+                <button class="button" id="saveQuick">Далее (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="colorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Изменение внешнего вида</div>
+                <button class="modal-close" id="closeColorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-15">
+                    <label class="form-label">Объект:</label>
+                    <div id="colorAssetName">Неизвестно</div>
+                </div>
+                
+                <div class="form-group mb-15">
+                    <label class="form-label">Цвет:</label>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div id="colorSample" style="width: 40px; height: 40px; border-radius: 4px; border: 2px solid var(--border);"></div>
+                        <button class="button" id="changeColor">
+                            <i class="fas fa-eye-dropper"></i> Выбрать цвет
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="color-palette" id="colorPalette"></div>
+                
+                <div class="form-group mt-20">
+                    <label class="form-label">Режим отображения:</label>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="displayMode" value="icon" checked>
+                            <span>Иконка</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="displayMode" value="color">
+                            <span>Цветной блок</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelColor">Отмена (Esc)</button>
+                <button class="button" id="saveColor">Сохранить (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="attachModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Прикрепить устройство к мебели</div>
+                <button class="modal-close" id="closeAttachModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mb-15">
+                    <label class="form-label">Выберите мебель, к которой прикрепить устройство:</label>
+                    <select class="form-control" id="furnitureSelect">
+                        <option value="">Не прикреплять</option>
+                    </select>
+                </div>
+                
+                <div class="text-muted" style="font-size: 13px; padding: 10px; background-color: var(--button); border-radius: 5px;">
+                    <i>Устройство будет перемещаться вместе с мебелью</i>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelAttach">Отмена (Esc)</button>
+                <button class="button" id="saveAttach">Прикрепить (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="statsModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <div class="modal-title">Статистика инвентаризации</div>
+                <button class="modal-close" id="closeStatsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="statsContentModal"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="closeStats">Закрыть (Esc)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="statusModal">
+        <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-header">
+                <div class="modal-title">Изменение статуса</div>
+                <button class="modal-close" id="closeStatusModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Выберите новый статус:</label>
+                    <select class="form-control" id="statusSelect">
+                        <option value="active">Активно</option>
+                        <option value="repair">В ремонте</option>
+                        <option value="storage">На складе</option>
+                        <option value="written_off">Списано</option>
+                        <option value="reserved">Резерв</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelStatus">Отмена (Esc)</button>
+                <button class="button" id="saveStatus">Изменить (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="importModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Импорт данных</div>
+                <button class="modal-close" id="closeImportModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Загрузить файл:</label>
+                    <input type="file" id="importFile" accept=".json" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Или вставить JSON данные:</label>
+                    <textarea class="form-control" id="importData" rows="10" placeholder='{"assets": {...}}'></textarea>
+                </div>
+                <div class="text-warning" style="font-size: 12px; margin-top: 10px;">
+                    Внимание! Импорт перезапишет текущие данные.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelImport">Отмена (Esc)</button>
+                <button class="button" id="saveImport">Импортировать (Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="editAssetModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Редактирование актива</div>
+                <button class="modal-close" id="closeEditModal">&times;</button>
+            </div>
+            <div class="modal-body" id="editModalBody">
+                <!-- Заполняется динамически -->
+            </div>
+            <div class="modal-footer">
+                <button class="button" id="cancelEdit">Отмена (Esc)</button>
+                <button class="button" id="updateAsset">Сохранить (Ctrl+Enter)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="context-menu" id="contextMenu">
+        <div class="context-menu-item" id="ctxEdit" data-hotkey="Ctrl+E">
+            <i class="fas fa-edit"></i> Редактировать
+        </div>
+        <div class="context-menu-item" id="ctxColor" data-hotkey="Ctrl+G">
+            <i class="fas fa-palette"></i> Изменить цвет
+        </div>
+        <div class="context-menu-item" id="ctxResize" data-hotkey="Ctrl+Shift+R">
+            <i class="fas fa-expand-alt"></i> Переключить режим изменения размера
+        </div>
+        <div class="context-menu-item" id="ctxAttach" data-hotkey="Ctrl+A">
+            <i class="fas fa-paperclip"></i> Прикрепить к мебели
+        </div>
+        <div class="context-menu-item" id="ctxDetach" data-hotkey="Ctrl+D">
+            <i class="fas fa-unlink"></i> Открепить
+        </div>
+        <div class="context-menu-item" id="ctxDelete" data-hotkey="Del">
+            <i class="fas fa-trash"></i> Удалить
+        </div>
+    </div>
+
+    <input type="color" id="colorPicker" style="display: none;">
+    <input type="file" id="fileInput" style="display: none;" accept=".json, .csv">
+
+    <script src="script.js"></script>
+</body>
+</html>
