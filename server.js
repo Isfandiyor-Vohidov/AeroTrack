@@ -8,7 +8,7 @@ const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
 const supportRoutes = require('./routes/support');
 const assetsRoutes = require('./routes/assets');   // <-- новый
-const roomsRoutes = require('./routes/rooms');     // <-- новый
+// const roomsRoutes = require('./routes/rooms');     // <-- новый
 
 // Middleware
 const errorHandler = require('./middleware/errorHandler');
@@ -42,7 +42,7 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/support', supportRoutes);
 app.use('/assets', assetsRoutes);   // <-- активы
-app.use('/rooms', roomsRoutes);     // <-- комнаты
+// app.use('/rooms', roomsRoutes);     // <-- комнаты
 
 // Обработчик 404 для SPA (если нужен)
 app.get('*', (req, res) => {
