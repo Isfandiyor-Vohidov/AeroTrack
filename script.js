@@ -1912,15 +1912,22 @@ function createAssetElement(asset) {
 }
 
             function createResizeHandles(assetElement) {
-                const positions = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
-                
-                positions.forEach(position => {
-                    const handle = document.createElement('div');
-                    handle.className = `resize-handle ${position}`;
-                    handle.dataset.position = position;
-                    assetElement.appendChild(handle);
-                });
-            }
+    // Удаляем старые ручки, если есть
+    assetElement.querySelectorAll('.resize-handle').forEach(h => h.remove());
+    const positions = [
+        { cls: 'top-left',     pos: 'top-left' },
+        { cls: 'top-right',    pos: 'top-right' },
+        { cls: 'bottom-left',  pos: 'bottom-left' },
+        { cls: 'bottom-right', pos: 'bottom-right' }
+    ];
+    positions.forEach(({ cls, pos }) => {
+        const handle = document.createElement('div');
+        handle.className = `resize-handle ${cls}`;
+        handle.dataset.position = pos;   // ← важно для startResize
+        assetElement.appendChild(handle);
+    });
+}
+
             
             function updateAssetTree() {
                 const treeContainer = document.getElementById('assetTree');
@@ -2408,45 +2415,45 @@ function createAssetElement(asset) {
             }
             
             function selectAsset(assetId) {
-                document.querySelectorAll('.asset.selected').forEach(el => {
-                    el.classList.remove('selected');
-                    const asset = appState.assets[el.dataset.assetId];
-                    if (asset) {
-                        el.style.zIndex = asset.parent_id ? '15' : '10';
-                    }
-                    el.querySelectorAll('.resize-handle').forEach(handle => handle.remove());
-                });
-                
-                document.querySelectorAll('.tree-item.selected').forEach(el => {
-                    el.classList.remove('selected');
-                });
-                
-                appState.selectedAssetId = assetId;
-                
-                const assetElement = document.getElementById(`asset-${assetId}`);
-                const treeItem = document.querySelector(`.tree-item[data-asset-id="${assetId}"]`);
-                
-                if (assetElement) {
-                    assetElement.classList.add('selected');
-                    assetElement.style.zIndex = '50';
-                    
-                    if (appState.resizeMode) {
-                        createResizeHandles(assetElement);
-                    }
-                    
-                    assetElement.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-                }
-                
-                if (treeItem) {
-                    treeItem.classList.add('selected');
-                    treeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                
-                updateAssetDetails(assetId);
-                updateButtonStates();
-                switchInfoTab('details');
-            }
-            
+    // Снимаем выделение с предыдущего
+    document.querySelectorAll('.asset.selected').forEach(el => {
+        el.classList.remove('selected');
+        const asset = appState.assets[el.dataset.assetId];
+        if (asset) {
+            el.style.zIndex = asset.parent_id ? '15' : '10';
+        }
+        el.querySelectorAll('.resize-handle').forEach(handle => handle.remove());
+    });
+    
+    document.querySelectorAll('.tree-item.selected').forEach(el => {
+        el.classList.remove('selected');
+    });
+    
+    appState.selectedAssetId = assetId;
+    
+    const assetElement = document.getElementById(`asset-${assetId}`);
+    const treeItem = document.querySelector(`.tree-item[data-asset-id="${assetId}"]`);
+    
+    if (assetElement) {
+        assetElement.classList.add('selected');
+        assetElement.style.zIndex = '50';
+        
+        if (appState.resizeMode) {
+            createResizeHandles(assetElement);
+        }
+        // scrollIntoView убран, чтобы план не плавал
+    }
+    
+    if (treeItem) {
+        treeItem.classList.add('selected');
+        // scrollIntoView убран
+    }
+    
+    updateAssetDetails(assetId);
+    updateButtonStates();
+    switchInfoTab('details');
+}
+
             function deselectAsset() {
                 appState.selectedAssetId = null;
                 
@@ -2970,33 +2977,26 @@ function deleteAsset(assetId, skipHistory = false) {
             }
             
             function toggleResizeMode() {
-                appState.resizeMode = !appState.resizeMode;
-                
-                const toggle = document.getElementById('resizeModeToggle');
-                const label = document.getElementById('resizeModeLabel');
-                const statusText = document.getElementById('resizeStatusText');
-                
-                if (toggle) toggle.checked = appState.resizeMode;
-                
-                if (appState.resizeMode) {
-                    if (label) label.textContent = 'Режим изменения размера: ВКЛ';
-                    if (statusText) statusText.textContent = 'Режим изменения размера: ВКЛ (Ctrl+Shift+R)';
-                    showStatus('Режим изменения размера включен', 3000);
-                    
-                    if (appState.selectedAssetId) {
-                        const assetElement = document.getElementById(`asset-${appState.selectedAssetId}`);
-                        if (assetElement) {
-                            createResizeHandles(assetElement);
-                        }
-                    }
-                } else {
-                    if (label) label.textContent = 'Режим изменения размера: ВЫКЛ';
-                    if (statusText) statusText.textContent = '';
-                    showStatus('Режим изменения размера выключен', 3000);
-                    
-                    document.querySelectorAll('.resize-handle').forEach(handle => handle.remove());
-                }
-            }
+    appState.resizeMode = !appState.resizeMode;
+    const toggle = document.getElementById('resizeModeToggle');
+    const label = document.getElementById('resizeModeLabel');
+    const statusText = document.getElementById('resizeStatusText');
+    if (toggle) toggle.checked = appState.resizeMode;
+
+    if (appState.resizeMode) {
+        if (label) label.textContent = 'Режим изменения размера: ВКЛ';
+        if (statusText) statusText.textContent = 'Режим изменения размера: ВКЛ (Ctrl+Shift+R)';
+        if (appState.selectedAssetId) {
+            const el = document.getElementById(`asset-${appState.selectedAssetId}`);
+            if (el) createResizeHandles(el);
+        }
+    } else {
+        if (label) label.textContent = 'Режим изменения размера: ВЫКЛ';
+        if (statusText) statusText.textContent = '';
+        document.querySelectorAll('.resize-handle').forEach(h => h.remove());
+    }
+}
+
             
             function showStatus(message, duration = 3000) {
                 const statusText = document.getElementById('statusText');
@@ -3707,29 +3707,209 @@ function deleteAsset(assetId, skipHistory = false) {
         });
     }
 
-    // ---------- Обработчики для плана этажа (только клики, без перемещения) ----------
+    // ---------- ПЛАН ЭТАЖА: ОБРАБОТЧИКИ КЛИКОВ И ПЕРЕТАСКИВАНИЯ ----------
     const floorPlan = document.getElementById('floorPlan');
     if (!floorPlan) return;
+// ---------- ПЕРЕТАСКИВАНИЕ И РЕСАЙЗ АКТИВОВ ----------
+let dragState = null;
+let resizeState = null;
 
+function startDrag(e, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    if (appState.resizeMode) {
+    createResizeHandles(assetElement);
+}
+    const rect = assetElement.getBoundingClientRect();
+    dragState = {
+        assetId,
+        element: assetElement,
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        initialLeft: parseInt(assetElement.style.left, 10) || 0,
+        initialTop: parseInt(assetElement.style.top, 10) || 0
+    };
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('mouseup', onDragEnd);
+}
+
+function onDragMove(e) {
+    if (!dragState) return;
+    e.preventDefault();
+    const dx = e.clientX - dragState.startMouseX;
+    const dy = e.clientY - dragState.startMouseY;
+    const newLeft = dragState.initialLeft + dx;
+    const newTop = dragState.initialTop + dy;
+    dragState.element.style.left = newLeft + 'px';
+    dragState.element.style.top = newTop + 'px';
+}
+
+function onDragEnd(e) {
+    if (!dragState) return;
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+
+    const asset = appState.assets[dragState.assetId];
+    if (asset) {
+        const newLeft = parseInt(dragState.element.style.left, 10);
+        const newTop = parseInt(dragState.element.style.top, 10);
+        pushToUndo('move', {
+            assetId: dragState.assetId,
+            oldData: { x: dragState.initialLeft, y: dragState.initialTop },
+            newData: { x: newLeft, y: newTop }
+        });
+        asset.x = newLeft;
+        asset.y = newTop;
+        scheduleAutoSave();
+    }
+    dragState = null;
+}
+
+// === РЕСАЙЗ ===
+function startResize(e, handle, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    const asset = appState.assets[assetId];
+    const position = handle.dataset.position;
+    if (!position) return;
+
+    resizeState = {
+        assetId,
+        element: assetElement,
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
+        initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
+        initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
+        initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
+        handle: position
+    };
+    document.addEventListener('mousemove', onResizeMove);
+    document.addEventListener('mouseup', onResizeEnd);
+}
+
+function onResizeMove(e) {
+    if (!resizeState) return;
+    e.preventDefault();
+    const dx = e.clientX - resizeState.startMouseX;
+    const dy = e.clientY - resizeState.startMouseY;
+    let newWidth = resizeState.initialWidth;
+    let newHeight = resizeState.initialHeight;
+    let newLeft = resizeState.initialLeft;
+    let newTop = resizeState.initialTop;
+
+    const MIN_SIZE = 24;
+    const MAX_SIZE = 256;
+    const handle = resizeState.handle;
+
+    if (handle.includes('right')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth + dx));
+    }
+    if (handle.includes('left')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth - dx));
+        newLeft = resizeState.initialLeft + (resizeState.initialWidth - newWidth);
+    }
+    if (handle.includes('bottom')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight + dy));
+    }
+    if (handle.includes('top')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight - dy));
+        newTop = resizeState.initialTop + (resizeState.initialHeight - newHeight);
+    }
+
+    resizeState.element.style.width = newWidth + 'px';
+    resizeState.element.style.height = newHeight + 'px';
+    resizeState.element.style.left = newLeft + 'px';
+    resizeState.element.style.top = newTop + 'px';
+}
+
+function onResizeEnd(e) {
+    if (!resizeState) return;
+    document.removeEventListener('mousemove', onResizeMove);
+    document.removeEventListener('mouseup', onResizeEnd);
+
+    const asset = appState.assets[resizeState.assetId];
+    if (asset) {
+        const newWidth = parseInt(resizeState.element.style.width, 10);
+        const newHeight = parseInt(resizeState.element.style.height, 10);
+        const newLeft = parseInt(resizeState.element.style.left, 10);
+        const newTop = parseInt(resizeState.element.style.top, 10);
+
+        pushToUndo('resize', {
+            assetId: resizeState.assetId,
+            oldData: {
+                width: resizeState.initialWidth,
+                height: resizeState.initialHeight,
+                x: resizeState.initialLeft,
+                y: resizeState.initialTop
+            },
+            newData: {
+                width: newWidth,
+                height: newHeight,
+                x: newLeft,
+                y: newTop
+            }
+        });
+
+        asset.width = newWidth;
+        asset.height = newHeight;
+        asset.x = newLeft;
+        asset.y = newTop;
+        scheduleAutoSave();
+    }
+    resizeState = null;
+}
+
+// Обработчик mousedown на плане
+floorPlan.addEventListener('mousedown', function(e) {
+    // Если тянут за ручку ресайза
+    const handle = e.target.closest('.resize-handle');
+    if (handle) {
+        const assetElement = handle.closest('.asset');
+        if (assetElement) {
+            startResize(e, handle, assetElement);
+        }
+        return;
+    }
+    // Иначе — перетаскивание актива
+    const assetElement = e.target.closest('.asset');
+    if (assetElement) {
+        startDrag(e, assetElement);
+    }
+});
+
+    floorPlan.addEventListener('mousedown', function(e) {
+        if (e.target.classList.contains('resize-handle')) return;
+
+        const assetElement = e.target.closest('.asset');
+        if (assetElement) {
+            startDrag(e, assetElement);
+        }
+    });
+
+    // Клики (без выделения при перетаскивании)
     floorPlan.addEventListener('click', function(e) {
+        // Игнорируем, если было перетаскивание
+        if (dragState) return;
+
         const room = e.target.closest('.room');
         const roomLabel = e.target.closest('.room-label');
         if ((room || roomLabel) && !appState.dragState && !appState.resizeState) {
             const roomElem = room || (roomLabel ? roomLabel.parentElement : null);
             if (roomElem) {
                 const roomId = roomElem.dataset.roomId;
-
-                // Если комната — это название этажа, переключаем план этажа
-                const floorNames = Object.keys(ROOM_MAP); // ["Главная схема", "Первый этаж", "Второй этаж"]
+                const floorNames = Object.keys(ROOM_MAP);
                 if (floorNames.includes(roomId)) {
-                    // Переключение этажа
                     appState.currentFloor = roomId;
                     const floorSelect = document.getElementById('floorSelect');
                     if (floorSelect) floorSelect.value = roomId;
                     loadFloorPlan();
                     showStatus(`Переключен на этаж: ${roomId}`);
                 } else {
-                    // Обычная комната
                     loadRoomView(roomId);
                     showStatus(`Загружена комната: ${roomId}`);
                 }
@@ -3791,7 +3971,6 @@ function deleteAsset(assetId, skipHistory = false) {
         const room = e.target.closest('.room');
         if (room && !appState.dragState && !appState.resizeState) {
             const roomId = room.dataset.roomId;
-
             if (roomId === 'Первый этаж' || roomId === 'Второй этаж') {
                 appState.currentFloor = roomId;
                 const floorSelect = document.getElementById('floorSelect');
@@ -3841,18 +4020,11 @@ function deleteAsset(assetId, skipHistory = false) {
         }
     });
 
-    // Заглушки для перетаскивания/изменения размера/панорамирования – они больше не нужны
-    floorPlan.addEventListener('mousedown', function(e) {
-        // ничего не делаем
-    });
-
-    // Убираем глобальные обработчики перемещения мыши
-    // (были document.addEventListener('mousemove', ...) и document.addEventListener('mouseup', ...)) – удалены
-
     floorPlan.addEventListener('wheel', function(e) {
         e.preventDefault();
     });
 }
+
             function showAddAssetModal(prefillData = null) {
                 if (!appState.currentRoom) {
                     alert('Сначала выберите комнату');
@@ -4238,39 +4410,18 @@ function deleteAsset(assetId, skipHistory = false) {
     const floorPlan = document.getElementById('floorPlan');
     if (!floorPlan) return;
     
-    // Удаляем только активы, оставляя комнаты и другие элементы
     document.querySelectorAll('.asset').forEach(asset => asset.remove());
     
     const roomAssets = Object.values(appState.assets).filter(asset => asset.room_id === roomId);
     
-    // ИСПРАВЛЕНО: Временно сбрасываем pan offset для правильного позиционирования
-    const savedOffsets = { ...appState.panOffset };
-    appState.panOffset = { x: 0, y: 0 };
-    
-    // ИСПРАВЛЕНО: Сначала создаем все элементы
-    const elements = [];
     roomAssets.forEach(asset => {
-        // Проверяем и исправляем координаты если нужно
-        if (asset.x === undefined || asset.x === null || isNaN(asset.x)) {
-            asset.x = 100;
-        }
-        if (asset.y === undefined || asset.y === null || isNaN(asset.y)) {
-            asset.y = 100;
-        }
+        if (asset.x === undefined || asset.x === null || isNaN(asset.x)) asset.x = 100;
+        if (asset.y === undefined || asset.y === null || isNaN(asset.y)) asset.y = 100;
         
         const assetElement = createAssetElement(asset);
-        elements.push(assetElement);
+        floorPlan.appendChild(assetElement);
     });
     
-    // Добавляем все элементы в DOM
-    elements.forEach(element => {
-        floorPlan.appendChild(element);
-    });
-    
-    // Восстанавливаем pan offset
-    appState.panOffset = savedOffsets;
-    
-    // Если нет активов, показываем подсказку
     if (roomAssets.length === 0) {
         const hint = document.createElement('div');
         hint.style.position = 'absolute';
@@ -4293,9 +4444,8 @@ function deleteAsset(assetId, skipHistory = false) {
         `;
         floorPlan.appendChild(hint);
     }
-    
-    console.log(`Drew ${roomAssets.length} assets in room ${roomId}`);
 }
+
 
             
             window.addEventListener('DOMContentLoaded', initApp);
