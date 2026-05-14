@@ -14,7 +14,7 @@ const errorHandler = require('./middleware/errorHandler');
 
 // Утилиты и бот
 const initSuperAdmin = require('./utils/initSuperAdmin');
-const bot = require('./bot/bot');
+const { startBot } = require('./bot/bot');   // импортируем только функцию запуска
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,7 +29,7 @@ app.use(cors({
 // Парсинг JSON
 app.use(express.json());
 
-// Статические файлы (из корня проекта)
+// Статические файлы
 app.use(express.static('.'));
 
 // API-маршруты
@@ -59,19 +59,8 @@ mongoose
     .then(async () => {
         console.log('✅ MongoDB connected');
         await initSuperAdmin();
-        // Безопасный запуск Telegram бота (единственный)
-        if (process.env.TELEGRAM_BOT_TOKEN) {
-            try {
-                await bot.startBot();   // дожидаемся результата
-                console.log('🤖 Telegram бот запущен');
-            } catch (error) {
-                console.error('❌ Ошибка Telegram бота:', error.message);
-                console.log('⚠️ Сервер продолжает работу без бота');
-            }
-        } else {
-            console.log('⚠️ Telegram token не задан, бот не будет запущен');
-        }
-        // Запуск HTTP-сервера
+        // Безопасный запуск бота
+        await startBot();
         app.listen(PORT, () => {
             console.log(`🚀 Server running on http://localhost:${PORT}`);
         });
@@ -79,7 +68,6 @@ mongoose
     .catch((err) => {
         console.error('❌ MongoDB connection error:', err.message);
         console.log('⚠️ Запускаю сервер без базы данных');
-        // Всё равно запускаем сервер, чтобы не падать
         app.listen(PORT, () => {
             console.log(`🚀 Server running on http://localhost:${PORT} (без БД)`);
         });
