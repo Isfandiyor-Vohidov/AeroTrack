@@ -557,9 +557,9 @@
             }
             
             window.addEventListener('error', function(e) {
-                console.error('Get error:', e.error);
-                showToast('ERORR', 'error');
-            });
+    console.error('Global error:', e.error);
+    showToast(e.error ? e.error.message : 'Неизвестная ошибка', 'error');
+});
 
             function showToast(message, type = 'info', duration = 3000) {
                 const toast = document.createElement('div');
@@ -1635,6 +1635,93 @@ function showRoomList() {
         roomList.appendChild(item);
     });
     if (Object.keys(rooms).length === 0) roomListContainer.style.display = 'none';
+}
+
+function updateAssetTree() {
+    const treeContainer = document.getElementById('assetTree');
+    if (!treeContainer) return;
+    
+    treeContainer.innerHTML = '';
+    
+    if (appState.viewMode === 'room' && appState.currentRoom) {
+        const categories = {
+            furniture: [],
+            device_fixed: [],
+            device_movable: [],
+            network_equipment: [],
+            network_cables: [],
+            network_infrastructure: []
+        };
+        
+        Object.values(appState.assets).forEach(asset => {
+            if (asset.room_id === appState.currentRoom && categories[asset.category]) {
+                categories[asset.category].push(asset);
+            }
+        });
+        
+        for (const [categoryKey, assets] of Object.entries(categories)) {
+            if (assets.length > 0) {
+                const categoryName = ASSET_CATEGORIES[categoryKey] || categoryKey;
+                
+                const categoryNode = document.createElement('div');
+                categoryNode.className = 'tree-node';
+                
+                const header = document.createElement('div');
+                header.className = 'tree-header';
+                header.innerHTML = `<i class="fas fa-folder"></i> ${categoryName} (${assets.length})`;
+                categoryNode.appendChild(header);
+                
+                const content = document.createElement('div');
+                content.className = 'tree-content';
+                
+                assets.sort((a, b) => a.type.localeCompare(b.type));
+                
+                assets.forEach(asset => {
+                    const item = document.createElement('div');
+                    item.className = 'tree-item';
+                    if (appState.selectedAssetId === asset.id) {
+                        item.classList.add('selected');
+                    }
+                    item.dataset.assetId = asset.id;
+                    
+                    let iconClass = 'fas fa-cube';
+                    if (asset.category === 'furniture') {
+                        iconClass = 'fas fa-couch';
+                    } else if (asset.category === 'device_fixed') {
+                        iconClass = 'fas fa-server';
+                    } else if (asset.category === 'device_movable') {
+                        iconClass = 'fas fa-laptop';
+                    } else if (asset.category === 'network_equipment') {
+                        iconClass = 'fas fa-wifi';
+                    } else if (asset.category === 'network_cables') {
+                        iconClass = 'fas fa-ethernet';
+                    } else if (asset.category === 'network_infrastructure') {
+                        iconClass = 'fas fa-network-wired';
+                    }
+                    
+                    item.innerHTML = `
+                        <div class="tree-item-icon"><i class="${iconClass}"></i></div>
+                        <div style="flex: 1; overflow: hidden; text-overflow: ellipsis;">${asset.type}</div>
+                        <div style="font-size: 11px; color: var(--text-secondary);">${asset.inventory_number || ''}</div>
+                    `;
+                    
+                    content.appendChild(item);
+                });
+                
+                categoryNode.appendChild(content);
+                treeContainer.appendChild(categoryNode);
+            }
+        }
+        
+        if (treeContainer.children.length === 0) {
+            treeContainer.innerHTML = '<div class="text-muted text-center">В комнате нет активов</div>';
+        }
+    } else {
+        treeContainer.innerHTML = '<div class="text-muted text-center">Выберите комнату для просмотра активов</div>';
+    }
+    
+    const assetCount = document.getElementById('assetCount');
+    if (assetCount) assetCount.textContent = Object.keys(appState.assets).length;
 }
 
 // Кнопка "Назад к комнатам" в списке комнат
