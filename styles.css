@@ -1383,3 +1383,118 @@ textarea:focus {
         min-height: 400px;
     }
 }
+
+/* Убираем рамку у активов */
+.asset {
+    border: none !important;
+}
+
+/* Прозрачные границы комнат */
+.room {
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+.room:hover {
+    border: 1px solid var(--room-hover);
+}
+
+/* Z-index: мебель ниже устройств */
+.asset[data-category="furniture"] {
+    z-index: 5 !important;
+}
+.asset:not([data-category="furniture"]) {
+    z-index: 10 !important;
+}
+.asset[data-parent-id] {
+    z-index: 15 !important;
+}
+
+/* Ручка поворота */
+.rotate-handle {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background-color: #2ea043;   /* зелёная, как в Word */
+    border: 2px solid #fff;
+    border-radius: 50%;
+    cursor: grab;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rotate-handle::after {
+    content: '↻';
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.rotate-handle:active {
+    cursor: grabbing;
+}
+
+/* Полная невидимость комнат на плане */
+.room {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.room:hover {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.room.selected-room {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.room.highlight {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Исправление видимости вкладок и элементов */
+.items-list .item {
+    min-height: 44px;
+    padding: 10px;
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.tab {
+    min-width: 60px;
+    padding: 8px 4px;
+    font-size: 12px;
+    white-space: normal;
+    word-break: break-word;
+}
+/* Убираем обрезание верха деталей */
+.details-content {
+    padding-top: 5px;
+    margin-top: -5px;
+}
+.tab-content {
+    overflow-y: auto;
+}
+
+/* Убираем обрезание верха в правой панели */
+.tab-content {
+    padding-top: 20px;      /* достаточно места, чтобы текст не прилипал */
+    overflow-y: auto;       /* прокрутка, если контент не помещается */
+}
+
+.details-content {
+    margin-top: 0;
+    padding-top: 0;
+}

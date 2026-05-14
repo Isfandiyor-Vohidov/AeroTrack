@@ -23,169 +23,166 @@
                 "Первый этаж": "1_etaj.jpg",
                 "Второй этаж": "2_etaj.jpg"
             };
-             const ROOM_MAP = {
-
-                
+            const ROOM_MAP = {
     "Главная схема": {
         "Первый этаж": [83, 405, 1152, 470],
         "Второй этаж": [83, 325, 1152, 400],
     },
-    
+
     "Первый этаж": {
-        "Команата 1": [ 20, 223, 75, 275 ],
-        "Комната 2": [ 35, 275, 220, 420 ],
-        "Продолжение комнаты 2": [ 170, 252, 220, 275 ],
-        "Комната 3": [ 20, 420, 75, 470 ],
-        "Комната 4": [ 20, 470, 75, 520 ],
-        "Комната 5": [ 75, 252, 170, 275 ],
-        "Комната 6": [ 70, 420, 220, 490 ],
-        "Комната 7": [ 220, 223, 330, 370 ],
-        "Комната 8": [ 220, 370, 330, 420 ],
-        "Комната 9": [ 220, 420, 245, 440 ],
-        "Комната 10": [ 220, 465, 270, 517 ],
-        "Комната 11": [ 309, 465, 348, 517 ],
-        "Комната 12": [ 330, 335, 380, 370 ],
-        "Комната 13": [ 330, 390, 355, 420 ],
-        "Комната 14": [ 355, 390, 380, 420 ],
-        "Комната 15": [ 380, 390, 428, 420 ],
-        "Комната 16": [ 357, 469, 377, 493 ],
-        "Комната 17": [ 357, 494, 378, 518 ],
-        "Комната 18": [ 356, 519, 378, 541 ],
-        "Комната 19": [ 327, 543, 379, 568 ],
-        "Комната 20": [ 573, 322, 594, 373 ],
-        "Комната 21": [ 596, 322, 620, 344 ],
-        "Комната 22": [ 596, 342, 620, 373 ],
-        "Комната 23": [ 815, 322, 839, 344 ],
-        "Комната 24": [ 815, 344, 839, 372 ],
-        "Комната 25": [ 815, 371, 860, 395 ],
-        "Комната 26": [ 814, 396, 837, 420 ],
-        "Комната 27": [ 840, 396, 861, 421 ],
-        "Комната 28": [ 863, 372, 910, 420 ],
-        "Комната 29": [ 976, 226, 1022, 260 ],
-        "Комната 30": [ 843, 322, 911, 370 ],
-        "Комната 31": [ 913, 371, 976, 422 ],
-        "Комната 32": [ 978, 259, 992, 273 ],
-        "Комната 33": [ 995, 259, 1023, 273 ],
-        "Комната 34": [ 1028, 253, 1121, 324 ],
-        "Комната 35": [ 999, 322, 1026, 348 ],
-        "Комната 36": [ 999, 348, 1026, 370 ],
-        "Комната 37": [ 999, 371, 1017, 401 ],
-        "Комната 38": [ 999, 402, 1026, 422 ],
-        "Комната 39": [ 999, 421, 1026, 441 ],
-        "Комната 40": [ 878, 476, 899, 491 ],
-        "Комната 41": [ 863, 470, 880, 517 ],
-        "Комната 42": [ 899, 466, 926, 516 ],
-        "Комната 43": [ 902, 518, 915, 557 ],
-        "Комната 44": [ 862, 519, 904, 576 ],
-        "Комната 45": [ 978, 468, 1010, 519 ],
-        "Комната 46": [ 1012, 468, 1024, 510 ],
-        "Комната 47": [ 1029, 468, 1074, 491 ],
-        "Комната 48": [ 1123, 254, 1168, 272 ],
-        "Комната 49": [ 1173, 224, 1216, 256 ],
-        "Комната 50": [ 1174, 259, 1187, 271 ],
-        "Комната 51": [ 1203, 259, 1219, 270 ],
-        "Комната 52": [ 1124, 420, 1168, 489 ],
-        "Комната 53": [ 1170, 420, 1218, 469 ],
-        "Комната 54": [ 1170, 471, 1217, 519 ],
-        "Комната 55": [ 914, 323, 998, 371 ],
-        "Комната 56": [ 978, 371, 998, 422 ],
-        "Комната 57": [ 914, 223, 977, 319 ],
-        "Продолжение комнаты 57": [ 976, 275, 1023, 319 ]
+        "к-1": [ 20, 223, 75, 275 ],
+        "к-2": [ 35, 275, 220, 420 ],
+        "к-3": [ 170, 252, 220, 275 ],
+        "к-4": [ 20, 420, 75, 470 ],
+        "к-5": [ 20, 470, 75, 520 ],
+        "к-6": [ 75, 252, 170, 275 ],
+        "к-7": [ 70, 420, 220, 490 ],
+        "к-8": [ 220, 223, 330, 370 ],
+        "к-9": [ 220, 370, 330, 420 ],
+        "к-10": [ 220, 420, 245, 440 ],
+        "к-11": [ 220, 465, 270, 517 ],
+        "к-12": [ 309, 465, 348, 517 ],
+        "к-13": [ 330, 335, 380, 370 ],
+        "к-14": [ 330, 390, 355, 420 ],
+        "к-15": [ 355, 390, 380, 420 ],
+        "к-16": [ 380, 390, 428, 420 ],
+        "к-17": [ 357, 469, 377, 493 ],
+        "к-18": [ 357, 494, 378, 518 ],
+        "к-19": [ 356, 519, 378, 541 ],
+        "к-20": [ 327, 543, 379, 568 ],
+        "к-21": [ 573, 322, 594, 373 ],
+        "к-22": [ 596, 322, 620, 344 ],
+        "к-23": [ 596, 342, 620, 373 ],
+        "к-24": [ 815, 322, 839, 344 ],
+        "к-25": [ 815, 344, 839, 372 ],
+        "к-26": [ 815, 371, 860, 395 ],
+        "к-27": [ 814, 396, 837, 420 ],
+        "к-28": [ 840, 396, 861, 421 ],
+        "к-29": [ 863, 372, 910, 420 ],
+        "к-30": [ 976, 226, 1022, 260 ],
+        "к-31": [ 843, 322, 911, 370 ],
+        "к-32": [ 913, 371, 976, 422 ],
+        "к-33": [ 978, 259, 992, 273 ],
+        "к-34": [ 995, 259, 1023, 273 ],
+        "к-35": [ 1028, 253, 1121, 324 ],
+        "к-36": [ 999, 322, 1026, 348 ],
+        "к-37": [ 999, 348, 1026, 370 ],
+        "к-38": [ 999, 371, 1017, 401 ],
+        "к-39": [ 999, 402, 1026, 422 ],
+        "к-40": [ 999, 421, 1026, 441 ],
+        "к-41": [ 878, 476, 899, 491 ],
+        "к-42": [ 863, 470, 880, 517 ],
+        "к-43": [ 899, 466, 926, 516 ],
+        "к-44": [ 902, 518, 915, 557 ],
+        "к-45": [ 862, 519, 904, 576 ],
+        "к-46": [ 978, 468, 1010, 519 ],
+        "к-47": [ 1012, 468, 1024, 510 ],
+        "к-48": [ 1029, 468, 1074, 491 ],
+        "к-49": [ 1123, 254, 1168, 272 ],
+        "к-50": [ 1173, 224, 1216, 256 ],
+        "к-51": [ 1174, 259, 1187, 271 ],
+        "к-52": [ 1203, 259, 1219, 270 ],
+        "к-53": [ 1124, 420, 1168, 489 ],
+        "к-54": [ 1170, 420, 1218, 469 ],
+        "к-55": [ 1170, 471, 1217, 519 ],
+        "к-56": [ 914, 323, 998, 371 ],
+        "к-57": [ 978, 371, 998, 422 ],
+        "к-58": [ 914, 223, 977, 319 ],
+        "к-59": [ 976, 275, 1023, 319 ]
     },
-                
-"Второй этаж": {
-        "Комната 1": [ 20, 215, 75, 265 ], 
-        "Комната 2": [ 25, 265, 75, 295 ],
-        "Комната 3": [ 25, 295, 75, 315 ],
-        "Комната 4": [ 37, 315, 75, 365 ],
-        "Комната 5": [ 37, 365, 75, 410 ],
-        "Комната 6": [ 20, 410, 75, 435 ],
-        "Комната 7": [ 25, 435, 75, 465 ],
-        "Комната 8": [ 25, 465, 75, 510 ],
-        "Комната 9": [ 90, 265, 120, 315 ],
-        "Комната 10": [ 120, 265, 170, 315 ],
-        "Комната 11": [ 170, 265, 218, 315 ],
-        "Комната 12": [ 218, 265, 247, 315 ],
-        "Комната 13": [ 90, 315, 247, 415 ],
-        "Комната 14": [ 90, 415, 120, 440 ],
-        "Комната 15": [ 90, 440, 120, 465 ],
-        "Комната 16": [ 120, 415, 145, 465 ],
-        "Комната 17": [ 145, 415, 170, 465 ],
-        "Комната 18": [ 170, 415, 195, 465 ],
-        "Комната 19": [ 195, 415, 218, 465 ],
-        "Комната 20": [ 218, 415, 247, 465 ],
-        "Комната 21": [ 263, 220, 332, 270 ],
-        "Комната 22": [ 263, 270, 332, 317 ],
-        "продолжение Комнатаа 22": [ 263, 317, 314, 365 ],
-        "Комната 23": [ 315, 317, 332, 365 ],
-        "Комната 24": [ 263, 380, 314, 510 ],
-        "Продолжение Комнатаа 24": [ 312, 415, 332, 462 ],
-        "Комната 25": [ 315, 380, 332, 415 ],
-        "Комната 26": [ 315, 460, 332, 480 ],
-        "Комната 27": [ 330, 315, 355, 355 ],
-        "Комната 28": [ 355, 315, 380, 355 ],
-        "Комната 29": [ 379, 315, 403, 365 ],
-        "Комната 30": [ 403, 315, 428, 365 ],
-        "Комната 31": [ 428, 315, 453, 365 ],
-        "Комната 32": [ 453, 315, 477, 365 ],
-        "Комната 33": [ 477, 315, 500, 365 ],
-        "Комната 34": [ 500, 315, 525, 350 ],
-        "Комната 35": [ 525, 315, 572, 365 ],
-        "Комната 36": [ 572, 315, 622, 365 ],
-        "Маленький Комната": [ 500, 350, 525, 365 ],
-        "Комната 37": [ 622, 315, 670, 365 ],
-        "Комната 38": [ 670, 315, 718, 365 ],
-        "Комната 39": [ 717, 315, 766, 365 ],
-        "Комната 40": [ 765, 315, 816, 365 ],
-        "Комната 41": [ 815, 315, 864, 365 ],
-        "Комната 42": [ 863, 315, 912, 365 ],
-        "Комната 43": [ 911, 315, 925, 365 ],
-        "Комната 44": [ 378, 378, 402, 415 ],
-        "Комната 45": [ 402, 378, 428, 415 ],
-        "Комната 46": [ 428, 378, 475, 415 ],
-        "Комната 47": [ 475, 378, 525, 415 ],
-        "Комната 48": [ 525, 378, 572, 415 ],
-        "Комната 49": [ 572, 378, 622, 415 ],
-        "Комната 50": [ 622, 378, 670, 415 ],
-        "Комната 51": [ 670, 378, 718, 415 ],
-        "Комната 52": [ 717, 378, 766, 415 ],
-        "Комната 53": [ 765, 378, 816, 415 ],
-        "Комната 54": [ 815, 378, 864, 415 ],
-        "Комната 55": [ 910, 365, 925, 415 ],
-        "Комната 56": [ 910, 220, 974, 270 ],
-        "Комната 57": [ 910, 460, 927, 478 ],
-        "Комната 58": [ 974, 220, 1008, 243 ],
-        "Комната 59": [ 974, 243, 1008, 270 ],
-        "Комната 60": [ 1008, 230, 1025, 270 ],
-        "Комната 61": [ 927, 462, 1024, 510 ],
-        "Комната 62": [ 1025, 250, 1072, 318 ],
-        "Комната 63": [ 1072, 250, 1095, 300 ],
-        "Комната 64": [ 1095, 250, 1120, 300 ],
-        "Комната 65": [ 1120, 250, 1145, 300 ],
-        "Комната 66": [ 1145, 250, 1170, 300 ],
-        "Комната 67": [ 1170, 223, 1215, 252 ],
-        "Комната 68": [ 1184, 252, 1197, 267 ],
-        "Комната 69": [ 1197, 252, 1209, 267 ],
-        "Комната 70": [ 1209, 252, 1215, 280 ],
-        "Комната 71": [ 1185, 280, 1220, 315 ],
-        "Комната 72": [ 1025, 432, 1047, 480 ],
-        "Комната 73": [ 1047, 432, 1071, 480 ],
-        "Комната 74": [ 1071, 432, 1095, 480 ],
-        "Комната 75": [ 1095, 432, 1120, 450 ],
-        "Комната 76": [ 1095, 450, 1120, 480 ],
-        "Комната 77": [ 1047, 318, 1121, 415 ],
-        "Комната 78": [ 1120, 318, 1202, 365 ],
-        "Комната 79": [ 1137, 365, 1202, 415 ],
-        "Комната 80": [ 1137, 415, 1168, 450 ],
-        "Комната 81": [ 1168, 415, 1178, 431 ],
-        "Комната 82": [ 1178, 415, 1188, 431 ],
-        "Комната 83": [ 1188, 415, 1198, 431 ],
-        "Комната 84": [ 1198, 415, 1217, 431 ],
-        "Комната 85": [ 1168, 432, 1217, 462 ],
-        "Комната 86": [ 1168, 462, 1217, 510 ]
-    },
-                
-            };
+    "Второй этаж": {
+        "к-1": [ 20, 215, 75, 265 ],
+        "к-2": [ 25, 265, 75, 295 ],
+        "к-3": [ 25, 295, 75, 315 ],
+        "к-4": [ 37, 315, 75, 365 ],
+        "к-5": [ 37, 365, 75, 410 ],
+        "к-6": [ 20, 410, 75, 435 ],
+        "к-7": [ 25, 435, 75, 465 ],
+        "к-8": [ 25, 465, 75, 510 ],
+        "к-9": [ 90, 265, 120, 315 ],
+        "к-10": [ 120, 265, 170, 315 ],
+        "к-11": [ 170, 265, 218, 315 ],
+        "к-12": [ 218, 265, 247, 315 ],
+        "к-13": [ 90, 315, 247, 415 ],
+        "к-14": [ 90, 415, 120, 440 ],
+        "к-15": [ 90, 440, 120, 465 ],
+        "к-16": [ 120, 415, 145, 465 ],
+        "к-17": [ 145, 415, 170, 465 ],
+        "к-18": [ 170, 415, 195, 465 ],
+        "к-19": [ 195, 415, 218, 465 ],
+        "к-20": [ 218, 415, 247, 465 ],
+        "к-21": [ 263, 220, 332, 270 ],
+        "к-22": [ 263, 270, 332, 317 ],
+        "к-23": [ 263, 317, 314, 365 ],
+        "к-24": [ 315, 317, 332, 365 ],
+        "к-25": [ 263, 380, 314, 510 ],
+        "к-26": [ 312, 415, 332, 462 ],
+        "к-27": [ 315, 380, 332, 415 ],
+        "к-28": [ 315, 460, 332, 480 ],
+        "к-29": [ 330, 315, 355, 355 ],
+        "к-30": [ 355, 315, 380, 355 ],
+        "к-31": [ 379, 315, 403, 365 ],
+        "к-32": [ 403, 315, 428, 365 ],
+        "к-33": [ 428, 315, 453, 365 ],
+        "к-34": [ 453, 315, 477, 365 ],
+        "к-35": [ 477, 315, 500, 365 ],
+        "к-36": [ 500, 315, 525, 350 ],
+        "к-37": [ 525, 315, 572, 365 ],
+        "к-38": [ 572, 315, 622, 365 ],
+        "к-39": [ 500, 350, 525, 365 ],
+        "к-40": [ 622, 315, 670, 365 ],
+        "к-41": [ 670, 315, 718, 365 ],
+        "к-42": [ 717, 315, 766, 365 ],
+        "к-43": [ 765, 315, 816, 365 ],
+        "к-44": [ 815, 315, 864, 365 ],
+        "к-45": [ 863, 315, 912, 365 ],
+        "к-46": [ 911, 315, 925, 365 ],
+        "к-47": [ 378, 378, 402, 415 ],
+        "к-48": [ 402, 378, 428, 415 ],
+        "к-49": [ 428, 378, 475, 415 ],
+        "к-50": [ 475, 378, 525, 415 ],
+        "к-51": [ 525, 378, 572, 415 ],
+        "к-52": [ 572, 378, 622, 415 ],
+        "к-53": [ 622, 378, 670, 415 ],
+        "к-54": [ 670, 378, 718, 415 ],
+        "к-55": [ 717, 378, 766, 415 ],
+        "к-56": [ 765, 378, 816, 415 ],
+        "к-57": [ 815, 378, 864, 415 ],
+        "к-58": [ 910, 365, 925, 415 ],
+        "к-59": [ 910, 220, 974, 270 ],
+        "к-60": [ 910, 460, 927, 478 ],
+        "к-61": [ 974, 220, 1008, 243 ],
+        "к-62": [ 974, 243, 1008, 270 ],
+        "к-63": [ 1008, 230, 1025, 270 ],
+        "к-64": [ 927, 462, 1024, 510 ],
+        "к-65": [ 1025, 250, 1072, 318 ],
+        "к-66": [ 1072, 250, 1095, 300 ],
+        "к-67": [ 1095, 250, 1120, 300 ],
+        "к-68": [ 1120, 250, 1145, 300 ],
+        "к-69": [ 1145, 250, 1170, 300 ],
+        "к-70": [ 1170, 223, 1215, 252 ],
+        "к-71": [ 1184, 252, 1197, 267 ],
+        "к-72": [ 1197, 252, 1209, 267 ],
+        "к-73": [ 1209, 252, 1215, 280 ],
+        "к-74": [ 1185, 280, 1220, 315 ],
+        "к-75": [ 1025, 432, 1047, 480 ],
+        "к-76": [ 1047, 432, 1071, 480 ],
+        "к-77": [ 1071, 432, 1095, 480 ],
+        "к-78": [ 1095, 432, 1120, 450 ],
+        "к-79": [ 1095, 450, 1120, 480 ],
+        "к-80": [ 1047, 318, 1121, 415 ],
+        "к-81": [ 1120, 318, 1202, 365 ],
+        "к-82": [ 1137, 365, 1202, 415 ],
+        "к-83": [ 1137, 415, 1168, 450 ],
+        "к-84": [ 1168, 415, 1178, 431 ],
+        "к-85": [ 1178, 415, 1188, 431 ],
+        "к-86": [ 1188, 415, 1198, 431 ],
+        "к-87": [ 1198, 415, 1217, 431 ],
+        "к-88": [ 1168, 432, 1217, 462 ],
+        "к-89": [ 1168, 462, 1217, 510 ]
+    }
+};
+
             
             // Иконки пользовательских устройств
             const USER_DEVICES_ICONS = {
@@ -324,7 +321,7 @@
                 "Subnet": 45,
                 "VLAN": 45
             };
-            
+            const FURNITURE_TYPES = ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
             const DEFAULT_COLORS = {
                 "Стол": "#8BC34A",
                 "Стул": "#FFC107",
@@ -527,7 +524,7 @@
             ];
             
             let appState = {
-                currentFloor: "Второй этаж",
+                currentFloor: "Главная схема",
                 currentRoom: null,
                 viewMode: "floor",
                 selectedAssetId: null,
@@ -597,34 +594,42 @@
                 if (loader) loader.remove();
             }
 
-            function validateAssetData(data) {
-                const errors = {};
-                
-                if (!data.type) {
-                    errors.type = 'Не выбран тип оборудования';
-                }
-                
-                if (!data.inventory_number || data.inventory_number.trim() === '') {
-                    errors.inventory_number = 'Инвентарный номер обязателен';
-                }
-                
-                if (!data.model || data.model.trim() === '') {
-                    errors.model = 'Модель обязательна';
-                }
-                
-                if (data.sum !== undefined && data.sum < 0) {
-                    errors.sum = 'Сумма не может быть отрицательной';
-                }
-                
-                if (!data.responsible || data.responsible.trim() === '') {
-                    errors.responsible = 'Ответственный обязателен';
-                }
-                
-                return {
-                    isValid: Object.keys(errors).length === 0,
-                    errors: errors
-                };
+function validateAssetData(data) {
+    const errors = {};
+
+    if (!data.type) errors.type = 'Выберите тип оборудования';
+    if (!data.inventory_number || data.inventory_number.trim() === '') {
+        errors.inventory_number = 'Инвентарный номер обязателен';
+    }
+    if (!data.model || data.model.trim() === '') errors.model = 'Модель обязательна';
+    if (data.sum === undefined || data.sum < 0) errors.sum = 'Сумма должна быть неотрицательной';
+    if (!data.responsible || data.responsible.trim() === '') errors.responsible = 'Ответственный обязателен';
+
+    // Новая проверка даты
+    if (!data.purchase_date || data.purchase_date.trim() === '') {
+        errors.purchase_date = 'Дата приобретения обязательна';
+    } else {
+        const datePattern = /^\d{2}\.\d{2}\.\d{4}$/;
+        if (!datePattern.test(data.purchase_date)) {
+            errors.purchase_date = 'Формат даты: ДД.ММ.ГГГГ';
+        } else {
+            const parts = data.purchase_date.split('.');
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10);
+            const year = parseInt(parts[2], 10);
+            const date = new Date(year, month - 1, day);
+            if (date.getDate() !== day || date.getMonth() !== month - 1 || date.getFullYear() !== year) {
+                errors.purchase_date = 'Некорректная дата';
             }
+        }
+    }
+
+    return {
+        isValid: Object.keys(errors).length === 0,
+        errors: errors
+    };
+}
+
 
             function showValidationErrors(errors, prefix = '') {
                 document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
@@ -789,7 +794,7 @@
                 try {
                     console.log(`${APP_NAME} v${VERSION} запущено`);
                     showLoading();
-                    
+                    enableRoomRename();
                     loadFromLocalStorage();
                     populateItemLists();
                     loadFloorPlan();
@@ -1214,36 +1219,25 @@
             }
             
             function loadFromLocalStorage() {
-                try {
-                    const savedData = localStorage.getItem('inventoryData_v5');
-                    if (savedData) {
-                        if (savedData.length > 5 * 1024 * 1024) {
-                            console.warn('Данные слишком большие, возможны проблемы с производительностью');
-                            showToast('Данные слишком большие', 'warning');
-                        }
-                        
-                        const data = JSON.parse(savedData);
-                        appState.assets = data.assets || {};
-                        appState.currentFloor = data.currentFloor || "Второй этаж";
-                        appState.currentRoom = data.currentRoom || null;
-                        actionHistory = data.history || [];
-                        
-                        console.log(`Загружено ${Object.keys(appState.assets).length} активов`);
-                    }
-                } catch (e) {
-                    console.error("Ошибка загрузки данных:", e);
-                    showToast('Ошибка загрузки данных из localStorage', 'error');
-                    appState.assets = {};
-                }
-                
-                const lastFloor = localStorage.getItem('lastFloor');
-                if (lastFloor) {
-                    appState.currentFloor = lastFloor;
-                    const floorSelect = document.getElementById('floorSelect');
-                    if (floorSelect) {
-                        floorSelect.value = lastFloor;
-                    }
-                }
+    try {
+        const savedData = localStorage.getItem('inventoryData_v5');
+        if (savedData) {
+            if (savedData.length > 5 * 1024 * 1024) {
+                console.warn('Данные слишком большие, возможны проблемы с производительностью');
+                showToast('Данные слишком большие', 'warning');
+            }
+            const data = JSON.parse(savedData);
+            appState.assets = data.assets || {};
+            appState.currentFloor = data.currentFloor || "Главная схема";
+            appState.currentRoom = data.currentRoom || null;
+            actionHistory = data.history || [];
+            console.log(`Загружено ${Object.keys(appState.assets).length} активов`);
+        }
+    } catch (e) {
+        console.error("Ошибка загрузки данных:", e);
+        showToast('Ошибка загрузки данных из localStorage', 'error');
+        appState.assets = {};
+    }
             }
             
             function saveToLocalStorage() {
@@ -1579,14 +1573,246 @@
                     quickTypeSelect.appendChild(networkOptgroup.cloneNode(true));
                 }
             }
+// ---------- ПЛАН ЭТАЖА: КЛИКИ, ВХОД, ПОДСВЕТКА ----------
+let dragState = null;
+let resizeState = null;
+let rotationState = null;  // если поворот ещё не реализован, просто не используется
+let highlightedRoom = null;
 
+function clearRoomHighlights() {
+    document.querySelectorAll('.room').forEach(r => {
+        r.classList.remove('selected-room', 'highlight');
+    });
+    highlightedRoom = null;
+}
+
+function showRoomList() {
+    const roomListContainer = document.getElementById('roomListContainer');
+    const roomList = document.getElementById('roomList');
+    if (!roomListContainer || !roomList) return;
+    const rooms = ROOM_MAP[appState.currentFloor];
+    if (!rooms) {
+        roomListContainer.style.display = 'none';
+        return;
+    }
+
+    roomListContainer.style.display = 'block';
+    roomList.innerHTML = '';
+    Object.keys(rooms).forEach(roomId => {
+        const item = document.createElement('div');
+        item.className = 'tree-item';
+        item.textContent = roomId;
+        item.dataset.roomId = roomId;
+        item.addEventListener('mouseenter', () => {
+            const roomElem = document.querySelector(`.room[data-room-id="${roomId}"]`);
+            if (roomElem) {
+                roomElem.classList.add('highlight');
+                highlightedRoom = roomElem;
+            }
+        });
+        item.addEventListener('mouseleave', () => {
+            if (highlightedRoom && highlightedRoom.dataset.roomId === roomId) {
+                highlightedRoom.classList.remove('highlight');
+                highlightedRoom = null;
+            }
+        });
+        item.addEventListener('click', () => {
+            clearRoomHighlights();
+            appState.currentRoom = roomId;
+            appState.viewMode = 'floor';
+            document.getElementById('roomText').textContent = roomId;
+            const roomElem = document.querySelector(`.room[data-room-id="${roomId}"]`);
+            if (roomElem) roomElem.classList.add('selected-room');
+            updateAssetTree();
+            // Вместо updateRoomStats показываем детальный вид
+            document.getElementById('roomListView').style.display = 'none';
+            document.getElementById('roomDetailView').style.display = 'block';
+            showRoomDetail(roomId);
+            // Снимаем выделение со всех элементов списка комнат
+            document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+            item.classList.add('selected');
+        });
+        roomList.appendChild(item);
+    });
+    if (Object.keys(rooms).length === 0) roomListContainer.style.display = 'none';
+}
+
+// Кнопка "Назад к комнатам" в списке комнат
+const backToRoomListBtn = document.getElementById('backToRoomList');
+if (backToRoomListBtn) {
+    backToRoomListBtn.addEventListener('click', () => {
+        // Показать список комнат, скрыть детали комнаты
+        document.getElementById('roomListView').style.display = 'block';
+        document.getElementById('roomDetailView').style.display = 'none';
+        // Снять выделение комнаты и очистить дерево
+        clearRoomHighlights();
+        appState.currentRoom = null;
+        appState.viewMode = 'floor';
+        document.getElementById('roomText').textContent = '-';
+        updateAssetTree();
+        clearAssetDetails();
+        clearRoomStats();
+        document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+    });
+}
+
+            // Заполнение детального вида комнаты
+            function showRoomDetail(roomId) {
+    const roomDetailContent = document.getElementById('roomDetailContent');
+    if (!roomDetailContent) return;
+
+    // Статистика комнаты
+    const assets = Object.values(appState.assets).filter(a => a.room_id === roomId);
+    let statsHtml = `<h4 style="color: var(--primary-light);">Комната: ${roomId}</h4>`;
+    statsHtml += `<p><strong>Всего активов:</strong> ${assets.length}</p>`;
+    statsHtml += `<p><strong>Мебель:</strong> ${assets.filter(a => a.category === 'furniture').length}</p>`;
+    statsHtml += `<p><strong>Устройства:</strong> ${assets.filter(a => a.category.startsWith('device')).length}</p>`;
+    statsHtml += `<p><strong>Сеть:</strong> ${assets.filter(a => a.category.startsWith('network')).length}</p>`;
+    statsHtml += `<hr style="border-color: var(--border);">`;
+    statsHtml += `<h4>Активы:</h4>`;
+
+    if (assets.length === 0) {
+        statsHtml += `<p class="text-muted">Нет активов</p>`;
+    } else {
+        statsHtml += `<div style="max-height:200px; overflow-y:auto;">`;
+        assets.forEach(asset => {
+            statsHtml += `<div class="tree-item" style="cursor:pointer;" data-asset-id="${asset.id}">
+                <div class="tree-item-icon"><i class="fas fa-cube"></i></div>
+                <div style="flex:1;">${asset.type} (${asset.inventory_number || 'б/н'})</div>
+            </div>`;
+        });
+        statsHtml += `</div>`;
+    }
+
+    roomDetailContent.innerHTML = statsHtml;
+
+    // Обработчики кликов по активам в этом списке
+    roomDetailContent.querySelectorAll('.tree-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const assetId = item.dataset.assetId;
+            if (assetId) selectAsset(assetId);
+            e.stopPropagation();
+        });
+    });
+            }
+
+            floorPlan.addEventListener('click', function(e) {
+    if (dragState || resizeState) return;
+
+    const room = e.target.closest('.room');
+    if (room && !dragState && !resizeState) {
+        const roomId = room.dataset.roomId;
+        const floorNames = Object.keys(ROOM_MAP);
+        if (floorNames.includes(roomId)) {
+            appState.currentFloor = roomId;
+            const floorSelect = document.getElementById('floorSelect');
+            if (floorSelect) floorSelect.value = roomId;
+            loadFloorPlan();
+            showStatus(`Переключен на этаж: ${roomId}`);
+            return;
+        }
+        clearRoomHighlights();
+        room.classList.add('selected-room');
+        appState.currentRoom = roomId;
+        appState.viewMode = 'floor';
+        document.getElementById('roomText').textContent = roomId;
+        updateAssetTree();
+        updateRoomStats(roomId);
+        const assetsInRoom = Object.values(appState.assets).filter(a => a.room_id === roomId);
+        if (assetsInRoom.length > 0) {
+            selectAsset(assetsInRoom[0].id);
+        } else {
+            clearAssetDetails();
+        }
+        document.querySelectorAll('#roomList .tree-item').forEach(el => {
+            el.classList.toggle('selected', el.dataset.roomId === roomId);
+        });
+        return;
+    }
+
+    const asset = e.target.closest('.asset');
+    if (asset && !dragState && !resizeState) {
+        const assetId = asset.dataset.assetId;
+        selectAsset(assetId);
+        return;
+    }
+
+    if (!room && !asset && !e.target.closest('.asset-icon') && !e.target.closest('.asset-label')) {
+        clearRoomHighlights();
+        appState.currentRoom = null;
+        appState.viewMode = 'floor';
+        document.getElementById('roomText').textContent = '-';
+        updateAssetTree();
+        clearAssetDetails();
+        clearRoomStats();
+        document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+    }
+
+    if (!room && !asset && appState.pendingAssetType && !dragState && !resizeState) {
+        const rect = floorPlan.getBoundingClientRect();
+        let x = (e.clientX - rect.left) / appState.zoomLevel - appState.panOffset.x;
+        let y = (e.clientY - rect.top) / appState.zoomLevel - appState.panOffset.y;
+        x = Math.round(Math.max(0, Math.min(x, rect.width)));
+        y = Math.round(Math.max(0, Math.min(y, rect.height)));
+
+        if (appState.currentRoom) {
+            if (typeof FURNITURE_TYPES !== 'undefined' && FURNITURE_TYPES.includes(appState.pendingAssetType)) {
+                const assetData = {
+                    type: appState.pendingAssetType,
+                    inventory_number: '',
+                    model: '',
+                    serial_number: '',
+                    sum: 0,
+                    status: 'active',
+                    responsible: '',
+                    room_id: appState.currentRoom,
+                    x: x,
+                    y: y,
+                    custom_color: DEFAULT_COLORS[appState.pendingAssetType] || '#2196F3'
+                };
+                addAsset(assetData);
+            } else {
+                const assetData = {
+                    type: appState.pendingAssetType,
+                    inventory_number: `${appState.pendingAssetType.substring(0,3).toUpperCase()}-${new Date().getTime().toString().slice(-6)}`,
+                    model: 'Базовая модель',
+                    room_id: appState.currentRoom,
+                    x: x,
+                    y: y,
+                    sum: 0,
+                    responsible: 'Не указан'
+                };
+                showAddAssetModal(assetData);
+            }
+            appState.pendingAssetType = null;
+        } else {
+            showStatus('Сначала выберите комнату', 3000);
+        }
+    }
+            });
+
+            floorPlan.addEventListener('dblclick', function(e) {
+    const room = e.target.closest('.room');
+    if (room && !dragState && !resizeState) {
+        const roomId = room.dataset.roomId;
+        const floorNames = Object.keys(ROOM_MAP);
+        if (floorNames.includes(roomId)) {
+            appState.currentFloor = roomId;
+            const floorSelect = document.getElementById('floorSelect');
+            if (floorSelect) floorSelect.value = roomId;
+            loadFloorPlan();
+        } else {
+            loadRoomView(roomId);
+        }
+    }
+            });
+
+            // Добавьте вызов showRoomList() в loadFloorPlan и при смене этажа
             function loadFloorPlan() {
     try {
         const floorPlan = document.getElementById('floorPlan');
         if (!floorPlan) return;
-        
         const planTitle = document.getElementById('planTitle');
-        
         floorPlan.innerHTML = '';
         
         const imageFile = PLAN_FILES[appState.currentFloor];
@@ -1598,60 +1824,34 @@
         } else {
             floorPlan.style.backgroundColor = 'var(--graphics-bg)';
         }
-
-        // Меняем курсор на стандартный (или наследуемый от body)
         floorPlan.style.cursor = 'default';
         
         if (planTitle) planTitle.textContent = `План: ${appState.currentFloor}`;
-        
-        const floorText = document.getElementById('floorText');
-        if (floorText) floorText.textContent = appState.currentFloor;
-        
-        const roomText = document.getElementById('roomText');
-        if (roomText) roomText.textContent = '-';
+        document.getElementById('floorText').textContent = appState.currentFloor;
+        document.getElementById('roomText').textContent = '-';
         
         appState.currentRoom = null;
         appState.viewMode = 'floor';
         appState.selectedAssetId = null;
         appState.panOffset = { x: 0, y: 0 };
-        
-        const backButton = document.getElementById('backButton');
-        if (backButton) backButton.style.display = 'none';
+        document.getElementById('backButton').style.display = 'none';
         
         if (ROOM_MAP[appState.currentFloor]) {
             drawRooms();
         } else {
-            const message = document.createElement('div');
-            message.style.position = 'absolute';
-            message.style.top = '50%';
-            message.style.left = '50%';
-            message.style.transform = 'translate(-50%, -50%)';
-            message.style.color = 'var(--text-secondary)';
-            message.style.fontSize = '18px';
-            message.style.textAlign = 'center';
-            message.style.padding = '20px';
-            message.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            message.style.borderRadius = '10px';
-            message.innerHTML = `
-                <i class="fas fa-info-circle" style="font-size: 48px; margin-bottom: 15px; display: block;"></i>
-                <div>Для этого этажа нет данных о комнатах</div>
-                <div style="font-size: 14px; margin-top: 10px;">Выберите другой этаж</div>
-            `;
-            floorPlan.appendChild(message);
+            console.error('Нет данных о комнатах для этажа:', appState.currentFloor);
         }
+        
         
         updateAssetTree();
         clearAssetDetails();
         clearRoomStats();
         updateButtonStates();
-        
-        console.log(`Загружен план: ${appState.currentFloor}`);
+        showRoomList();
     } catch (error) {
-        console.error('Ошибка загрузки плана:', error);
-        showToast('Ошибка загрузки плана', 'error');
+        console.error('Ошибка в loadFloorPlan:', error);
     }
-}
-
+            }
             
             function drawRooms() {
                 const floorPlan = document.getElementById('floorPlan');
@@ -1676,6 +1876,7 @@
                 
                 console.log(`Отрисовано ${roomCount} комнат`);
             }
+
             function createRoomElement(roomId, x, y, width, height) {
     const room = document.createElement('div');
     room.className = 'room';
@@ -1732,7 +1933,7 @@
         : `Двойной клик для входа в ${roomId}`;
     
     return room;
-}
+            }
             
             async function checkImageExists(imageFile) {
                 try {
@@ -1745,81 +1946,42 @@
             }
             
             async function loadRoomView(roomId) {
-                try {
-                    const floorPlan = document.getElementById('floorPlan');
-                    if (!floorPlan) return;
-                    
-                    const planTitle = document.getElementById('planTitle');
-                    
-                    floorPlan.innerHTML = '';
-                    
-                    showLoading();
-                    
-                    const bgFile = "Kabinet.png";
-                    
-                    const imageExists = await checkImageExists(bgFile);
-                    
-                    if (imageExists) {
-                        const img = new Image();
-                        img.onload = function() {
-                            floorPlan.style.backgroundImage = `url('${bgFile}')`;
-                            floorPlan.style.backgroundSize = 'cover';
-                            floorPlan.style.backgroundRepeat = 'no-repeat';
-                            floorPlan.style.backgroundPosition = 'center';
-                            floorPlan.style.backgroundColor = 'transparent';
-                            hideLoading();
-                            console.log(`Фон ${bgFile} успешно загружен`);
-                        };
-                        img.onerror = function() {
-                            console.error(`Ошибка загрузки ${bgFile}`);
-                            floorPlan.style.backgroundImage = 'none';
-                            floorPlan.style.backgroundColor = '#f0f0f0';
-                            hideLoading();
-                            showToast('Не удалось загрузить фон комнаты', 'warning');
-                        };
-                        img.src = bgFile;
-                    } else {
-                        console.warn(`Файл ${bgFile} не найден, используется цветовой фон`);
-                        floorPlan.style.backgroundImage = 'none';
-                        floorPlan.style.backgroundColor = '#f0f0f0';
-                        hideLoading();
-                    }
-                    
-                    floorPlan.style.cursor = 'default';
-                    
-                    if (planTitle) planTitle.textContent = `Комната: ${roomId}`;
-                    
-                    const roomText = document.getElementById('roomText');
-                    if (roomText) roomText.textContent = roomId;
-                    
-                    appState.currentRoom = roomId;
-                    appState.viewMode = 'room';
-                    appState.selectedAssetId = null;
-                    appState.panOffset = { x: 0, y: 0 };
-                    
-                    const backButton = document.getElementById('backButton');
-                    if (backButton) backButton.style.display = 'inline-flex';
-                    
-                    drawRoomAssets(roomId);
-                    updateAssetTree();
-                    updateRoomStats(roomId);
-                    
-                    console.log(`Загружена комната: ${roomId}`);
-                } catch (error) {
-                    console.error('Ошибка загрузки комнаты:', error);
-                    hideLoading();
-                    showToast('Ошибка загрузки комнаты', 'error');
-                    
-                    const floorPlan = document.getElementById('floorPlan');
-                    if (floorPlan) {
-                        floorPlan.style.backgroundImage = 'none';
-                        floorPlan.style.backgroundColor = '#f0f0f0';
-                    }
-                }
-            }
+    // Показываем статистику комнаты (правильная проверка)
+    const roomStats = document.getElementById('room-stats');
+    if (roomStats) roomStats.style.display = 'block';
+
+    // Скрываем список комнат
+    const roomListContainer = document.getElementById('roomListContainer');
+    if (roomListContainer) roomListContainer.style.display = 'none';
+
+    const floorPlan = document.getElementById('floorPlan');
+    if (!floorPlan) return;
+
+    const planTitle = document.getElementById('planTitle');
+    floorPlan.innerHTML = '';
+    floorPlan.style.backgroundImage = "url('Kabinet.png')";
+    floorPlan.style.backgroundSize = 'cover';
+    floorPlan.style.backgroundRepeat = 'no-repeat';
+    floorPlan.style.backgroundPosition = 'center';
+    floorPlan.style.backgroundColor = '#0a0c10';
+    floorPlan.style.cursor = 'default';
+
+    if (planTitle) planTitle.textContent = `Комната: ${roomId}`;
+    document.getElementById('roomText').textContent = roomId;
+
+    appState.currentRoom = roomId;
+    appState.viewMode = 'room';
+    appState.selectedAssetId = null;
+    appState.panOffset = { x: 0, y: 0 };
+    document.getElementById('backButton').style.display = 'inline-flex';
+
+    drawRoomAssets(roomId);
+    updateAssetTree();
+    updateRoomStats(roomId);
+}
             
             // ИСПРАВЛЕНО: Улучшенное создание элементов активов
-function createAssetElement(asset) {
+            function createAssetElement(asset) {
     const assetDiv = document.createElement('div');
     assetDiv.className = 'asset';
     assetDiv.id = `asset-${asset.id}`;
@@ -1909,11 +2071,15 @@ function createAssetElement(asset) {
     }
     
     return assetDiv;
-}
+
+
+            }
 
             function createResizeHandles(assetElement) {
-    // Удаляем старые ручки, если есть
-    assetElement.querySelectorAll('.resize-handle').forEach(h => h.remove());
+    // Удаляем старые ручки
+    assetElement.querySelectorAll('.resize-handle, .rotate-handle').forEach(h => h.remove());
+
+    // Ручки изменения размера
     const positions = [
         { cls: 'top-left',     pos: 'top-left' },
         { cls: 'top-right',    pos: 'top-right' },
@@ -1923,97 +2089,144 @@ function createAssetElement(asset) {
     positions.forEach(({ cls, pos }) => {
         const handle = document.createElement('div');
         handle.className = `resize-handle ${cls}`;
-        handle.dataset.position = pos;   // ← важно для startResize
+        handle.dataset.position = pos;
         assetElement.appendChild(handle);
     });
-}
 
-            
-            function updateAssetTree() {
-                const treeContainer = document.getElementById('assetTree');
-                if (!treeContainer) return;
-                
-                treeContainer.innerHTML = '';
-                
-                if (appState.viewMode === 'room' && appState.currentRoom) {
-                    const categories = {
-                        furniture: [],
-                        device_fixed: [],
-                        device_movable: [],
-                        network_equipment: [],
-                        network_cables: [],
-                        network_infrastructure: []
-                    };
-                    
-                    Object.values(appState.assets).forEach(asset => {
-                        if (asset.room_id === appState.currentRoom && categories[asset.category]) {
-                            categories[asset.category].push(asset);
-                        }
-                    });
-                    
-                    for (const [categoryKey, assets] of Object.entries(categories)) {
-                        if (assets.length > 0) {
-                            const categoryName = ASSET_CATEGORIES[categoryKey] || categoryKey;
-                            
-                            const categoryNode = document.createElement('div');
-                            categoryNode.className = 'tree-node';
-                            
-                            const header = document.createElement('div');
-                            header.className = 'tree-header';
-                            header.innerHTML = `<i class="fas fa-folder"></i> ${categoryName} (${assets.length})`;
-                            categoryNode.appendChild(header);
-                            
-                            const content = document.createElement('div');
-                            content.className = 'tree-content';
-                            
-                            assets.sort((a, b) => a.type.localeCompare(b.type));
-                            
-                            assets.forEach(asset => {
-                                const item = document.createElement('div');
-                                item.className = 'tree-item';
-                                if (appState.selectedAssetId === asset.id) {
-                                    item.classList.add('selected');
-                                }
-                                item.dataset.assetId = asset.id;
-                                
-                                let iconClass = 'fas fa-cube';
-                                if (asset.category === 'furniture') {
-                                    iconClass = 'fas fa-couch';
-                                } else if (asset.category === 'device_fixed') {
-                                    iconClass = 'fas fa-server';
-                                } else if (asset.category === 'device_movable') {
-                                    iconClass = 'fas fa-laptop';
-                                } else if (asset.category === 'network_equipment') {
-                                    iconClass = 'fas fa-wifi';
-                                } else if (asset.category === 'network_cables') {
-                                    iconClass = 'fas fa-ethernet';
-                                } else if (asset.category === 'network_infrastructure') {
-                                    iconClass = 'fas fa-network-wired';
-                                }
-                                
-                                item.innerHTML = `
-                                    <div class="tree-item-icon"><i class="${iconClass}"></i></div>
-                                    <div style="flex: 1; overflow: hidden; text-overflow: ellipsis;">${asset.type}</div>
-                                    <div style="font-size: 11px; color: var(--text-secondary);">${asset.inventory_number || ''}</div>
-                                `;
-                                
-                                content.appendChild(item);
-                            });
-                            
-                            categoryNode.appendChild(content);
-                            treeContainer.appendChild(categoryNode);
-                        }
-                    }
-                    
-                    if (treeContainer.children.length === 0) {
-                        treeContainer.innerHTML = '<div class="text-muted text-center">В комнате нет активов</div>';
-                    }
-                } else {
-                    treeContainer.innerHTML = '<div class="text-muted text-center">Выберите комнату для просмотра активов</div>';
-                }
-                
-                const assetCount = document.getElementById('assetCount');
-                if (assetCount) assetCount.textContent = Object.keys(appState.assets).length;
+    // Ручка поворота
+    const rotateHandle = document.createElement('div');
+    rotateHandle.className = 'rotate-handle';
+    rotateHandle.dataset.action = 'rotate';
+    assetElement.appendChild(rotateHandle);
+            }
+
+            function updateAsset(assetId, updates, skipHistory = false) {
+    const asset = appState.assets[assetId];
+    if (!asset) return false;
+
+    const oldData = { ...asset };
+
+    if (updates.x !== undefined) {
+        const parsedX = parseFloat(updates.x);
+        if (!isNaN(parsedX) && isFinite(parsedX)) {
+            updates.x = Math.max(0, Math.min(parsedX, 5000));
+        } else {
+            delete updates.x;
+        }
+    }
+    if (updates.y !== undefined) {
+        const parsedY = parseFloat(updates.y);
+        if (!isNaN(parsedY) && isFinite(parsedY)) {
+            updates.y = Math.max(0, Math.min(parsedY, 5000));
+        } else {
+            delete updates.y;
+        }
+    }
+
+    Object.assign(asset, updates);
+    asset.updated = new Date().toISOString();
+
+    if (updates.x !== undefined || updates.y !== undefined) {
+        appState.assetPositions[assetId] = { x: asset.x, y: asset.y };
+    }
+
+    if (!skipHistory) {
+        pushToUndo('update', {
+            assetId: assetId,
+            oldData: oldData,
+            newData: { ...asset }
+        });
+    }
+
+    addToHistory('update', assetId, { updates: Object.keys(updates) });
+
+    const assetElement = document.getElementById(`asset-${assetId}`);
+    if (assetElement) {
+        let x = asset.x;
+        let y = asset.y;
+        if (x === undefined || x === null || isNaN(x)) {
+            x = oldData.x || 100;
+            asset.x = x;
+        }
+        if (y === undefined || y === null || isNaN(y)) {
+            y = oldData.y || 100;
+            asset.y = y;
+        }
+
+        const width = asset.width || ASSET_SIZES[asset.type] || DEFAULT_ICON_SIZE;
+        const height = asset.height || ASSET_SIZES[asset.type] || DEFAULT_ICON_SIZE;
+
+        assetElement.style.left = `${x}px`;
+        assetElement.style.top = `${y}px`;
+        assetElement.style.width = `${width}px`;
+        assetElement.style.height = `${height}px`;
+
+        const rotation = asset.rotation || 0;
+        assetElement.style.transform = `rotate(${rotation}deg)`;
+        assetElement.style.transformOrigin = 'center center';
+
+        const color = asset.custom_color || DEFAULT_COLORS[asset.type] || '#2196F3';
+        assetElement.style.backgroundColor = 'transparent';
+        assetElement.style.border = `2px solid ${asset.parent_id ? '#9C27B0' : (asset.category === 'furniture' ? '#4CAF50' : '#FF9800')}`;
+
+        if (appState.selectedAssetId === assetId) {
+            assetElement.style.zIndex = '50';
+        } else if (appState.hoveredAssetId === assetId) {
+            assetElement.style.zIndex = '100';
+        } else {
+            assetElement.style.zIndex = asset.parent_id ? '15' : '10';
+        }
+
+        const iconDiv = assetElement.querySelector('.asset-icon');
+        if (iconDiv) {
+            iconDiv.innerHTML = '';
+            const iconFile = USER_DEVICES_ICONS[asset.type] || NETWORK_ICONS[asset.type];
+            if (iconFile) {
+                const img = document.createElement('img');
+                img.src = iconFile;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'contain';
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    const fallbackIcon = document.createElement('i');
+                    fallbackIcon.className = FONT_AWESOME_ICONS[asset.type] || 'fas fa-cube';
+                    fallbackIcon.style.color = color;
+                    fallbackIcon.style.fontSize = `${Math.min(width, height) * 0.6}px`;
+                    iconDiv.appendChild(fallbackIcon);
+                };
+                iconDiv.appendChild(img);
+            } else {
+                const icon = document.createElement('i');
+                icon.className = FONT_AWESOME_ICONS[asset.type] || 'fas fa-cube';
+                icon.style.color = color;
+                icon.style.fontSize = `${Math.min(width, height) * 0.6}px`;
+                iconDiv.appendChild(icon);
+            }
+        }
+
+        const label = assetElement.querySelector('.asset-label');
+        if (label) {
+            label.textContent = asset.inventory_number || asset.type;
+        }
+
+        assetElement.querySelectorAll('.resize-handle').forEach(h => h.remove());
+        if (appState.selectedAssetId === assetId && appState.resizeMode) {
+            createResizeHandles(assetElement);
+        }
+    }
+
+    updateAssetDetails(assetId);
+    updateAssetTree();
+    if (appState.currentRoom) {
+        updateRoomStats(appState.currentRoom);
+    }
+
+    saveToLocalStorage();
+    scheduleAutoSave();
+
+    showStatus(`Обновлен: ${asset.type} (${asset.x}, ${asset.y})`);
+    return true;
             }
             
             function filterAssets() {
@@ -2452,7 +2665,7 @@ function createAssetElement(asset) {
     updateAssetDetails(assetId);
     updateButtonStates();
     switchInfoTab('details');
-}
+            }
 
             function deselectAsset() {
                 appState.selectedAssetId = null;
@@ -2477,17 +2690,22 @@ function createAssetElement(asset) {
                 if (selectedText) selectedText.textContent = '-';
             }
             
-function addAsset(assetData, skipHistory = false) {
+            function addAsset(assetData, skipHistory = false) {
     const assetId = generateUUID();
     
-    const validation = validateAssetData(assetData);
-    if (!validation.isValid) {
-        showValidationErrors(validation.errors, 'asset');
-        return null;
+    // Интерьер или нет
+    const furnitureTypes = typeof FURNITURE_TYPES !== 'undefined' ? FURNITURE_TYPES : ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
+    
+    // Для не-интерьера – полная валидация
+    if (!furnitureTypes.includes(assetData.type)) {
+        const validation = validateAssetData(assetData);
+        if (!validation.isValid) {
+            showValidationErrors(validation.errors, 'asset');
+            return null; // окно не закроется
+        }
     }
     
     let category = 'device_movable';
-    const furnitureTypes = ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
     const fixedTypes = [
         "Принтер Canon", "IP-телефон Grandstream", "Серверная стойка", "Копировальный аппарат",
         "Локальный сервер", "Платёжный терминал", "Промышленный ПК", "Информационный киоск", 
@@ -2504,14 +2722,13 @@ function addAsset(assetData, skipHistory = false) {
 
     const defaultColor = DEFAULT_COLORS[assetData.type] || '#2196F3';
     
-    // ИСПРАВЛЕНО: Корректное получение координат с учетом всех возможных форматов
     let x = 100;
     let y = 100;
     
     if (assetData.x !== undefined && assetData.x !== null) {
         const parsedX = parseFloat(assetData.x);
         if (!isNaN(parsedX) && isFinite(parsedX)) {
-            x = Math.max(0, Math.min(parsedX, 5000)); // Ограничиваем разумными пределами
+            x = Math.max(0, Math.min(parsedX, 5000));
         } else {
             console.warn('Invalid x coordinate provided:', assetData.x);
         }
@@ -2520,7 +2737,7 @@ function addAsset(assetData, skipHistory = false) {
     if (assetData.y !== undefined && assetData.y !== null) {
         const parsedY = parseFloat(assetData.y);
         if (!isNaN(parsedY) && isFinite(parsedY)) {
-            y = Math.max(0, Math.min(parsedY, 5000)); // Ограничиваем разумными пределами
+            y = Math.max(0, Math.min(parsedY, 5000));
         } else {
             console.warn('Invalid y coordinate provided:', assetData.y);
         }
@@ -2551,7 +2768,8 @@ function addAsset(assetData, skipHistory = false) {
         inventory_number: assetData.inventory_number,
         model: assetData.model,
         serial_number: assetData.serial_number,
-        responsible: assetData.responsible
+        responsible: assetData.responsible,
+        rotation: assetData.rotation || 0,
     };
     
     if (assetData.type === "Монитор") {
@@ -2560,8 +2778,6 @@ function addAsset(assetData, skipHistory = false) {
     }
     
     appState.assets[assetId] = fullData;
-    
-    // ИСПРАВЛЕНО: Сохраняем позицию в отдельный объект для отслеживания
     appState.assetPositions[assetId] = { x: x, y: y };
     
     if (!skipHistory) {
@@ -2576,8 +2792,6 @@ function addAsset(assetData, skipHistory = false) {
         if (floorPlan) {
             const assetElement = createAssetElement(fullData);
             floorPlan.appendChild(assetElement);
-            
-            // ИСПРАВЛЕНО: Принудительно устанавливаем позицию после добавления в DOM
             assetElement.style.left = `${x}px`;
             assetElement.style.top = `${y}px`;
             
@@ -2602,10 +2816,10 @@ function addAsset(assetData, skipHistory = false) {
     showToast(`Добавлен: ${assetData.type}`, 'success');
     
     return assetId;
-}
+            }
 
 
-function updateAsset(assetId, updates, skipHistory = false) {
+            function updateAsset(assetId, updates, skipHistory = false) {
     const asset = appState.assets[assetId];
     if (!asset) return false;
     
@@ -2621,6 +2835,10 @@ function updateAsset(assetId, updates, skipHistory = false) {
             delete updates.x; // Удаляем невалидное значение
         }
     }
+
+    const rotation = asset.rotation || 0;
+assetElement.style.transform = `rotate(${rotation}deg)`;
+assetElement.style.transformOrigin = 'center center';
     
     if (updates.y !== undefined) {
         const parsedY = parseFloat(updates.y);
@@ -2746,10 +2964,10 @@ function updateAsset(assetId, updates, skipHistory = false) {
     showStatus(`Обновлен: ${asset.type} (${asset.x}, ${asset.y})`);
     
     return true;
-}
+            }
 
-// ИСПРАВЛЕНО: Функция для безопасного получения позиции элемента
-function getElementPosition(element) {
+            // ИСПРАВЛЕНО: Функция для безопасного получения позиции элемента
+            function getElementPosition(element) {
     let x = parseFloat(element.style.left);
     let y = parseFloat(element.style.top);
     
@@ -2775,10 +2993,10 @@ function getElementPosition(element) {
     if (isNaN(y) || !isFinite(y)) y = 100;
     
     return { x, y };
-}
+            }
 
-// ИСПРАВЛЕНО: Функция для безопасного получения размеров элемента
-function getElementSize(element) {
+            // ИСПРАВЛЕНО: Функция для безопасного получения размеров элемента
+            function getElementSize(element) {
     let width = parseFloat(element.style.width);
     let height = parseFloat(element.style.height);
     
@@ -2792,9 +3010,9 @@ function getElementSize(element) {
     if (isNaN(height) || !isFinite(height)) height = DEFAULT_ICON_SIZE;
     
     return { width, height };
-}
+            }
 
-function deleteAsset(assetId, skipHistory = false) {
+            function deleteAsset(assetId, skipHistory = false) {
                 const asset = appState.assets[assetId];
                 if (!asset) return false;
                 
@@ -2995,8 +3213,7 @@ function deleteAsset(assetId, skipHistory = false) {
         if (statusText) statusText.textContent = '';
         document.querySelectorAll('.resize-handle').forEach(h => h.remove());
     }
-}
-
+            }
             
             function showStatus(message, duration = 3000) {
                 const statusText = document.getElementById('statusText');
@@ -3064,7 +3281,6 @@ function deleteAsset(assetId, skipHistory = false) {
         tab.addEventListener('click', function() {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.items-list').forEach(list => list.style.display = 'none');
-
             this.classList.add('active');
             const itemsList = document.getElementById(`${this.dataset.tab}Items`);
             if (itemsList) itemsList.style.display = 'flex';
@@ -3110,15 +3326,6 @@ function deleteAsset(assetId, skipHistory = false) {
     const filterSelect = document.getElementById('filterSelect');
     if (filterSelect) {
         filterSelect.addEventListener('change', filterAssets);
-    }
-
-    const editButton = document.getElementById('editButton');
-    if (editButton) {
-        editButton.addEventListener('click', () => {
-            if (appState.selectedAssetId) {
-                showEditAssetModal();
-            }
-        });
     }
 
     const deleteButton = document.getElementById('deleteButton');
@@ -3225,7 +3432,11 @@ function deleteAsset(assetId, skipHistory = false) {
     const backButton = document.getElementById('backButton');
     if (backButton) {
         backButton.addEventListener('click', () => {
+            appState.currentFloor = "Главная схема";
+            const floorSelect = document.getElementById('floorSelect');
+            if (floorSelect) floorSelect.value = "Главная схема";
             loadFloorPlan();
+            showStatus('Главная схема');
         });
     }
 
@@ -3246,7 +3457,6 @@ function deleteAsset(assetId, skipHistory = false) {
             const model = document.getElementById('assetModel').value.trim();
             const responsible = document.getElementById('assetResponsible').value.trim();
             const sum = parseFloat(document.getElementById('assetSum').value) || 0;
-
             const assetData = {
                 type: type,
                 inventory_number: invNumber,
@@ -3262,11 +3472,9 @@ function deleteAsset(assetId, skipHistory = false) {
                 x: 100,
                 y: 100
             };
-
             const assetId = addAsset(assetData);
             if (assetId) {
                 hideModal('addAssetModal');
-
                 document.getElementById('assetInvNumber').value = '';
                 document.getElementById('assetModel').value = '';
                 document.getElementById('assetSerial').value = '';
@@ -3275,7 +3483,6 @@ function deleteAsset(assetId, skipHistory = false) {
                 document.getElementById('assetPurchaseDate').value = '';
                 document.getElementById('assetWarranty').value = '';
                 document.getElementById('assetNotes').value = '';
-
                 document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
                 document.querySelectorAll('.form-control').forEach(el => el.classList.remove('validation-error'));
             }
@@ -3297,7 +3504,6 @@ function deleteAsset(assetId, skipHistory = false) {
                 alert('Выберите тип объекта');
                 return;
             }
-
             const posText = document.getElementById('quickPosition').textContent;
             const match = posText.match(/X:\s*(\d+),\s*Y:\s*(\d+)/);
             let x = 100, y = 100;
@@ -3305,10 +3511,8 @@ function deleteAsset(assetId, skipHistory = false) {
                 x = parseInt(match[1]);
                 y = parseInt(match[2]);
             }
-
             const colorSample = document.getElementById('quickColorSample');
             const color = colorSample ? colorSample.style.backgroundColor : DEFAULT_COLORS[type] || '#2196F3';
-
             const assetData = {
                 type: type,
                 inventory_number: `${type.substring(0, 3).toUpperCase()}-${new Date().getTime().toString().slice(-6)}`,
@@ -3320,7 +3524,6 @@ function deleteAsset(assetId, skipHistory = false) {
                 sum: 0,
                 responsible: 'Не указан'
             };
-
             hideModal('quickAddModal');
             showAddAssetModal(assetData);
         });
@@ -3373,13 +3576,10 @@ function deleteAsset(assetId, skipHistory = false) {
     if (saveColor) {
         saveColor.addEventListener('click', function() {
             if (!appState.selectedAssetId) return;
-
             const colorSample = document.getElementById('colorSample');
             const color = colorSample ? colorSample.style.backgroundColor : null;
             const displayMode = document.querySelector('input[name="displayMode"]:checked')?.value || 'icon';
-
             if (!color) return;
-
             let hexColor = color;
             if (color.startsWith('rgb')) {
                 const rgb = color.match(/\d+/g);
@@ -3387,12 +3587,10 @@ function deleteAsset(assetId, skipHistory = false) {
                     hexColor = '#' + ((1 << 24) + (parseInt(rgb[0]) << 16) + (parseInt(rgb[1]) << 8) + parseInt(rgb[2])).toString(16).slice(1);
                 }
             }
-
             const updates = {
                 custom_color: hexColor,
                 show_icon: displayMode === 'icon'
             };
-
             updateAsset(appState.selectedAssetId, updates);
             addToHistory('color', appState.selectedAssetId, { color: hexColor });
             hideModal('colorModal');
@@ -3436,14 +3634,12 @@ function deleteAsset(assetId, skipHistory = false) {
     if (saveAttach) {
         saveAttach.addEventListener('click', function() {
             if (!appState.selectedAssetId) return;
-
             const furnitureId = document.getElementById('furnitureSelect').value;
             if (furnitureId) {
                 attachDevice(appState.selectedAssetId, furnitureId);
             } else {
                 detachDevice(appState.selectedAssetId);
             }
-
             hideModal('attachModal');
         });
     }
@@ -3473,7 +3669,6 @@ function deleteAsset(assetId, skipHistory = false) {
     if (saveStatus) {
         saveStatus.addEventListener('click', function() {
             if (!appState.selectedAssetId) return;
-
             const newStatus = document.getElementById('statusSelect').value;
             updateAsset(appState.selectedAssetId, { status: newStatus });
             addToHistory('status', appState.selectedAssetId, { status: newStatus });
@@ -3500,7 +3695,6 @@ function deleteAsset(assetId, skipHistory = false) {
         saveImport.addEventListener('click', function() {
             let importData = document.getElementById('importData').value;
             const importFile = document.getElementById('importFile');
-
             if (importFile.files.length > 0) {
                 const file = importFile.files[0];
                 const reader = new FileReader();
@@ -3515,7 +3709,6 @@ function deleteAsset(assetId, skipHistory = false) {
                 reader.readAsText(file);
                 return;
             }
-
             if (importData.trim()) {
                 try {
                     const data = JSON.parse(importData);
@@ -3534,16 +3727,13 @@ function deleteAsset(assetId, skipHistory = false) {
             alert('Неверный формат данных');
             return;
         }
-
         if (!data.assets && !Array.isArray(data)) {
             alert('Неверный формат данных. Ожидается объект с полем "assets" или массив активов');
             return;
         }
-
         if (!confirm('Импорт перезапишет все текущие данные. Продолжить?')) {
             return;
         }
-
         try {
             let assets = {};
             if (data.assets) {
@@ -3555,10 +3745,8 @@ function deleteAsset(assetId, skipHistory = false) {
                     }
                 });
             }
-
             const validAssets = {};
             let importedCount = 0;
-
             Object.values(assets).forEach(asset => {
                 if (asset.id && asset.type) {
                     const validAsset = {
@@ -3585,31 +3773,24 @@ function deleteAsset(assetId, skipHistory = false) {
                         created_at: asset.created_at || new Date().toISOString(),
                         updated_at: new Date().toISOString()
                     };
-
                     validAssets[asset.id] = validAsset;
                     importedCount++;
                 }
             });
-
             appState.assets = validAssets;
             appState.currentFloor = data.currentFloor || appState.currentFloor;
             appState.currentRoom = data.currentRoom || null;
             actionHistory = data.history || [];
-
             const maxId = Math.max(...Object.keys(validAssets).map(id => parseInt(id) || 0), 0);
             appState.lastAssetId = maxId;
-
             saveToLocalStorage();
             loadFloorPlan();
             updateUI();
-
             showStatus(`Импортировано ${importedCount} активов`);
             showToast(`Импортировано ${importedCount} активов`, 'success');
             hideModal('importModal');
-
             document.getElementById('importData').value = '';
             document.getElementById('importFile').value = '';
-
         } catch (error) {
             console.error('Ошибка импорта:', error);
             alert('Ошибка импорта данных: ' + error.message);
@@ -3644,10 +3825,10 @@ function deleteAsset(assetId, skipHistory = false) {
         });
     }
 
-    const updateAsset = document.getElementById('updateAsset');
-    if (updateAsset) {
-        updateAsset.addEventListener('click', function() {
-            // Эта функция переопределяется в showEditAssetModal
+    const updateAssetBtn = document.getElementById('updateAsset');
+    if (updateAssetBtn) {
+        updateAssetBtn.addEventListener('click', function() {
+            // переопределяется в showEditAssetModal
         });
     }
 
@@ -3707,284 +3888,431 @@ function deleteAsset(assetId, skipHistory = false) {
         });
     }
 
-    // ---------- ПЛАН ЭТАЖА: ОБРАБОТЧИКИ КЛИКОВ И ПЕРЕТАСКИВАНИЯ ----------
+    // ---------- ПЛАН ЭТАЖА ----------
     const floorPlan = document.getElementById('floorPlan');
     if (!floorPlan) return;
-// ---------- ПЕРЕТАСКИВАНИЕ И РЕСАЙЗ АКТИВОВ ----------
-let dragState = null;
-let resizeState = null;
 
-function startDrag(e, assetElement) {
-    e.preventDefault();
-    e.stopPropagation();
-    const assetId = assetElement.dataset.assetId;
-    if (!assetId || !appState.assets[assetId]) return;
-    if (appState.resizeMode) {
-    createResizeHandles(assetElement);
-}
-    const rect = assetElement.getBoundingClientRect();
-    dragState = {
-        assetId,
-        element: assetElement,
-        startMouseX: e.clientX,
-        startMouseY: e.clientY,
-        initialLeft: parseInt(assetElement.style.left, 10) || 0,
-        initialTop: parseInt(assetElement.style.top, 10) || 0
-    };
-    document.addEventListener('mousemove', onDragMove);
-    document.addEventListener('mouseup', onDragEnd);
-}
+    let dragState = null;
+    let resizeState = null;
+    let rotationState = null;
+    let highlightedRoom = null;
 
-function onDragMove(e) {
-    if (!dragState) return;
-    e.preventDefault();
-    const dx = e.clientX - dragState.startMouseX;
-    const dy = e.clientY - dragState.startMouseY;
-    const newLeft = dragState.initialLeft + dx;
-    const newTop = dragState.initialTop + dy;
-    dragState.element.style.left = newLeft + 'px';
-    dragState.element.style.top = newTop + 'px';
-}
-
-function onDragEnd(e) {
-    if (!dragState) return;
-    document.removeEventListener('mousemove', onDragMove);
-    document.removeEventListener('mouseup', onDragEnd);
-
-    const asset = appState.assets[dragState.assetId];
-    if (asset) {
-        const newLeft = parseInt(dragState.element.style.left, 10);
-        const newTop = parseInt(dragState.element.style.top, 10);
-        pushToUndo('move', {
-            assetId: dragState.assetId,
-            oldData: { x: dragState.initialLeft, y: dragState.initialTop },
-            newData: { x: newLeft, y: newTop }
+    function clearRoomHighlights() {
+        document.querySelectorAll('.room').forEach(r => {
+            r.classList.remove('selected-room', 'highlight');
         });
-        asset.x = newLeft;
-        asset.y = newTop;
-        scheduleAutoSave();
-    }
-    dragState = null;
-}
-
-// === РЕСАЙЗ ===
-function startResize(e, handle, assetElement) {
-    e.preventDefault();
-    e.stopPropagation();
-    const assetId = assetElement.dataset.assetId;
-    if (!assetId || !appState.assets[assetId]) return;
-    const asset = appState.assets[assetId];
-    const position = handle.dataset.position;
-    if (!position) return;
-
-    resizeState = {
-        assetId,
-        element: assetElement,
-        startMouseX: e.clientX,
-        startMouseY: e.clientY,
-        initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
-        initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
-        initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
-        initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
-        handle: position
-    };
-    document.addEventListener('mousemove', onResizeMove);
-    document.addEventListener('mouseup', onResizeEnd);
-}
-
-function onResizeMove(e) {
-    if (!resizeState) return;
-    e.preventDefault();
-    const dx = e.clientX - resizeState.startMouseX;
-    const dy = e.clientY - resizeState.startMouseY;
-    let newWidth = resizeState.initialWidth;
-    let newHeight = resizeState.initialHeight;
-    let newLeft = resizeState.initialLeft;
-    let newTop = resizeState.initialTop;
-
-    const MIN_SIZE = 24;
-    const MAX_SIZE = 256;
-    const handle = resizeState.handle;
-
-    if (handle.includes('right')) {
-        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth + dx));
-    }
-    if (handle.includes('left')) {
-        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth - dx));
-        newLeft = resizeState.initialLeft + (resizeState.initialWidth - newWidth);
-    }
-    if (handle.includes('bottom')) {
-        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight + dy));
-    }
-    if (handle.includes('top')) {
-        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight - dy));
-        newTop = resizeState.initialTop + (resizeState.initialHeight - newHeight);
+        highlightedRoom = null;
     }
 
-    resizeState.element.style.width = newWidth + 'px';
-    resizeState.element.style.height = newHeight + 'px';
-    resizeState.element.style.left = newLeft + 'px';
-    resizeState.element.style.top = newTop + 'px';
-}
-
-function onResizeEnd(e) {
-    if (!resizeState) return;
-    document.removeEventListener('mousemove', onResizeMove);
-    document.removeEventListener('mouseup', onResizeEnd);
-
-    const asset = appState.assets[resizeState.assetId];
-    if (asset) {
-        const newWidth = parseInt(resizeState.element.style.width, 10);
-        const newHeight = parseInt(resizeState.element.style.height, 10);
-        const newLeft = parseInt(resizeState.element.style.left, 10);
-        const newTop = parseInt(resizeState.element.style.top, 10);
-
-        pushToUndo('resize', {
-            assetId: resizeState.assetId,
-            oldData: {
-                width: resizeState.initialWidth,
-                height: resizeState.initialHeight,
-                x: resizeState.initialLeft,
-                y: resizeState.initialTop
-            },
-            newData: {
-                width: newWidth,
-                height: newHeight,
-                x: newLeft,
-                y: newTop
-            }
-        });
-
-        asset.width = newWidth;
-        asset.height = newHeight;
-        asset.x = newLeft;
-        asset.y = newTop;
-        scheduleAutoSave();
-    }
-    resizeState = null;
-}
-
-// Обработчик mousedown на плане
-floorPlan.addEventListener('mousedown', function(e) {
-    // Если тянут за ручку ресайза
-    const handle = e.target.closest('.resize-handle');
-    if (handle) {
-        const assetElement = handle.closest('.asset');
-        if (assetElement) {
-            startResize(e, handle, assetElement);
+    function showRoomList() {
+        const roomListContainer = document.getElementById('roomListContainer');
+        const roomList = document.getElementById('roomList');
+        if (!roomListContainer || !roomList) return;
+        const rooms = ROOM_MAP[appState.currentFloor];
+        if (!rooms) {
+            roomListContainer.style.display = 'none';
+            return;
         }
-        return;
+        roomListContainer.style.display = 'block';
+        roomList.innerHTML = '';
+        Object.keys(rooms).forEach(roomId => {
+            const item = document.createElement('div');
+            item.className = 'tree-item';
+            item.textContent = roomId;
+            item.dataset.roomId = roomId;
+            item.addEventListener('mouseenter', () => {
+                const roomElem = document.querySelector(`.room[data-room-id="${roomId}"]`);
+                if (roomElem) {
+                    roomElem.classList.add('highlight');
+                    highlightedRoom = roomElem;
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                if (highlightedRoom && highlightedRoom.dataset.roomId === roomId) {
+                    highlightedRoom.classList.remove('highlight');
+                    highlightedRoom = null;
+                }
+            });
+            item.addEventListener('click', () => {
+                clearRoomHighlights();
+                appState.currentRoom = roomId;
+                appState.viewMode = 'floor';
+                document.getElementById('roomText').textContent = roomId;
+                const roomElem = document.querySelector(`.room[data-room-id="${roomId}"]`);
+                if (roomElem) roomElem.classList.add('selected-room');
+                updateAssetTree();
+                document.getElementById('roomListView').style.display = 'none';
+                document.getElementById('roomDetailView').style.display = 'block';
+                showRoomDetail(roomId);
+                document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+                item.classList.add('selected');
+            });
+            roomList.appendChild(item);
+        });
+        if (Object.keys(rooms).length === 0) roomListContainer.style.display = 'none';
     }
-    // Иначе — перетаскивание актива
-    const assetElement = e.target.closest('.asset');
-    if (assetElement) {
-        startDrag(e, assetElement);
+
+    function showRoomDetail(roomId) {
+        const roomDetailContent = document.getElementById('roomDetailContent');
+        if (!roomDetailContent) return;
+        const assets = Object.values(appState.assets).filter(a => a.room_id === roomId);
+        let statsHtml = `<h4 style="color: var(--primary-light);">Комната: ${roomId}</h4>`;
+        statsHtml += `<p><strong>Всего активов:</strong> ${assets.length}</p>`;
+        statsHtml += `<p><strong>Мебель:</strong> ${assets.filter(a => a.category === 'furniture').length}</p>`;
+        statsHtml += `<p><strong>Устройства:</strong> ${assets.filter(a => a.category.startsWith('device')).length}</p>`;
+        statsHtml += `<p><strong>Сеть:</strong> ${assets.filter(a => a.category.startsWith('network')).length}</p>`;
+        statsHtml += `<hr style="border-color: var(--border);">`;
+        statsHtml += `<h4>Активы:</h4>`;
+        if (assets.length === 0) {
+            statsHtml += `<p class="text-muted">Нет активов</p>`;
+        } else {
+            statsHtml += `<div style="max-height:200px; overflow-y:auto;">`;
+            assets.forEach(asset => {
+                statsHtml += `<div class="tree-item" style="cursor:pointer;" data-asset-id="${asset.id}">
+                    <div class="tree-item-icon"><i class="fas fa-cube"></i></div>
+                    <div style="flex:1;">${asset.type} (${asset.inventory_number || 'б/н'})</div>
+                </div>`;
+            });
+            statsHtml += `</div>`;
+        }
+        roomDetailContent.innerHTML = statsHtml;
+        roomDetailContent.querySelectorAll('.tree-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const assetId = item.dataset.assetId;
+                if (assetId) selectAsset(assetId);
+                e.stopPropagation();
+            });
+        });
     }
-});
+
+    const backToRoomListBtn = document.getElementById('backToRoomList');
+    if (backToRoomListBtn) {
+        backToRoomListBtn.addEventListener('click', () => {
+            document.getElementById('roomListView').style.display = 'block';
+            document.getElementById('roomDetailView').style.display = 'none';
+            clearRoomHighlights();
+            appState.currentRoom = null;
+            appState.viewMode = 'floor';
+            document.getElementById('roomText').textContent = '-';
+            updateAssetTree();
+            clearAssetDetails();
+            clearRoomStats();
+            document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+        });
+    }
+
+    function startDrag(e, assetElement) {
+        e.preventDefault();
+        e.stopPropagation();
+        const assetId = assetElement.dataset.assetId;
+        if (!assetId || !appState.assets[assetId]) return;
+        if (appState.resizeMode) return;
+        const rect = assetElement.getBoundingClientRect();
+        dragState = {
+            assetId,
+            element: assetElement,
+            startMouseX: e.clientX,
+            startMouseY: e.clientY,
+            initialLeft: parseInt(assetElement.style.left, 10) || 0,
+            initialTop: parseInt(assetElement.style.top, 10) || 0
+        };
+        document.addEventListener('mousemove', onDragMove);
+        document.addEventListener('mouseup', onDragEnd);
+    }
+
+    function onDragMove(e) {
+        if (!dragState) return;
+        e.preventDefault();
+        const dx = e.clientX - dragState.startMouseX;
+        const dy = e.clientY - dragState.startMouseY;
+        const newLeft = dragState.initialLeft + dx;
+        const newTop = dragState.initialTop + dy;
+        dragState.element.style.left = newLeft + 'px';
+        dragState.element.style.top = newTop + 'px';
+    }
+
+    function onDragEnd(e) {
+        if (!dragState) return;
+        document.removeEventListener('mousemove', onDragMove);
+        document.removeEventListener('mouseup', onDragEnd);
+        const asset = appState.assets[dragState.assetId];
+        if (asset) {
+            const newLeft = parseInt(dragState.element.style.left, 10);
+            const newTop = parseInt(dragState.element.style.top, 10);
+            pushToUndo('move', {
+                assetId: dragState.assetId,
+                oldData: { x: dragState.initialLeft, y: dragState.initialTop },
+                newData: { x: newLeft, y: newTop }
+            });
+            asset.x = newLeft;
+            asset.y = newTop;
+            scheduleAutoSave();
+        }
+        dragState = null;
+    }
+
+    function startResize(e, handle, assetElement) {
+        e.preventDefault();
+        e.stopPropagation();
+        const assetId = assetElement.dataset.assetId;
+        if (!assetId || !appState.assets[assetId]) return;
+        const asset = appState.assets[assetId];
+        const position = handle.dataset.position;
+        if (!position) return;
+        resizeState = {
+            assetId,
+            element: assetElement,
+            startMouseX: e.clientX,
+            startMouseY: e.clientY,
+            initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
+            initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
+            initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
+            initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
+            handle: position
+        };
+        document.addEventListener('mousemove', onResizeMove);
+        document.addEventListener('mouseup', onResizeEnd);
+    }
+
+    function onResizeMove(e) {
+        if (!resizeState) return;
+        e.preventDefault();
+        const dx = e.clientX - resizeState.startMouseX;
+        const dy = e.clientY - resizeState.startMouseY;
+        let newWidth = resizeState.initialWidth;
+        let newHeight = resizeState.initialHeight;
+        let newLeft = resizeState.initialLeft;
+        let newTop = resizeState.initialTop;
+        const MIN_SIZE = 24;
+        const MAX_SIZE = 256;
+        const handle = resizeState.handle;
+        if (handle.includes('right')) {
+            newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth + dx));
+        }
+        if (handle.includes('left')) {
+            newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialWidth - dx));
+            newLeft = resizeState.initialLeft + (resizeState.initialWidth - newWidth);
+        }
+        if (handle.includes('bottom')) {
+            newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight + dy));
+        }
+        if (handle.includes('top')) {
+            newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, resizeState.initialHeight - dy));
+            newTop = resizeState.initialTop + (resizeState.initialHeight - newHeight);
+        }
+        resizeState.element.style.width = newWidth + 'px';
+        resizeState.element.style.height = newHeight + 'px';
+        resizeState.element.style.left = newLeft + 'px';
+        resizeState.element.style.top = newTop + 'px';
+    }
+
+    function onResizeEnd(e) {
+        if (!resizeState) return;
+        document.removeEventListener('mousemove', onResizeMove);
+        document.removeEventListener('mouseup', onResizeEnd);
+        const asset = appState.assets[resizeState.assetId];
+        if (asset) {
+            const newWidth = parseInt(resizeState.element.style.width, 10);
+            const newHeight = parseInt(resizeState.element.style.height, 10);
+            const newLeft = parseInt(resizeState.element.style.left, 10);
+            const newTop = parseInt(resizeState.element.style.top, 10);
+            pushToUndo('resize', {
+                assetId: resizeState.assetId,
+                oldData: {
+                    width: resizeState.initialWidth,
+                    height: resizeState.initialHeight,
+                    x: resizeState.initialLeft,
+                    y: resizeState.initialTop
+                },
+                newData: {
+                    width: newWidth,
+                    height: newHeight,
+                    x: newLeft,
+                    y: newTop
+                }
+            });
+            asset.width = newWidth;
+            asset.height = newHeight;
+            asset.x = newLeft;
+            asset.y = newTop;
+            scheduleAutoSave();
+        }
+        resizeState = null;
+    }
+
+    function startRotate(e, assetElement) {
+        e.preventDefault();
+        e.stopPropagation();
+        const assetId = assetElement.dataset.assetId;
+        if (!assetId || !appState.assets[assetId]) return;
+        const asset = appState.assets[assetId];
+        const rect = assetElement.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        rotationState = {
+            assetId,
+            element: assetElement,
+            centerX,
+            centerY,
+            initialAngle: asset.rotation || 0,
+            startMouseAngle: Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI)
+        };
+        document.addEventListener('mousemove', onRotateMove);
+        document.addEventListener('mouseup', onRotateEnd);
+    }
+
+    function onRotateMove(e) {
+        if (!rotationState) return;
+        e.preventDefault();
+        const dx = e.clientX - rotationState.centerX;
+        const dy = e.clientY - rotationState.centerY;
+        const currentAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+        let delta = currentAngle - rotationState.startMouseAngle;
+        let newAngle = rotationState.initialAngle + delta;
+        newAngle = ((newAngle % 360) + 360) % 360;
+        rotationState.element.style.transform = `rotate(${newAngle}deg)`;
+    }
+
+    function onRotateEnd(e) {
+        if (!rotationState) return;
+        document.removeEventListener('mousemove', onRotateMove);
+        document.removeEventListener('mouseup', onRotateEnd);
+        const asset = appState.assets[rotationState.assetId];
+        if (asset) {
+            const computedTransform = rotationState.element.style.transform;
+            const match = computedTransform.match(/rotate\(([-\d.]+)deg\)/);
+            const newAngle = match ? parseFloat(match[1]) : 0;
+            pushToUndo('rotate', {
+                assetId: rotationState.assetId,
+                oldData: { rotation: rotationState.initialAngle },
+                newData: { rotation: newAngle }
+            });
+            asset.rotation = newAngle;
+            scheduleAutoSave();
+        }
+        rotationState = null;
+    }
 
     floorPlan.addEventListener('mousedown', function(e) {
-        if (e.target.classList.contains('resize-handle')) return;
-
+        const rotateHandle = e.target.closest('.rotate-handle');
+        if (rotateHandle) {
+            const assetElement = rotateHandle.closest('.asset');
+            if (assetElement) startRotate(e, assetElement);
+            return;
+        }
+        const resizeHandle = e.target.closest('.resize-handle');
+        if (resizeHandle) {
+            const assetElement = resizeHandle.closest('.asset');
+            if (assetElement) startResize(e, resizeHandle, assetElement);
+            return;
+        }
         const assetElement = e.target.closest('.asset');
-        if (assetElement) {
-            startDrag(e, assetElement);
-        }
+        if (assetElement) startDrag(e, assetElement);
     });
 
-    // Клики (без выделения при перетаскивании)
     floorPlan.addEventListener('click', function(e) {
-        // Игнорируем, если было перетаскивание
-        if (dragState) return;
-
+        if (dragState || resizeState) return;
         const room = e.target.closest('.room');
-        const roomLabel = e.target.closest('.room-label');
-        if ((room || roomLabel) && !appState.dragState && !appState.resizeState) {
-            const roomElem = room || (roomLabel ? roomLabel.parentElement : null);
-            if (roomElem) {
-                const roomId = roomElem.dataset.roomId;
-                const floorNames = Object.keys(ROOM_MAP);
-                if (floorNames.includes(roomId)) {
-                    appState.currentFloor = roomId;
-                    const floorSelect = document.getElementById('floorSelect');
-                    if (floorSelect) floorSelect.value = roomId;
-                    loadFloorPlan();
-                    showStatus(`Переключен на этаж: ${roomId}`);
-                } else {
-                    loadRoomView(roomId);
-                    showStatus(`Загружена комната: ${roomId}`);
-                }
-            }
-        }
-
-        const asset = e.target.closest('.asset');
-        const assetIcon = e.target.closest('.asset-icon');
-        const assetLabel = e.target.closest('.asset-label');
-
-        if ((asset || assetIcon || assetLabel) && !appState.dragState && !appState.resizeState) {
-            const assetElem = asset ||
-                             (assetIcon ? assetIcon.parentElement : null) ||
-                             (assetLabel ? assetLabel.parentElement : null);
-            if (assetElem) {
-                const assetId = assetElem.dataset.assetId;
-                selectAsset(assetId);
-            }
-        }
-
-        if (!room && !roomLabel && !asset && !assetIcon && !assetLabel &&
-            appState.pendingAssetType && !appState.dragState && !appState.resizeState) {
-
-            const rect = floorPlan.getBoundingClientRect();
-            let x = (e.clientX - rect.left) / appState.zoomLevel;
-            let y = (e.clientY - rect.top) / appState.zoomLevel;
-            x = x - appState.panOffset.x;
-            y = y - appState.panOffset.y;
-            x = Math.round(x);
-            y = Math.round(y);
-            x = Math.max(0, Math.min(x, rect.width));
-            y = Math.max(0, Math.min(y, rect.height));
-
-            if (appState.currentRoom) {
-                const assetData = {
-                    type: appState.pendingAssetType,
-                    inventory_number: `${appState.pendingAssetType.substring(0, 3).toUpperCase()}-${new Date().getTime().toString().slice(-6)}`,
-                    model: 'Базовая модель',
-                    room_id: appState.currentRoom,
-                    x: x,
-                    y: y,
-                    sum: 0,
-                    responsible: 'Не указан'
-                };
-                showAddAssetModal(assetData);
-                appState.pendingAssetType = null;
-            } else {
-                showStatus('Сначала выберите комнату', 3000);
-            }
-        }
-
-        if (!room && !roomLabel && !asset && !assetIcon && !assetLabel &&
-            !appState.dragState && !appState.resizeState) {
-            deselectAsset();
-        }
-    });
-
-    floorPlan.addEventListener('dblclick', function(e) {
-        const room = e.target.closest('.room');
-        if (room && !appState.dragState && !appState.resizeState) {
+        if (room && !dragState && !resizeState) {
             const roomId = room.dataset.roomId;
-            if (roomId === 'Первый этаж' || roomId === 'Второй этаж') {
+            const floorNames = Object.keys(ROOM_MAP);
+            if (floorNames.includes(roomId)) {
                 appState.currentFloor = roomId;
                 const floorSelect = document.getElementById('floorSelect');
                 if (floorSelect) floorSelect.value = roomId;
                 loadFloorPlan();
                 showStatus(`Переключен на этаж: ${roomId}`);
+                return;
+            }
+            clearRoomHighlights();
+            room.classList.add('selected-room');
+            appState.currentRoom = roomId;
+            appState.viewMode = 'floor';
+            document.getElementById('roomText').textContent = roomId;
+            updateAssetTree();
+            updateRoomStats(roomId);
+            const assetsInRoom = Object.values(appState.assets).filter(a => a.room_id === roomId);
+            if (assetsInRoom.length > 0) {
+                selectAsset(assetsInRoom[0].id);
             } else {
-                loadRoomView(roomId);
-                showStatus(`Загружена комната: ${roomId}`);
+                clearAssetDetails();
+            }
+            document.querySelectorAll('#roomList .tree-item').forEach(el => {
+                el.classList.toggle('selected', el.dataset.roomId === roomId);
+            });
+            return;
+        }
+        const asset = e.target.closest('.asset');
+        if (asset && !dragState && !resizeState) {
+            const assetId = asset.dataset.assetId;
+            selectAsset(assetId);
+            return;
+        }
+        if (!room && !asset && !e.target.closest('.asset-icon') && !e.target.closest('.asset-label')) {
+            clearRoomHighlights();
+            appState.currentRoom = null;
+            appState.viewMode = 'floor';
+            document.getElementById('roomText').textContent = '-';
+            updateAssetTree();
+            clearAssetDetails();
+            clearRoomStats();
+            document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+        }
+        if (!room && !asset && appState.pendingAssetType && !dragState && !resizeState) {
+            const rect = floorPlan.getBoundingClientRect();
+            let x = (e.clientX - rect.left) / appState.zoomLevel - appState.panOffset.x;
+            let y = (e.clientY - rect.top) / appState.zoomLevel - appState.panOffset.y;
+            x = Math.round(Math.max(0, Math.min(x, rect.width)));
+            y = Math.round(Math.max(0, Math.min(y, rect.height)));
+            if (appState.currentRoom) {
+                if (typeof FURNITURE_TYPES !== 'undefined' && FURNITURE_TYPES.includes(appState.pendingAssetType)) {
+                    const assetData = {
+                        type: appState.pendingAssetType,
+                        inventory_number: '',
+                        model: '',
+                        serial_number: '',
+                        sum: 0,
+                        status: 'active',
+                        responsible: '',
+                        room_id: appState.currentRoom,
+                        x: x,
+                        y: y,
+                        custom_color: DEFAULT_COLORS[appState.pendingAssetType] || '#2196F3'
+                    };
+                    addAsset(assetData);
+                } else {
+                    const assetData = {
+                        type: appState.pendingAssetType,
+                        inventory_number: `${appState.pendingAssetType.substring(0,3).toUpperCase()}-${new Date().getTime().toString().slice(-6)}`,
+                        model: 'Базовая модель',
+                        room_id: appState.currentRoom,
+                        x: x,
+                        y: y,
+                        sum: 0,
+                        responsible: 'Не указан'
+                    };
+                    showAddAssetModal(assetData);
+                }
+                appState.pendingAssetType = null;
+            } else {
+                showStatus('Сначала выберите комнату', 3000);
             }
         }
-        if (e.ctrlKey) {
-            e.preventDefault();
-            toggleResizeMode();
+    });
+
+    floorPlan.addEventListener('dblclick', function(e) {
+        const room = e.target.closest('.room');
+        if (room && !dragState && !resizeState) {
+            const roomId = room.dataset.roomId;
+            const floorNames = Object.keys(ROOM_MAP);
+            if (floorNames.includes(roomId)) {
+                appState.currentFloor = roomId;
+                const floorSelect = document.getElementById('floorSelect');
+                if (floorSelect) floorSelect.value = roomId;
+                loadFloorPlan();
+            } else {
+                loadRoomView(roomId);
+            }
         }
     });
 
@@ -4023,7 +4351,72 @@ floorPlan.addEventListener('mousedown', function(e) {
     floorPlan.addEventListener('wheel', function(e) {
         e.preventDefault();
     });
-}
+            }
+
+            function enableRoomRename() {
+    const planTitle = document.getElementById('planTitle');
+    if (!planTitle) return;
+
+    // Двойной клик включает редактирование
+    planTitle.addEventListener('dblclick', function(e) {
+        if (appState.viewMode !== 'room' || !appState.currentRoom) return;
+
+        const currentName = appState.currentRoom;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = currentName;
+        input.style.width = '200px';
+        input.style.background = 'var(--button)';
+        input.style.color = 'var(--text-primary)';
+        input.style.border = '1px solid var(--primary)';
+        input.style.borderRadius = '4px';
+        input.style.padding = '4px 8px';
+        input.style.fontSize = 'inherit';
+        input.style.fontWeight = 'inherit';
+
+        planTitle.textContent = '';
+        planTitle.appendChild(input);
+        input.focus();
+        input.select();
+
+        const saveNewName = () => {
+            const newName = input.value.trim();
+            if (newName && newName !== currentName) {
+                // Обновляем все активы с этим room_id (если нужно)
+                Object.values(appState.assets).forEach(asset => {
+                    if (asset.room_id === currentName) {
+                        asset.room_id = newName;
+                    }
+                });
+                // Обновляем текущую комнату
+                appState.currentRoom = newName;
+                document.getElementById('roomText').textContent = newName;
+                planTitle.textContent = `Комната: ${newName}`;
+                // Обновляем дерево и статистику
+                updateAssetTree();
+                updateRoomStats(newName);
+                saveToLocalStorage();
+                showToast(`Комната переименована в "${newName}"`, 'success');
+            } else {
+                planTitle.textContent = `Комната: ${currentName}`;
+            }
+        };
+
+        input.addEventListener('blur', saveNewName);
+        input.addEventListener('keydown', function(ev) {
+            if (ev.key === 'Enter') {
+                input.blur();
+            } else if (ev.key === 'Escape') {
+                planTitle.textContent = `Комната: ${currentName}`;
+            }
+        });
+    });
+
+    // Одинарный клик не мешает
+    planTitle.addEventListener('click', function(e) {
+        // ничего не делаем
+    });
+            }
 
             function showAddAssetModal(prefillData = null) {
                 if (!appState.currentRoom) {
@@ -4229,48 +4622,48 @@ floorPlan.addEventListener('mousedown', function(e) {
             }
             
             function showStatsModal() {
-                const stats = getStatistics();
-                const content = document.getElementById('statsContentModal');
-                if (!content) return;
-                
-                let html = `
-                    <div style="color: var(--text-primary);">
-                        <h3 style="color: var(--primary-light); margin-bottom: 15px;">Статистика инвентаризации</h3>
-                        <hr style="border-color: var(--border); margin-bottom: 15px;">
-                        <p><strong>Всего активов:</strong> ${stats.total_assets}</p>
-                        <p><strong>Общая сумма:</strong> ${formatSum(stats.total_sum)}</p>
-                        
-                        <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По категориям:</h4>
-                `;
-                
-                for (const [category, count] of Object.entries(stats.by_category)) {
-                    html += `<p>${category}: ${count}</p>`;
-                }
-                
-                html += `
-                        <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По статусам:</h4>
-                `;
-                
-                for (const [status, count] of Object.entries(stats.by_status)) {
-                    html += `<p>${status}: ${count}</p>`;
-                }
-                
-                html += `
-                        <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По этажам:</h4>
-                `;
-                
-                for (const [floor, count] of Object.entries(stats.by_floor)) {
-                    html += `<p>${floor}: ${count}</p>`;
-                }
-                
-                html += `
-                    </div>
-                `;
-                
-                content.innerHTML = html;
-                showModal('statsModal');
-            }
+    const stats = getStatistics();
+    const content = document.getElementById('statsContentModal');
+    if (!content) return;
+    
+    let html = `
+        <div style="color: var(--text-primary);">
+            <h3 style="color: var(--primary-light); margin-bottom: 15px;">Статистика инвентаризации</h3>
+            <hr style="border-color: var(--border); margin-bottom: 15px;">
+            <p><strong>Всего активов:</strong> ${stats.total_assets}</p>
+            <p><strong>Общая сумма:</strong> ${formatSum(stats.total_sum)}</p>
             
+            <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По категориям:</h4>
+    `;
+    
+    for (const [category, count] of Object.entries(stats.by_category)) {
+        html += `<p>${category}: ${count}</p>`;
+    }
+    
+    html += `
+            <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По статусам:</h4>
+    `;
+    
+    for (const [status, count] of Object.entries(stats.by_status)) {
+        html += `<p>${status}: ${count}</p>`;
+    }
+    
+    html += `
+            <h4 style="color: var(--primary-light); margin-top: 20px; margin-bottom: 10px;">По комнатам:</h4>
+    `;
+    
+    for (const [room, count] of Object.entries(stats.by_room)) {
+        html += `<p>${room}: ${count}</p>`;
+    }
+    
+    html += `
+        </div>
+    `;
+    
+    content.innerHTML = html;
+    showModal('statsModal');
+            }
+
             function showStatusModal() {
                 if (!appState.selectedAssetId) return;
                 
@@ -4319,18 +4712,17 @@ floorPlan.addEventListener('mousedown', function(e) {
                     by_status[status] = (by_status[status] || 0) + 1;
                 });
                 
-                const by_floor = {};
+                const by_room = {};
                 assets.forEach(asset => {
-                    const floor = asset.room_id ? 'В комнатах' : 'Не назначено';
-                    by_floor[floor] = (by_floor[floor] || 0) + 1;
+                    const room = asset.room_id || 'Без комнаты';
+                    by_room[room] = (by_room[room] || 0) + 1;
                 });
-                
                 return {
                     total_assets: total,
                     total_sum: total_sum,
                     by_category: by_category,
                     by_status: by_status,
-                    by_floor: by_floor
+                    by_room: by_room
                 };
             }
             
@@ -4444,10 +4836,8 @@ floorPlan.addEventListener('mousedown', function(e) {
         `;
         floorPlan.appendChild(hint);
     }
-}
+            }
 
-
-            
             window.addEventListener('DOMContentLoaded', initApp);
             
             window.addEventListener('beforeunload', function(e) {
@@ -4475,7 +4865,7 @@ floorPlan.addEventListener('mousedown', function(e) {
             }
         });
 
-function debugAssets() {
+        function debugAssets() {
     console.group('=== ASSETS DEBUG ===');
     
     const assets = Object.values(appState.assets);
@@ -4517,7 +4907,7 @@ function debugAssets() {
         panOffset: appState.panOffset,
         zoomLevel: appState.zoomLevel
     };
-}
+        }
 
 // Добавьте вызов в консоль для отладки
 window.debugAssets = debugAssets;
