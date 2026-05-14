@@ -594,7 +594,7 @@
                 if (loader) loader.remove();
             }
 
-function validateAssetData(data) {
+            function validateAssetData(data) {
     const errors = {};
 
     if (!data.type) errors.type = 'Выберите тип оборудования';
@@ -628,8 +628,7 @@ function validateAssetData(data) {
         isValid: Object.keys(errors).length === 0,
         errors: errors
     };
-}
-
+            }
 
             function showValidationErrors(errors, prefix = '') {
                 document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
@@ -1573,20 +1572,23 @@ function validateAssetData(data) {
                     quickTypeSelect.appendChild(networkOptgroup.cloneNode(true));
                 }
             }
-// ---------- ПЛАН ЭТАЖА: КЛИКИ, ВХОД, ПОДСВЕТКА ----------
-let dragState = null;
-let resizeState = null;
-let rotationState = null;  // если поворот ещё не реализован, просто не используется
-let highlightedRoom = null;
 
-function clearRoomHighlights() {
+
+            // ---------- ПЛАН ЭТАЖА: КЛИКИ, ВХОД, ПОДСВЕТКА ----------
+            let dragState = null;
+            let resizeState = null;
+            let rotationState = null;  // если поворот ещё не реализован, просто не используется
+            let highlightedRoom = null;
+
+
+            function clearRoomHighlights() {
     document.querySelectorAll('.room').forEach(r => {
         r.classList.remove('selected-room', 'highlight');
     });
     highlightedRoom = null;
-}
+            }
 
-function showRoomList() {
+            function showRoomList() {
     const roomListContainer = document.getElementById('roomListContainer');
     const roomList = document.getElementById('roomList');
     if (!roomListContainer || !roomList) return;
@@ -1635,9 +1637,9 @@ function showRoomList() {
         roomList.appendChild(item);
     });
     if (Object.keys(rooms).length === 0) roomListContainer.style.display = 'none';
-}
+            }
 
-function updateAssetTree() {
+            function updateAssetTree() {
     const treeContainer = document.getElementById('assetTree');
     if (!treeContainer) return;
     
@@ -1722,11 +1724,11 @@ function updateAssetTree() {
     
     const assetCount = document.getElementById('assetCount');
     if (assetCount) assetCount.textContent = Object.keys(appState.assets).length;
-}
+            }
 
-// Кнопка "Назад к комнатам" в списке комнат
-const backToRoomListBtn = document.getElementById('backToRoomList');
-if (backToRoomListBtn) {
+            // Кнопка "Назад к комнатам" в списке комнат
+            const backToRoomListBtn = document.getElementById('backToRoomList');
+            if (backToRoomListBtn) {
     backToRoomListBtn.addEventListener('click', () => {
         // Показать список комнат, скрыть детали комнаты
         document.getElementById('roomListView').style.display = 'block';
@@ -1741,7 +1743,7 @@ if (backToRoomListBtn) {
         clearRoomStats();
         document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
     });
-}
+            }
 
             // Заполнение детального вида комнаты
             function showRoomDetail(roomId) {

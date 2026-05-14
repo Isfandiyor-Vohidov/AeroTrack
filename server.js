@@ -61,7 +61,18 @@ mongoose
     .then(async () => {
         console.log('✅ MongoDB connected');
         await initSuperAdmin();
+        // Безопасный запуск Telegram бота
+if (process.env.TELEGRAM_BOT_TOKEN) {
+    try {
         bot.startBot();
+        console.log('🤖 Telegram бот запущен');
+    } catch (error) {
+        console.error('❌ Ошибка запуска Telegram бота:', error.message);
+        console.log('Сервер продолжает работу без бота');
+    }
+} else {
+    console.log('⚠️ Telegram token не задан, бот не будет запущен');
+}
         app.listen(PORT, () => {
             console.log(`🚀 Server running on http://localhost:${PORT}`);
         });
