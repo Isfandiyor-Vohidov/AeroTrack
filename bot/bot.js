@@ -256,14 +256,21 @@ function setupBotCommands() {
 
     bot.hears('🛠️ Команды', (ctx) => ctx.replyWithMarkdown(mainTip));
 
+    // Глобальный перехват ошибок бота (чтобы не ронять процесс)
     bot.catch((err) => console.error('🔥 Ошибка в работе бота:', err));
 }
 
-function startBot() {
+// Безопасный запуск бота
+async function startBot() {
     if (!bot) return;
     setupBotCommands();
-    bot.launch();
-    console.log('🤖 Telegram бот Web Inv успешно запущен');
+    try {
+        await bot.launch();
+        console.log('🤖 Telegram бот Web Inv успешно запущен');
+    } catch (error) {
+        console.error('❌ Ошибка запуска Telegram бота:', error.message);
+        // Не падаем, сервер продолжает работу
+    }
 }
 
 module.exports = {
