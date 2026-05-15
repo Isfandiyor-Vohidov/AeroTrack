@@ -2781,19 +2781,77 @@
             
             function addAsset(assetData, skipHistory = false) {
     const assetId = generateUUID();
-    
-    // Интерьер или нет
-    const furnitureTypes = typeof FURNITURE_TYPES !== 'undefined' ? FURNITURE_TYPES : ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
-    
-    // Для не-интерьера – полная валидация
-    if (!furnitureTypes.includes(assetData.type)) {
-        const validation = validateAssetData(assetData);
-        if (!validation.isValid) {
-            showValidationErrors(validation.errors, 'asset');
-            return null; // окно не закроется
+    const errors = {};
+
+    // Проверка ВСЕХ обязательных полей
+    if (!assetData.type) {
+        errors.type = 'Выберите тип оборудования';
+    }
+    if (!assetData.inventory_number || assetData.inventory_number.trim() === '') {
+        errors.inventory_number = 'Инвентарный номер обязателен';
+    }
+    if (!assetData.model || assetData.model.trim() === '') {
+        errors.model = 'Модель обязательна';
+    }
+    if (!assetData.serial_number || assetData.serial_number.trim() === '') {
+        errors.serial_number = 'Серийный номер обязателен';
+    }
+    if (assetData.sum === undefined || assetData.sum === null || assetData.sum < 0) {
+        errors.sum = 'Сумма должна быть неотрицательной';
+    }
+    if (!assetData.responsible || assetData.responsible.trim() === '') {
+        errors.responsible = 'Ответственный обязателен';
+    }
+
+    // Проверка даты приобретения
+    if (!assetData.purchase_date || assetData.purchase_date.trim() === '') {
+        errors.purchase_date = 'Дата приобретения обязательна';
+    } else {
+        const datePattern = /^\d{2}\.\d{2}\.\d{4}$/;
+        if (!datePattern.test(assetData.purchase_date)) {
+            errors.purchase_date = 'Формат даты: ДД.ММ.ГГГГ';
+        } else {
+            const parts = assetData.purchase_date.split('.');
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10);
+            const year = parseInt(parts[2], 10);
+            const date = new Date(year, month - 1, day);
+            if (date.getDate() !== day || date.getMonth() !== month - 1 || date.getFullYear() !== year) {
+                errors.purchase_date = 'Некорректная дата';
+            }
         }
     }
-    
+
+    // Проверка даты гарантии (если поле есть, но по желанию можно оставить необязательным)
+    // Здесь делаем обязательным – раскомментируйте, если нужно.
+    /*
+    if (!assetData.warranty_until || assetData.warranty_until.trim() === '') {
+        errors.warranty_until = 'Дата гарантии обязательна';
+    } else {
+        const datePattern = /^\d{2}\.\d{2}\.\d{4}$/;
+        if (!datePattern.test(assetData.warranty_until)) {
+            errors.warranty_until = 'Формат даты: ДД.ММ.ГГГГ';
+        } else {
+            const parts = assetData.warranty_until.split('.');
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10);
+            const year = parseInt(parts[2], 10);
+            const date = new Date(year, month - 1, day);
+            if (date.getDate() !== day || date.getMonth() !== month - 1 || date.getFullYear() !== year) {
+                errors.warranty_until = 'Некорректная дата';
+            }
+        }
+    }
+    */
+
+    // Если есть ошибки – показываем их и прерываем создание
+    if (Object.keys(errors).length > 0) {
+        showValidationErrors(errors, 'asset');
+        return null;
+    }
+
+    // Категория (без изменений)
+    const furnitureTypes = typeof FURNITURE_TYPES !== 'undefined' ? FURNITURE_TYPES : ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
     let category = 'device_movable';
     const fixedTypes = [
         "Принтер Canon", "IP-телефон Grandstream", "Серверная стойка", "Копировальный аппарат",
@@ -2805,35 +2863,25 @@
         category = 'furniture';
     } else if (fixedTypes.includes(assetData.type)) {
         category = 'device_fixed';
-    } else {
-        category = 'device_movable';
     }
 
     const defaultColor = DEFAULT_COLORS[assetData.type] || '#2196F3';
     
     let x = 100;
     let y = 100;
-    
     if (assetData.x !== undefined && assetData.x !== null) {
         const parsedX = parseFloat(assetData.x);
         if (!isNaN(parsedX) && isFinite(parsedX)) {
             x = Math.max(0, Math.min(parsedX, 5000));
-        } else {
-            console.warn('Invalid x coordinate provided:', assetData.x);
         }
     }
-    
     if (assetData.y !== undefined && assetData.y !== null) {
         const parsedY = parseFloat(assetData.y);
         if (!isNaN(parsedY) && isFinite(parsedY)) {
             y = Math.max(0, Math.min(parsedY, 5000));
-        } else {
-            console.warn('Invalid y coordinate provided:', assetData.y);
         }
     }
-    
-    console.log(`Creating asset at position: (${x}, ${y})`);
-    
+
     const fullData = {
         id: assetId,
         created: new Date().toISOString(),
@@ -2860,22 +2908,22 @@
         responsible: assetData.responsible,
         rotation: assetData.rotation || 0,
     };
-    
+
     if (assetData.type === "Монитор") {
         fullData.height = fullData.width * 0.5625;
         fullData.aspect_ratio = 1.78;
     }
-    
+
     appState.assets[assetId] = fullData;
     appState.assetPositions[assetId] = { x: x, y: y };
-    
+
     if (!skipHistory) {
         pushToUndo('create', {
             assetId: assetId,
             assetData: fullData
         });
     }
-    
+
     if (appState.viewMode === 'room' && appState.currentRoom) {
         const floorPlan = document.getElementById('floorPlan');
         if (floorPlan) {
@@ -2883,29 +2931,23 @@
             floorPlan.appendChild(assetElement);
             assetElement.style.left = `${x}px`;
             assetElement.style.top = `${y}px`;
-            
             const hint = floorPlan.querySelector('div[style*="transform: translate(-50%, -50%)"]');
             if (hint) hint.remove();
         }
     }
-    
+
     addToHistory('create', assetId, { type: assetData.type, room: assetData.room_id, position: { x, y } });
-    
     updateAssetTree();
     if (appState.currentRoom) {
         updateRoomStats(appState.currentRoom);
     }
-    
     selectAsset(assetId);
-    
     saveToLocalStorage();
     scheduleAutoSave();
-    
     showStatus(`Добавлен: ${assetData.type} (${x}, ${y})`);
     showToast(`Добавлен: ${assetData.type}`, 'success');
-    
     return assetId;
-            }
+}
 
 
             function updateAsset(assetId, updates, skipHistory = false) {
