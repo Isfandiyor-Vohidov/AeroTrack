@@ -43,8 +43,8 @@
                 </button>
                 <button class="button" id="detachButton" disabled data-hotkey="Ctrl+D">
                     <i class="fas fa-unlink"></i> Открепить
-                <!-- </button>
-                <button class="button" id="colorButton" disabled data-hotkey="Ctrl+G">
+                </button>
+                <!-- <button class="button" id="colorButton" disabled data-hotkey="Ctrl+G">
                     <i class="fas fa-palette"></i> Цвет
                 </button> -->
                 <div class="button toggle" data-hotkey="Ctrl+Shift+R">
@@ -85,7 +85,7 @@
                     <div class="menu-title">Выберите объект <span class="hotkey-hint">F1-F12</span></div>
                     
                     <div class="tabs">
-                        <div class="tab active" data-tab="furniture" data-hotkey="Alt+F">Мебель (Alt+F)</div>
+                        <div class="tab active" data-tab="furniture" data-hotkey="Alt+F">Интерьер (Alt+F)</div>
                         <div class="tab" data-tab="fixed" data-hotkey="Alt+X">Напольные (Alt+X)</div>
                         <div class="tab" data-tab="movable" data-hotkey="Alt+M">Настольные (Alt+M)</div>
                         <div class="tab" data-tab="network" data-hotkey="Alt+N">Сеть (Alt+N)</div>
@@ -174,9 +174,9 @@
                             <button class="button mb-10" id="actionDetach" disabled data-hotkey="Ctrl+D">
                                 <i class="fas fa-unlink"></i> Открепить
                             </button>
-                            <button class="button mb-10" id="actionColor" disabled data-hotkey="Ctrl+G">
+                            <!-- <button class="button mb-10" id="actionColor" disabled data-hotkey="Ctrl+G">
                                 <i class="fas fa-palette"></i> Изменить цвет
-                            </button>
+                            </button> -->
                             <button class="button mb-10" id="actionResize" data-hotkey="Ctrl+Shift+R">
                                 <i class="fas fa-expand-alt"></i> Переключить режим изменения размера
                             </button>
@@ -212,15 +212,15 @@
                 </div>
 
                 <div id="roomListContainer" style="display:none; margin-top:15px;">
-    <div id="roomListView">
-        <div class="stats-title"><i class="fas fa-door-open"></i> Комнаты этажа</div>
-        <div id="roomList" style="max-height:250px; overflow-y:auto;"></div>
-    </div>
-    <div id="roomDetailView" style="display:none;">
-        <button class="button" id="backToRoomList" style="margin-bottom:10px;"><i class="fas fa-arrow-left"></i> Назад к комнатам</button>
-        <div id="roomDetailContent"></div>
-    </div>
-</div>
+                    <div id="roomListView">
+                        <div class="stats-title"><i class="fas fa-door-open"></i> Комнаты этажа</div>
+                        <div id="roomList" style="max-height:250px; overflow-y:auto;"></div>
+                    </div>
+                    <div id="roomDetailView" style="display:none;">
+                        <button class="button" id="backToRoomList" style="margin-bottom:10px;"><i class="fas fa-arrow-left"></i> Назад к комнатам</button>
+                        <div id="roomDetailContent"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -255,6 +255,8 @@
         <span><kbd>F5</kbd> обновить</span>
     </div>
 
+    <!-- ================= МОДАЛЬНЫЕ ОКНА ================= -->
+    <!-- Новый актив (создание) -->
     <div class="modal" id="addAssetModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -282,8 +284,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="assetSerial">Серийный номер:</label>
+                    <label class="form-label required" for="assetSerial">Серийный номер:</label>
                     <input type="text" class="form-control" id="assetSerial" placeholder="Введите серийный номер">
+                    <span class="error-message" id="assetSerialError"></span>
                 </div>
                 
                 <div class="form-group">
@@ -311,13 +314,15 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="assetPurchaseDate">Дата приобретения:</label>
+                        <label class="form-label required" for="assetPurchaseDate">Дата приобретения:</label>
                         <input type="date" class="form-control" id="assetPurchaseDate">
+                        <span class="error-message" id="assetPurchaseDateError"></span>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label" for="assetWarranty">Гарантия до:</label>
                         <input type="date" class="form-control" id="assetWarranty">
+                        <span class="error-message" id="assetWarrantyError"></span>
                     </div>
                 </div>
                 
@@ -337,6 +342,7 @@
         </div>
     </div>
 
+    <!-- Быстрое добавление (без цвета) -->
     <div class="modal" id="quickAddModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -354,17 +360,7 @@
                     <select class="form-control" id="quickType"></select>
                 </div>
                 
-                <div class="form-group mb-15">
-                    <label class="form-label">Цвет:</label>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div id="quickColorSample" style="width: 40px; height: 40px; border-radius: 4px; border: 2px solid var(--border);"></div>
-                        <button class="button" id="changeQuickColor">
-                            <i class="fas fa-eye-dropper"></i> Выбрать цвет
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="color-palette" id="quickColors"></div>
+                <!-- Блок цвета полностью удалён -->
                 
                 <div class="text-warning mt-20" style="font-size: 12px;">
                     * - обязательное поле
@@ -376,52 +372,8 @@
             </div>
         </div>
     </div>
-<!-- 
-    <div class="modal" id="colorModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title">Изменение внешнего вида</div>
-                <button class="modal-close" id="closeColorModal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group mb-15">
-                    <label class="form-label">Объект:</label>
-                    <div id="colorAssetName">Неизвестно</div>
-                </div>
-                
-                <div class="form-group mb-15">
-                    <label class="form-label">Цвет:</label>
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div id="colorSample" style="width: 40px; height: 40px; border-radius: 4px; border: 2px solid var(--border);"></div>
-                        <button class="button" id="changeColor">
-                            <i class="fas fa-eye-dropper"></i> Выбрать цвет
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="color-palette" id="colorPalette"></div>
-                
-                <div class="form-group mt-20">
-                    <label class="form-label">Режим отображения:</label>
-                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="radio" name="displayMode" value="icon" checked>
-                            <span>Иконка</span>
-                        </label>
-                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                            <input type="radio" name="displayMode" value="color">
-                            <span>Цветной блок</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="button" id="cancelColor">Отмена (Esc)</button>
-                <button class="button" id="saveColor">Сохранить (Enter)</button>
-            </div>
-        </div>
-    </div> -->
 
+    <!-- Прикрепить устройство -->
     <div class="modal" id="attachModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -447,6 +399,7 @@
         </div>
     </div>
 
+    <!-- Статистика -->
     <div class="modal" id="statsModal">
         <div class="modal-content" style="max-width: 500px;">
             <div class="modal-header">
@@ -462,6 +415,7 @@
         </div>
     </div>
 
+    <!-- Изменение статуса -->
     <div class="modal" id="statusModal">
         <div class="modal-content" style="max-width: 400px;">
             <div class="modal-header">
@@ -487,6 +441,7 @@
         </div>
     </div>
 
+    <!-- Импорт данных -->
     <div class="modal" id="importModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -513,6 +468,7 @@
         </div>
     </div>
 
+    <!-- Редактирование актива (если нужно) -->
     <div class="modal" id="editAssetModal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
@@ -529,13 +485,14 @@
         </div>
     </div>
 
+    <!-- Контекстное меню -->
     <div class="context-menu" id="contextMenu">
-        <div class="context-menu-item" id="ctxEdit" data-hotkey="Ctrl+E">
+        <!-- <div class="context-menu-item" id="ctxEdit" data-hotkey="Ctrl+E">
             <i class="fas fa-edit"></i> Редактировать
-        </div>
-        <div class="context-menu-item" id="ctxColor" data-hotkey="Ctrl+G">
+        </div> -->
+        <!-- <div class="context-menu-item" id="ctxColor" data-hotkey="Ctrl+G">
             <i class="fas fa-palette"></i> Изменить цвет
-        </div>
+        </div> -->
         <div class="context-menu-item" id="ctxResize" data-hotkey="Ctrl+Shift+R">
             <i class="fas fa-expand-alt"></i> Переключить режим изменения размера
         </div>
