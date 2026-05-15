@@ -2189,7 +2189,7 @@
     assetElement.appendChild(rotateHandle);
             }
 
-            function updateAsset(assetId, updates, skipHistory = false) {
+           function updateAsset(assetId, updates, skipHistory = false) {
     const asset = appState.assets[assetId];
     if (!asset) return false;
 
@@ -2316,7 +2316,7 @@
 
     showStatus(`Обновлен: ${asset.type} (${asset.x}, ${asset.y})`);
     return true;
-            }
+}
             
             function filterAssets() {
                 const searchText = document.getElementById('searchInput').value.toLowerCase();
