@@ -2008,6 +2008,28 @@ floorPlan.addEventListener('click', function(e) {
     }
 });
 
+                // Маски для полей дат
+(function setupDateMasks() {
+    const purchaseInput = document.getElementById('assetPurchaseDate');
+    const warrantyInput = document.getElementById('assetWarranty');
+    
+    function applyMask(input) {
+        input.addEventListener('input', function() {
+            let val = this.value.replace(/\D/g, '');
+            if (val.length > 8) val = val.slice(0, 8);
+            if (val.length >= 5) {
+                val = val.slice(0,2) + '.' + val.slice(2,4) + '.' + val.slice(4,8);
+            } else if (val.length >= 3) {
+                val = val.slice(0,2) + '.' + val.slice(2,4);
+            }
+            this.value = val;
+        });
+    }
+    
+    if (purchaseInput) applyMask(purchaseInput);
+    if (warrantyInput) applyMask(warrantyInput);
+})();
+                
 // Двойной клик
 floorPlan.addEventListener('dblclick', function(e) {
     const room = e.target.closest('.room');
