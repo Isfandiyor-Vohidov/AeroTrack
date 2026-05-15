@@ -2778,84 +2778,95 @@
                 const selectedText = document.getElementById('selectedText');
                 if (selectedText) selectedText.textContent = '-';
             }
-            
             function addAsset(assetData, skipHistory = false) {
     const assetId = generateUUID();
     const errors = {};
 
-    // Проверка ВСЕХ обязательных полей
+    // Тип
     if (!assetData.type) {
         errors.type = 'Выберите тип оборудования';
     }
+
+    // Инвентарный номер
     if (!assetData.inventory_number || assetData.inventory_number.trim() === '') {
         errors.inventory_number = 'Инвентарный номер обязателен';
     }
+
+    // Модель
     if (!assetData.model || assetData.model.trim() === '') {
         errors.model = 'Модель обязательна';
     }
+
+    // Серийный номер
     if (!assetData.serial_number || assetData.serial_number.trim() === '') {
         errors.serial_number = 'Серийный номер обязателен';
     }
-    if (assetData.sum === undefined || assetData.sum === null || assetData.sum < 0) {
-        errors.sum = 'Сумма должна быть неотрицательной';
-    }
-    if (!assetData.responsible || assetData.responsible.trim() === '') {
-        errors.responsible = 'Ответственный обязателен';
+
+    // Сумма
+    if (assetData.sum === undefined || assetData.sum === null || isNaN(assetData.sum) || assetData.sum < 0) {
+        errors.sum = 'Укажите корректную сумму (0 или больше)';
     }
 
-    // Проверка даты приобретения
+    // Ответственный
+    if (!assetData.responsible || assetData.responsible.trim() === '') {
+        errors.responsible = 'ФИО ответственного обязательно';
+    }
+
+    // Дата приобретения (обязательна + формат ДД.ММ.ГГГГ)
     if (!assetData.purchase_date || assetData.purchase_date.trim() === '') {
         errors.purchase_date = 'Дата приобретения обязательна';
     } else {
+        const dateStr = assetData.purchase_date.trim();
         const datePattern = /^\d{2}\.\d{2}\.\d{4}$/;
-        if (!datePattern.test(assetData.purchase_date)) {
-            errors.purchase_date = 'Формат даты: ДД.ММ.ГГГГ';
+        if (!datePattern.test(dateStr)) {
+            errors.purchase_date = 'Формат: ДД.ММ.ГГГГ (например, 13.04.2011)';
         } else {
-            const parts = assetData.purchase_date.split('.');
-            const day = parseInt(parts[0], 10);
-            const month = parseInt(parts[1], 10);
-            const year = parseInt(parts[2], 10);
-            const date = new Date(year, month - 1, day);
-            if (date.getDate() !== day || date.getMonth() !== month - 1 || date.getFullYear() !== year) {
-                errors.purchase_date = 'Некорректная дата';
+            const [day, month, year] = dateStr.split('.').map(Number);
+            const testDate = new Date(year, month - 1, day);
+            if (
+                testDate.getDate() !== day ||
+                testDate.getMonth() !== month - 1 ||
+                testDate.getFullYear() !== year
+            ) {
+                errors.purchase_date = 'Некорректная дата (проверьте день/месяц/год)';
             }
         }
     }
 
-    // Проверка даты гарантии (если поле есть, но по желанию можно оставить необязательным)
-    // Здесь делаем обязательным – раскомментируйте, если нужно.
-    /*
-    if (!assetData.warranty_until || assetData.warranty_until.trim() === '') {
-        errors.warranty_until = 'Дата гарантии обязательна';
-    } else {
+    // Гарантия до (необязательна, но если указана – проверяем формат)
+    if (assetData.warranty_until && assetData.warranty_until.trim() !== '') {
+        const warrStr = assetData.warranty_until.trim();
         const datePattern = /^\d{2}\.\d{2}\.\d{4}$/;
-        if (!datePattern.test(assetData.warranty_until)) {
-            errors.warranty_until = 'Формат даты: ДД.ММ.ГГГГ';
+        if (!datePattern.test(warrStr)) {
+            errors.warranty_until = 'Формат гарантии: ДД.ММ.ГГГГ';
         } else {
-            const parts = assetData.warranty_until.split('.');
-            const day = parseInt(parts[0], 10);
-            const month = parseInt(parts[1], 10);
-            const year = parseInt(parts[2], 10);
-            const date = new Date(year, month - 1, day);
-            if (date.getDate() !== day || date.getMonth() !== month - 1 || date.getFullYear() !== year) {
-                errors.warranty_until = 'Некорректная дата';
+            const [day, month, year] = warrStr.split('.').map(Number);
+            const testDate = new Date(year, month - 1, day);
+            if (
+                testDate.getDate() !== day ||
+                testDate.getMonth() !== month - 1 ||
+                testDate.getFullYear() !== year
+            ) {
+                errors.warranty_until = 'Некорректная дата гарантии';
             }
         }
     }
-    */
 
-    // Если есть ошибки – показываем их и прерываем создание
+    // Если есть ошибки – подсвечиваем и прерываем
     if (Object.keys(errors).length > 0) {
         showValidationErrors(errors, 'asset');
         return null;
     }
 
-    // Категория (без изменений)
-    const furnitureTypes = typeof FURNITURE_TYPES !== 'undefined' ? FURNITURE_TYPES : ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
+    // --- Дальше стандартное создание актива (без изменений) ---
+    const furnitureTypes = typeof FURNITURE_TYPES !== 'undefined'
+        ? FURNITURE_TYPES
+        : ["Стол", "Стул", "Шкаф", "Кресло", "Рабочая станция"];
+
     let category = 'device_movable';
     const fixedTypes = [
         "Принтер Canon", "IP-телефон Grandstream", "Серверная стойка", "Копировальный аппарат",
-        "Локальный сервер", "Платёжный терминал", "Промышленный ПК", "Информационный киоск", 
+        "Локальный сервер", "Платёжный терминал", "Промышленный ПК", "Информационный киоск",
         "Диспетчерская консоль"
     ];
 
@@ -2867,19 +2878,14 @@
 
     const defaultColor = DEFAULT_COLORS[assetData.type] || '#2196F3';
     
-    let x = 100;
-    let y = 100;
+    let x = 100, y = 100;
     if (assetData.x !== undefined && assetData.x !== null) {
         const parsedX = parseFloat(assetData.x);
-        if (!isNaN(parsedX) && isFinite(parsedX)) {
-            x = Math.max(0, Math.min(parsedX, 5000));
-        }
+        if (!isNaN(parsedX) && isFinite(parsedX)) x = Math.max(0, Math.min(parsedX, 5000));
     }
     if (assetData.y !== undefined && assetData.y !== null) {
         const parsedY = parseFloat(assetData.y);
-        if (!isNaN(parsedY) && isFinite(parsedY)) {
-            y = Math.max(0, Math.min(parsedY, 5000));
-        }
+        if (!isNaN(parsedY) && isFinite(parsedY)) y = Math.max(0, Math.min(parsedY, 5000));
     }
 
     const fullData = {
@@ -2918,10 +2924,7 @@
     appState.assetPositions[assetId] = { x: x, y: y };
 
     if (!skipHistory) {
-        pushToUndo('create', {
-            assetId: assetId,
-            assetData: fullData
-        });
+        pushToUndo('create', { assetId: assetId, assetData: fullData });
     }
 
     if (appState.viewMode === 'room' && appState.currentRoom) {
@@ -2938,9 +2941,7 @@
 
     addToHistory('create', assetId, { type: assetData.type, room: assetData.room_id, position: { x, y } });
     updateAssetTree();
-    if (appState.currentRoom) {
-        updateRoomStats(appState.currentRoom);
-    }
+    if (appState.currentRoom) updateRoomStats(appState.currentRoom);
     selectAsset(assetId);
     saveToLocalStorage();
     scheduleAutoSave();
@@ -2948,8 +2949,6 @@
     showToast(`Добавлен: ${assetData.type}`, 'success');
     return assetId;
 }
-
-
             function updateAsset(assetId, updates, skipHistory = false) {
     const asset = appState.assets[assetId];
     if (!asset) return false;
@@ -3580,6 +3579,36 @@ assetElement.style.transformOrigin = 'center center';
         });
     });
 
+// Маска для даты приобретения
+const purchaseDateInput = document.getElementById('assetPurchaseDate');
+if (purchaseDateInput) {
+    purchaseDateInput.addEventListener('input', function(e) {
+        let val = this.value.replace(/\D/g, ''); // оставляем только цифры
+        if (val.length > 8) val = val.slice(0, 8);
+        if (val.length >= 5) {
+            val = val.slice(0, 2) + '.' + val.slice(2, 4) + '.' + val.slice(4, 8);
+        } else if (val.length >= 3) {
+            val = val.slice(0, 2) + '.' + val.slice(2, 4);
+        }
+        this.value = val;
+    });
+}
+
+// Маска для гарантии
+const warrantyInput = document.getElementById('assetWarranty');
+if (warrantyInput) {
+    warrantyInput.addEventListener('input', function(e) {
+        let val = this.value.replace(/\D/g, '');
+        if (val.length > 8) val = val.slice(0, 8);
+        if (val.length >= 5) {
+            val = val.slice(0, 2) + '.' + val.slice(2, 4) + '.' + val.slice(4, 8);
+        } else if (val.length >= 3) {
+            val = val.slice(0, 2) + '.' + val.slice(2, 4);
+        }
+        this.value = val;
+    });
+}
+                    
     const saveAsset = document.getElementById('saveAsset');
     if (saveAsset) {
         saveAsset.addEventListener('click', function() {
