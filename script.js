@@ -4181,29 +4181,32 @@ assetElement.style.transformOrigin = 'center center';
         }
         dragState = null;
     }
-
-    function startResize(e, handle, assetElement) {
-        e.preventDefault();
-        e.stopPropagation();
-        const assetId = assetElement.dataset.assetId;
-        if (!assetId || !appState.assets[assetId]) return;
-        const asset = appState.assets[assetId];
-        const position = handle.dataset.position;
-        if (!position) return;
-        resizeState = {
-            assetId,
-            element: assetElement,
-            startMouseX: e.clientX,
-            startMouseY: e.clientY,
-            initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
-            initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
-            initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
-            initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
-            handle: position
-        };
-        document.addEventListener('mousemove', onResizeMove);
-        document.addEventListener('mouseup', onResizeEnd);
-    }
+        function startResize(e, handle, assetElement) {
+            e.preventDefault();
+            e.stopPropagation();
+            const assetId = assetElement.dataset.assetId;
+            if (!assetId || !appState.assets[assetId]) return;
+            const asset = appState.assets[assetId];
+            if (asset.rotation && asset.rotation !== 0) {
+                showToast('Сначала установите угол поворота 0 (поверните обратно)', 'warning');
+                return;
+            }
+            const position = handle.dataset.position;
+            if (!position) return;
+            resizeState = {
+                assetId,
+                element: assetElement,
+                startMouseX: e.clientX,
+                startMouseY: e.clientY,
+                initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
+                initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
+                initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
+                initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
+                handle: position
+            };
+            document.addEventListener('mousemove', onResizeMove);
+            document.addEventListener('mouseup', onResizeEnd);
+        }
 
     function onResizeMove(e) {
         if (!resizeState) return;
@@ -4270,27 +4273,64 @@ assetElement.style.transformOrigin = 'center center';
         }
         resizeState = null;
     }
+function startRotate(e, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    const asset = appState.assets[assetId];
+    const rect = assetElement.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    rotationState = {
+        assetId,
+        element: assetElement,
+        centerX,
+        centerY,
+        initialAngle: asset.rotation || 0,
+        startMouseAngle: Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI)
+    };
+    document.addEventListener('mousemove', onRotateMove);
+    document.addEventListener('mouseup', onRotateEnd);
+}
 
-    function startRotate(e, assetElement) {
-        e.preventDefault();
-        e.stopPropagation();
-        const assetId = assetElement.dataset.assetId;
-        if (!assetId || !appState.assets[assetId]) return;
-        const asset = appState.assets[assetId];
-        const rect = assetElement.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        rotationState = {
-            assetId,
-            element: assetElement,
-            centerX,
-            centerY,
-            initialAngle: asset.rotation || 0,
-            startMouseAngle: Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI)
-        };
-        document.addEventListener('mousemove', onRotateMove);
-        document.addEventListener('mouseup', onRotateEnd);
+function onRotateMove(e) {
+    if (!rotationState) return;
+    e.preventDefault();
+    const dx = e.clientX - rotationState.centerX;
+    const dy = e.clientY - rotationState.centerY;
+    const currentAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+    let delta = currentAngle - rotationState.startMouseAngle;
+    // Нормализуем дельту в диапазон -180..180
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+    // Замедляем вращение в 2 раза для управляемости
+    delta *= 0.5;
+    let newAngle = rotationState.initialAngle + delta;
+    // Удерживаем в пределах 0..360
+    newAngle = ((newAngle % 360) + 360) % 360;
+    // Применяем плавно
+    rotationState.element.style.transform = `rotate(${newAngle}deg)`;
+}
+
+function onRotateEnd(e) {
+    if (!rotationState) return;
+    document.removeEventListener('mousemove', onRotateMove);
+    document.removeEventListener('mouseup', onRotateEnd);
+    const asset = appState.assets[rotationState.assetId];
+    if (asset) {
+        const match = rotationState.element.style.transform.match(/rotate\(([-\d.]+)deg\)/);
+        const newAngle = match ? parseFloat(match[1]) : 0;
+        pushToUndo('rotate', {
+            assetId: rotationState.assetId,
+            oldData: { rotation: rotationState.initialAngle },
+            newData: { rotation: newAngle }
+        });
+        asset.rotation = newAngle;
+        scheduleAutoSave();
     }
+    rotationState = null;
+}
 
     function onRotateMove(e) {
         if (!rotationState) return;
