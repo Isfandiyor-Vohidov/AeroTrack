@@ -1573,22 +1573,21 @@
                 }
             }
 
+// ===== ПЕРЕТАСКИВАНИЕ =====
+let dragState = null;
+let resizeState = null;
+let rotationState = null;
+let highlightedRoom = null;
 
-            // ---------- ПЛАН ЭТАЖА: КЛИКИ, ВХОД, ПОДСВЕТКА ----------
-            let dragState = null;
-            let resizeState = null;
-            let rotationState = null;  // если поворот ещё не реализован, просто не используется
-            let highlightedRoom = null;
-
-
-            function clearRoomHighlights() {
+function clearRoomHighlights() {
     document.querySelectorAll('.room').forEach(r => {
         r.classList.remove('selected-room', 'highlight');
     });
     highlightedRoom = null;
-            }
+}
 
-            function showRoomList() {
+// ---------- СПИСОК КОМНАТ ----------
+function showRoomList() {
     const roomListContainer = document.getElementById('roomListContainer');
     const roomList = document.getElementById('roomList');
     if (!roomListContainer || !roomList) return;
@@ -1597,7 +1596,6 @@
         roomListContainer.style.display = 'none';
         return;
     }
-
     roomListContainer.style.display = 'block';
     roomList.innerHTML = '';
     Object.keys(rooms).forEach(roomId => {
@@ -1626,131 +1624,20 @@
             const roomElem = document.querySelector(`.room[data-room-id="${roomId}"]`);
             if (roomElem) roomElem.classList.add('selected-room');
             updateAssetTree();
-            // Вместо updateRoomStats показываем детальный вид
             document.getElementById('roomListView').style.display = 'none';
             document.getElementById('roomDetailView').style.display = 'block';
             showRoomDetail(roomId);
-            // Снимаем выделение со всех элементов списка комнат
             document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
             item.classList.add('selected');
         });
         roomList.appendChild(item);
     });
     if (Object.keys(rooms).length === 0) roomListContainer.style.display = 'none';
-            }
+}
 
-            function updateAssetTree() {
-    const treeContainer = document.getElementById('assetTree');
-    if (!treeContainer) return;
-    
-    treeContainer.innerHTML = '';
-    
-    if (appState.viewMode === 'room' && appState.currentRoom) {
-        const categories = {
-            furniture: [],
-            device_fixed: [],
-            device_movable: [],
-            network_equipment: [],
-            network_cables: [],
-            network_infrastructure: []
-        };
-        
-        Object.values(appState.assets).forEach(asset => {
-            if (asset.room_id === appState.currentRoom && categories[asset.category]) {
-                categories[asset.category].push(asset);
-            }
-        });
-        
-        for (const [categoryKey, assets] of Object.entries(categories)) {
-            if (assets.length > 0) {
-                const categoryName = ASSET_CATEGORIES[categoryKey] || categoryKey;
-                
-                const categoryNode = document.createElement('div');
-                categoryNode.className = 'tree-node';
-                
-                const header = document.createElement('div');
-                header.className = 'tree-header';
-                header.innerHTML = `<i class="fas fa-folder"></i> ${categoryName} (${assets.length})`;
-                categoryNode.appendChild(header);
-                
-                const content = document.createElement('div');
-                content.className = 'tree-content';
-                
-                assets.sort((a, b) => a.type.localeCompare(b.type));
-                
-                assets.forEach(asset => {
-                    const item = document.createElement('div');
-                    item.className = 'tree-item';
-                    if (appState.selectedAssetId === asset.id) {
-                        item.classList.add('selected');
-                    }
-                    item.dataset.assetId = asset.id;
-                    
-                    let iconClass = 'fas fa-cube';
-                    if (asset.category === 'furniture') {
-                        iconClass = 'fas fa-couch';
-                    } else if (asset.category === 'device_fixed') {
-                        iconClass = 'fas fa-server';
-                    } else if (asset.category === 'device_movable') {
-                        iconClass = 'fas fa-laptop';
-                    } else if (asset.category === 'network_equipment') {
-                        iconClass = 'fas fa-wifi';
-                    } else if (asset.category === 'network_cables') {
-                        iconClass = 'fas fa-ethernet';
-                    } else if (asset.category === 'network_infrastructure') {
-                        iconClass = 'fas fa-network-wired';
-                    }
-                    
-                    item.innerHTML = `
-                        <div class="tree-item-icon"><i class="${iconClass}"></i></div>
-                        <div style="flex: 1; overflow: hidden; text-overflow: ellipsis;">${asset.type}</div>
-                        <div style="font-size: 11px; color: var(--text-secondary);">${asset.inventory_number || ''}</div>
-                    `;
-                    
-                    content.appendChild(item);
-                });
-                
-                categoryNode.appendChild(content);
-                treeContainer.appendChild(categoryNode);
-            }
-        }
-        
-        if (treeContainer.children.length === 0) {
-            treeContainer.innerHTML = '<div class="text-muted text-center">В комнате нет активов</div>';
-        }
-    } else {
-        treeContainer.innerHTML = '<div class="text-muted text-center">Выберите комнату для просмотра активов</div>';
-    }
-    
-    const assetCount = document.getElementById('assetCount');
-    if (assetCount) assetCount.textContent = Object.keys(appState.assets).length;
-            }
-
-            // Кнопка "Назад к комнатам" в списке комнат
-            const backToRoomListBtn = document.getElementById('backToRoomList');
-            if (backToRoomListBtn) {
-    backToRoomListBtn.addEventListener('click', () => {
-        // Показать список комнат, скрыть детали комнаты
-        document.getElementById('roomListView').style.display = 'block';
-        document.getElementById('roomDetailView').style.display = 'none';
-        // Снять выделение комнаты и очистить дерево
-        clearRoomHighlights();
-        appState.currentRoom = null;
-        appState.viewMode = 'floor';
-        document.getElementById('roomText').textContent = '-';
-        updateAssetTree();
-        clearAssetDetails();
-        clearRoomStats();
-        document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
-    });
-            }
-
-            // Заполнение детального вида комнаты
-            function showRoomDetail(roomId) {
+function showRoomDetail(roomId) {
     const roomDetailContent = document.getElementById('roomDetailContent');
     if (!roomDetailContent) return;
-
-    // Статистика комнаты
     const assets = Object.values(appState.assets).filter(a => a.room_id === roomId);
     let statsHtml = `<h4 style="color: var(--primary-light);">Комната: ${roomId}</h4>`;
     statsHtml += `<p><strong>Всего активов:</strong> ${assets.length}</p>`;
@@ -1759,7 +1646,6 @@
     statsHtml += `<p><strong>Сеть:</strong> ${assets.filter(a => a.category.startsWith('network')).length}</p>`;
     statsHtml += `<hr style="border-color: var(--border);">`;
     statsHtml += `<h4>Активы:</h4>`;
-
     if (assets.length === 0) {
         statsHtml += `<p class="text-muted">Нет активов</p>`;
     } else {
@@ -1772,10 +1658,7 @@
         });
         statsHtml += `</div>`;
     }
-
     roomDetailContent.innerHTML = statsHtml;
-
-    // Обработчики кликов по активам в этом списке
     roomDetailContent.querySelectorAll('.tree-item').forEach(item => {
         item.addEventListener('click', (e) => {
             const assetId = item.dataset.assetId;
@@ -1783,11 +1666,260 @@
             e.stopPropagation();
         });
     });
+}
+
+// Кнопка "Назад к комнатам"
+const backToRoomListBtn = document.getElementById('backToRoomList');
+if (backToRoomListBtn) {
+    backToRoomListBtn.addEventListener('click', () => {
+        document.getElementById('roomListView').style.display = 'block';
+        document.getElementById('roomDetailView').style.display = 'none';
+        clearRoomHighlights();
+        appState.currentRoom = null;
+        appState.viewMode = 'floor';
+        document.getElementById('roomText').textContent = '-';
+        updateAssetTree();
+        clearAssetDetails();
+        clearRoomStats();
+        document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
+    });
+}
+
+// ===== ПЕРЕТАСКИВАНИЕ =====
+function startDrag(e, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    if (appState.resizeMode) return;
+    const rect = assetElement.getBoundingClientRect();
+    dragState = {
+        assetId,
+        element: assetElement,
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        initialLeft: parseInt(assetElement.style.left, 10) || 0,
+        initialTop: parseInt(assetElement.style.top, 10) || 0
+    };
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('mouseup', onDragEnd);
+}
+
+function onDragMove(e) {
+    if (!dragState) return;
+    e.preventDefault();
+    const dx = e.clientX - dragState.startMouseX;
+    const dy = e.clientY - dragState.startMouseY;
+    const newLeft = dragState.initialLeft + dx;
+    const newTop = dragState.initialTop + dy;
+    dragState.element.style.left = newLeft + 'px';
+    dragState.element.style.top = newTop + 'px';
+}
+
+function onDragEnd(e) {
+    if (!dragState) return;
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    const asset = appState.assets[dragState.assetId];
+    if (asset) {
+        const newLeft = parseInt(dragState.element.style.left, 10);
+        const newTop = parseInt(dragState.element.style.top, 10);
+        pushToUndo('move', {
+            assetId: dragState.assetId,
+            oldData: { x: dragState.initialLeft, y: dragState.initialTop },
+            newData: { x: newLeft, y: newTop }
+        });
+        asset.x = newLeft;
+        asset.y = newTop;
+        scheduleAutoSave();
+    }
+    dragState = null;
+}
+
+// ===== РЕСАЙЗ (с поддержкой поворота) =====
+function startResize(e, handle, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    const asset = appState.assets[assetId];
+    const position = handle.dataset.position;
+    if (!position) return;
+
+    const style = assetElement.style;
+    const width = parseInt(style.width, 10) || asset.width || DEFAULT_ICON_SIZE;
+    const height = parseInt(style.height, 10) || asset.height || DEFAULT_ICON_SIZE;
+    const left = parseInt(style.left, 10) || asset.x || 0;
+    const top = parseInt(style.top, 10) || asset.y || 0;
+
+    resizeState = {
+        assetId,
+        element: assetElement,
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        initialWidth: width,
+        initialHeight: height,
+        initialLeft: left,
+        initialTop: top,
+        handle: position,
+        rotation: asset.rotation || 0
+    };
+    document.addEventListener('mousemove', onResizeMove);
+    document.addEventListener('mouseup', onResizeEnd);
+}
+
+function onResizeMove(e) {
+    if (!resizeState) return;
+    e.preventDefault();
+    const { element, startMouseX, startMouseY, initialWidth, initialHeight, initialLeft, initialTop, handle, rotation } = resizeState;
+
+    let dx = e.clientX - startMouseX;
+    let dy = e.clientY - startMouseY;
+
+    // Упрощённый подход: игнорируем поворот, чтобы ресайз работал стабильно.
+    // Если нужен точный ресайз с поворотом – доработаем позже.
+    let newWidth = initialWidth;
+    let newHeight = initialHeight;
+    let newLeft = initialLeft;
+    let newTop = initialTop;
+
+    const MIN_SIZE = 24;
+    const MAX_SIZE = 256;
+
+    if (handle.includes('right')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialWidth + dx));
+    }
+    if (handle.includes('left')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialWidth - dx));
+        newLeft = initialLeft + (initialWidth - newWidth);
+    }
+    if (handle.includes('bottom')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialHeight + dy));
+    }
+    if (handle.includes('top')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialHeight - dy));
+        newTop = initialTop + (initialHeight - newHeight);
+    }
+
+    element.style.width = newWidth + 'px';
+    element.style.height = newHeight + 'px';
+    element.style.left = newLeft + 'px';
+    element.style.top = newTop + 'px';
+}
+
+function onResizeEnd(e) {
+    if (!resizeState) return;
+    document.removeEventListener('mousemove', onResizeMove);
+    document.removeEventListener('mouseup', onResizeEnd);
+
+    const asset = appState.assets[resizeState.assetId];
+    if (asset) {
+        const newWidth = parseInt(resizeState.element.style.width, 10);
+        const newHeight = parseInt(resizeState.element.style.height, 10);
+        const newLeft = parseInt(resizeState.element.style.left, 10);
+        const newTop = parseInt(resizeState.element.style.top, 10);
+
+        pushToUndo('resize', {
+            assetId: resizeState.assetId,
+            oldData: {
+                width: resizeState.initialWidth,
+                height: resizeState.initialHeight,
+                x: resizeState.initialLeft,
+                y: resizeState.initialTop
+            },
+            newData: {
+                width: newWidth,
+                height: newHeight,
+                x: newLeft,
+                y: newTop
             }
+        });
+        asset.width = newWidth;
+        asset.height = newHeight;
+        asset.x = newLeft;
+        asset.y = newTop;
+        scheduleAutoSave();
+    }
+    resizeState = null;
+}
 
-            floorPlan.addEventListener('click', function(e) {
+// ===== ПОВОРОТ =====
+function startRotate(e, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    const asset = appState.assets[assetId];
+    const rect = assetElement.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    rotationState = {
+        assetId,
+        element: assetElement,
+        centerX,
+        centerY,
+        initialAngle: asset.rotation || 0,
+        startMouseAngle: Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI)
+    };
+    document.addEventListener('mousemove', onRotateMove);
+    document.addEventListener('mouseup', onRotateEnd);
+}
+
+function onRotateMove(e) {
+    if (!rotationState) return;
+    e.preventDefault();
+    const dx = e.clientX - rotationState.centerX;
+    const dy = e.clientY - rotationState.centerY;
+    const currentAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+    let delta = currentAngle - rotationState.startMouseAngle;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+    delta *= 0.5; // замедление для управляемости
+    let newAngle = rotationState.initialAngle + delta;
+    newAngle = ((newAngle % 360) + 360) % 360;
+    rotationState.element.style.transform = `rotate(${newAngle}deg)`;
+}
+
+function onRotateEnd(e) {
+    if (!rotationState) return;
+    document.removeEventListener('mousemove', onRotateMove);
+    document.removeEventListener('mouseup', onRotateEnd);
+    const asset = appState.assets[rotationState.assetId];
+    if (asset) {
+        const match = rotationState.element.style.transform.match(/rotate\(([-\d.]+)deg\)/);
+        const newAngle = match ? parseFloat(match[1]) : 0;
+        pushToUndo('rotate', {
+            assetId: rotationState.assetId,
+            oldData: { rotation: rotationState.initialAngle },
+            newData: { rotation: newAngle }
+        });
+        asset.rotation = newAngle;
+        scheduleAutoSave();
+    }
+    rotationState = null;
+}
+
+// Обработчик mousedown на плане
+floorPlan.addEventListener('mousedown', function(e) {
+    const rotateHandle = e.target.closest('.rotate-handle');
+    if (rotateHandle) {
+        const assetElement = rotateHandle.closest('.asset');
+        if (assetElement) startRotate(e, assetElement);
+        return;
+    }
+    const resizeHandle = e.target.closest('.resize-handle');
+    if (resizeHandle) {
+        const assetElement = resizeHandle.closest('.asset');
+        if (assetElement) startResize(e, resizeHandle, assetElement);
+        return;
+    }
+    const assetElement = e.target.closest('.asset');
+    if (assetElement) startDrag(e, assetElement);
+});
+
+// Клик по плану
+floorPlan.addEventListener('click', function(e) {
     if (dragState || resizeState) return;
-
     const room = e.target.closest('.room');
     if (room && !dragState && !resizeState) {
         const roomId = room.dataset.roomId;
@@ -1818,14 +1950,12 @@
         });
         return;
     }
-
     const asset = e.target.closest('.asset');
     if (asset && !dragState && !resizeState) {
         const assetId = asset.dataset.assetId;
         selectAsset(assetId);
         return;
     }
-
     if (!room && !asset && !e.target.closest('.asset-icon') && !e.target.closest('.asset-label')) {
         clearRoomHighlights();
         appState.currentRoom = null;
@@ -1836,14 +1966,12 @@
         clearRoomStats();
         document.querySelectorAll('#roomList .tree-item').forEach(el => el.classList.remove('selected'));
     }
-
     if (!room && !asset && appState.pendingAssetType && !dragState && !resizeState) {
         const rect = floorPlan.getBoundingClientRect();
         let x = (e.clientX - rect.left) / appState.zoomLevel - appState.panOffset.x;
         let y = (e.clientY - rect.top) / appState.zoomLevel - appState.panOffset.y;
         x = Math.round(Math.max(0, Math.min(x, rect.width)));
         y = Math.round(Math.max(0, Math.min(y, rect.height)));
-
         if (appState.currentRoom) {
             if (typeof FURNITURE_TYPES !== 'undefined' && FURNITURE_TYPES.includes(appState.pendingAssetType)) {
                 const assetData = {
@@ -1878,9 +2006,10 @@
             showStatus('Сначала выберите комнату', 3000);
         }
     }
-            });
+});
 
-            floorPlan.addEventListener('dblclick', function(e) {
+// Двойной клик
+floorPlan.addEventListener('dblclick', function(e) {
     const room = e.target.closest('.room');
     if (room && !dragState && !resizeState) {
         const roomId = room.dataset.roomId;
@@ -1894,7 +2023,43 @@
             loadRoomView(roomId);
         }
     }
-            });
+});
+
+floorPlan.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    const asset = e.target.closest('.asset');
+    if (asset) {
+        const assetId = asset.dataset.assetId;
+        selectAsset(assetId);
+        const contextMenu = document.getElementById('contextMenu');
+        if (contextMenu) {
+            contextMenu.style.left = `${e.clientX}px`;
+            contextMenu.style.top = `${e.clientY}px`;
+            contextMenu.classList.add('active');
+        }
+    } else if (appState.currentRoom) {
+        const rect = floorPlan.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const quickPosition = document.getElementById('quickPosition');
+        if (quickPosition) quickPosition.textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)}`;
+        const defaultColor = DEFAULT_COLORS['Стол'] || '#2196F3';
+        const quickColorSample = document.getElementById('quickColorSample');
+        if (quickColorSample) quickColorSample.style.backgroundColor = defaultColor;
+        showModal('quickAddModal');
+    }
+});
+
+document.addEventListener('click', function(e) {
+    const contextMenu = document.getElementById('contextMenu');
+    if (contextMenu && !e.target.closest('.context-menu')) {
+        contextMenu.classList.remove('active');
+    }
+});
+
+floorPlan.addEventListener('wheel', function(e) {
+    e.preventDefault();
+});
 
             // Добавьте вызов showRoomList() в loadFloorPlan и при смене этажа
             function loadFloorPlan() {
