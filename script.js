@@ -3649,6 +3649,25 @@ if (warrantyInput) {
         });
     }
 
+
+                    // Маска для дат (ДД.ММ.ГГГГ)
+function applyDateMask(input) {
+    input.addEventListener('input', function() {
+        let val = this.value.replace(/\D/g, '');
+        if (val.length > 8) val = val.slice(0, 8);
+        if (val.length >= 5) {
+            val = val.slice(0,2) + '.' + val.slice(2,4) + '.' + val.slice(4,8);
+        } else if (val.length >= 3) {
+            val = val.slice(0,2) + '.' + val.slice(2,4);
+        }
+        this.value = val;
+    });
+}
+const purchaseDateInput = document.getElementById('assetPurchaseDate');
+if (purchaseDateInput) applyDateMask(purchaseDateInput);
+const warrantyInput = document.getElementById('assetWarranty');
+if (warrantyInput) applyDateMask(warrantyInput);
+                    
     const cancelAdd = document.getElementById('cancelAdd');
     if (cancelAdd) {
         cancelAdd.addEventListener('click', () => {
@@ -4209,34 +4228,146 @@ if (warrantyInput) {
             scheduleAutoSave();
         }
         dragState = null;
-    }
-        function startResize(e, handle, assetElement) {
-            e.preventDefault();
-            e.stopPropagation();
-            const assetId = assetElement.dataset.assetId;
-            if (!assetId || !appState.assets[assetId]) return;
-            const asset = appState.assets[assetId];
-            if (asset.rotation && asset.rotation !== 0) {
-                showToast('Сначала установите угол поворота 0 (поверните обратно)', 'warning');
-                return;
-            }
-            const position = handle.dataset.position;
-            if (!position) return;
-            resizeState = {
-                assetId,
-                element: assetElement,
-                startMouseX: e.clientX,
-                startMouseY: e.clientY,
-                initialWidth: parseInt(assetElement.style.width, 10) || asset.width || DEFAULT_ICON_SIZE,
-                initialHeight: parseInt(assetElement.style.height, 10) || asset.height || DEFAULT_ICON_SIZE,
-                initialLeft: parseInt(assetElement.style.left, 10) || asset.x || 0,
-                initialTop: parseInt(assetElement.style.top, 10) || asset.y || 0,
-                handle: position
-            };
-            document.addEventListener('mousemove', onResizeMove);
-            document.addEventListener('mouseup', onResizeEnd);
-        }
+    }// ===== РЕСАЙЗ С УЧЁТОМ ПОВОРОТА =====
+function startResize(e, handle, assetElement) {
+    e.preventDefault();
+    e.stopPropagation();
+    const assetId = assetElement.dataset.assetId;
+    if (!assetId || !appState.assets[assetId]) return;
+    const asset = appState.assets[assetId];
+    const position = handle.dataset.position;
+    if (!position) return;
 
+    const style = assetElement.style;
+    const width = parseInt(style.width, 10) || asset.width || DEFAULT_ICON_SIZE;
+    const height = parseInt(style.height, 10) || asset.height || DEFAULT_ICON_SIZE;
+    const left = parseInt(style.left, 10) || asset.x || 0;
+    const top = parseInt(style.top, 10) || asset.y || 0;
+
+    resizeState = {
+        assetId,
+        element: assetElement,
+        startMouseX: e.clientX,
+        startMouseY: e.clientY,
+        initialWidth: width,
+        initialHeight: height,
+        initialLeft: left,
+        initialTop: top,
+        handle: position,
+        rotation: asset.rotation || 0
+    };
+    document.addEventListener('mousemove', onResizeMove);
+    document.addEventListener('mouseup', onResizeEnd);
+}
+
+function onResizeMove(e) {
+    if (!resizeState) return;
+    e.preventDefault();
+    const { element, startMouseX, startMouseY, initialWidth, initialHeight, initialLeft, initialTop, handle, rotation } = resizeState;
+
+    // Смещение мыши в экранных координатах
+    const dx = e.clientX - startMouseX;
+    const dy = e.clientY - startMouseY;
+
+    // Центр объекта
+    const centerX = initialLeft + initialWidth / 2;
+    const centerY = initialTop + initialHeight / 2;
+
+    // Вектор смещения мыши относительно центра
+    const mouseOffsetX = (startMouseX + dx) - (initialLeft + initialWidth/2);
+    const mouseOffsetY = (startMouseY + dy) - (initialTop + initialHeight/2);
+
+    // Поворачиваем вектор смещения обратно на угол объекта (в локальную систему)
+    const angleRad = -rotation * Math.PI / 180;
+    const cos = Math.cos(angleRad);
+    const sin = Math.sin(angleRad);
+    const localDX = dx * cos - dy * sin;
+    const localDY = dx * sin + dy * cos;
+
+    let newWidth = initialWidth;
+    let newHeight = initialHeight;
+    let newLeft = initialLeft;
+    let newTop = initialTop;
+
+    const MIN_SIZE = 24;
+    const MAX_SIZE = 256;
+
+    // Определяем, какая ручка, и корректируем размеры в локальной системе
+    if (handle.includes('right')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialWidth + localDX));
+    }
+    if (handle.includes('left')) {
+        newWidth = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialWidth - localDX));
+        // Сдвиг левого края с учётом поворота
+        const deltaW = newWidth - initialWidth;
+        // Вектор сдвига в локальной системе (-deltaW/2, 0) поворачиваем обратно в экранную
+        const shiftLocalX = -deltaW / 2;
+        const shiftLocalY = 0;
+        const angleRadPos = rotation * Math.PI / 180;
+        const shiftScreenX = shiftLocalX * cos - shiftLocalY * sin;
+        const shiftScreenY = shiftLocalX * sin + shiftLocalY * cos;
+        newLeft = initialLeft + initialWidth/2 - newWidth/2 + shiftScreenX;
+        // Упростим: сдвигаем левый верхний угол на разницу в ширине вдоль оси X (локальной)
+        // Более точное: newLeft = initialLeft + (initialWidth - newWidth) * Math.cos(rotation * Math.PI/180);
+        // newTop = initialTop + (initialWidth - newWidth) * Math.sin(rotation * Math.PI/180);
+        // Но для левой ручки мы должны двигать не только ширину, но и положение.
+        // Используем упрощённую формулу (работает приемлемо):
+        const deltaW_ = initialWidth - newWidth;
+        newLeft = initialLeft + deltaW_ * Math.cos(rotation * Math.PI/180);
+        newTop = initialTop + deltaW_ * Math.sin(rotation * Math.PI/180);
+    }
+    if (handle.includes('bottom')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialHeight + localDY));
+    }
+    if (handle.includes('top')) {
+        newHeight = Math.min(MAX_SIZE, Math.max(MIN_SIZE, initialHeight - localDY));
+        const deltaH = initialHeight - newHeight;
+        newLeft = initialLeft + deltaH * Math.sin(rotation * Math.PI/180);
+        newTop = initialTop + deltaH * Math.cos(rotation * Math.PI/180);
+    }
+
+    // Применяем
+    element.style.width = newWidth + 'px';
+    element.style.height = newHeight + 'px';
+    element.style.left = newLeft + 'px';
+    element.style.top = newTop + 'px';
+}
+
+function onResizeEnd(e) {
+    if (!resizeState) return;
+    document.removeEventListener('mousemove', onResizeMove);
+    document.removeEventListener('mouseup', onResizeEnd);
+
+    const asset = appState.assets[resizeState.assetId];
+    if (asset) {
+        const newWidth = parseInt(resizeState.element.style.width, 10);
+        const newHeight = parseInt(resizeState.element.style.height, 10);
+        const newLeft = parseInt(resizeState.element.style.left, 10);
+        const newTop = parseInt(resizeState.element.style.top, 10);
+
+        pushToUndo('resize', {
+            assetId: resizeState.assetId,
+            oldData: {
+                width: resizeState.initialWidth,
+                height: resizeState.initialHeight,
+                x: resizeState.initialLeft,
+                y: resizeState.initialTop
+            },
+            newData: {
+                width: newWidth,
+                height: newHeight,
+                x: newLeft,
+                y: newTop
+            }
+        });
+        asset.width = newWidth;
+        asset.height = newHeight;
+        asset.x = newLeft;
+        asset.y = newTop;
+        scheduleAutoSave();
+    }
+    resizeState = null;
+}
     function onResizeMove(e) {
         if (!resizeState) return;
         e.preventDefault();
